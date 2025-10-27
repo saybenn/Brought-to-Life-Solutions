@@ -1,115 +1,131 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Head from "next/head";
+import { Button } from "@/components/ui/Button";
+import Hero from "@/components/Hero";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <>
+      <Head>
+        <title>Brought to Life Solutions — Outcomes Over Hype</title>
+        <meta
+          name="description"
+          content="Web, SEO, Coaching, Photography. Get backed, seen, heard, and paid."
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      </Head>
+
+      <main>
+        <Hero
+          eyebrow="OUTCOMES OVER HYPE"
+          title="Get backed. Get seen. Get heard. Get paid."
+          subtitle="Practical websites. Real SEO. Clear coaching. Honest imagery."
+          tone="ivory"
+          cta={
+            <div className="flex items-center justify-center gap-3">
+              <Link
+                href="/shop"
+                className="rounded-xl px-4 py-2 text-sm font-medium"
+                style={{ background: "var(--blue-600)", color: "var(--white)" }}
+              >
+                Shop Now
+              </Link>
+              <Link
+                href="/book/consult"
+                className="rounded-xl px-4 py-2 text-sm font-medium border"
+                style={{ borderColor: "var(--muted-400)" }}
+              >
+                Book Consult
+              </Link>
+            </div>
+          }
+        />
+        {/* HERO SECTION */}
+        {/* HERO SECTION (raw) */}
+        {/* <section className="relative isolate overflow-hidden bg-[var(--bg-ivory)] p-8 md:p-16 rounded-3xl shadow-lg ">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--sage-200)] via-transparent to-transparent"
+          />
+
+          <div className="relative z-10 max-w-3xl">
+            <div className="eyebrow text-[var(--muted-400)]">
+              Outcomes over hype
+            </div>
+
+            <h1 className="h1 mt-2 animate-fadeUp">
+              Get <span className="text-[var(--green-forest-700)]">backed</span>
+              . Get
+              <span className="text-[var(--green-forest-700)]"> seen</span>. Get{" "}
+              <span className="text-[var(--green-forest-700)]">heard</span>. Get{" "}
+              <span className="text-[var(--green-forest-700)]">paid</span>.
+            </h1>
+
+            <p className="subhead mt-4 max-w-2xl animate-fadeUp [animation-delay:150ms]">
+              Practical websites. Real SEO. Clear coaching. Honest imagery.
+              <br className="hidden md:block" />
+              Everything you need to look credible, rank locally, and grow with
+              confidence.
+            </p>
+
+            <ul className="mt-6 space-y-2 text-[var(--ink-700)] animate-fadeUp [animation-delay:300ms]">
+              <li>
+                ✔️ Launch a <strong>Lead-Machine Site</strong> in 14 days.
+              </li>
+              <li>
+                ✔️ Kickstart your <strong>Local SEO</strong> and get found on
+                Maps.
+              </li>
+              <li>
+                ✔️ Stay <strong>accountable</strong> with coaching and real
+                progress.
+              </li>
+            </ul>
+
+            <div className="mt-8 flex flex-wrap gap-3 animate-fadeUp [animation-delay:450ms]">
+              <button className="btn btn-primary">Shop Services</button>
+              <button className="btn btn-secondary">Visit Free Aisle</button>
+            </div>
+          </div>
+        </section> */}
+
+        {/* Alternating band */}
+        <section style={{ background: "var(--cream)" }}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+            <h2 className="text-xl font-semibold">Why we’re different</h2>
+            <p className="mt-3 text-[var(--ink-700)]">
+              Evidence-minded. Human-first. Clear results.
+            </p>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      {/* Inline keyframes to avoid extra file; place this in globals.css later if you like */}
+      <style jsx global>{`
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeUp {
+          animation: fadeUp 0.6s var(--ease-out) forwards;
+          opacity: 0;
+        }
+        [animation-delay\\: 150ms] {
+          animation-delay: 150ms;
+        }
+        [animation-delay\\: 300ms] {
+          animation-delay: 300ms;
+        }
+        [animation-delay\\: 450ms] {
+          animation-delay: 450ms;
+        }
+      `}</style>
+    </>
   );
 }
+

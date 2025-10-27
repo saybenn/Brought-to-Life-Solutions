@@ -1,0 +1,246 @@
+@layer components {
+  /* ================== Typography ================== */
+  .h1 {
+    font-family: var(--font-head);
+    font-size: var(--size-3xl);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+    color: var(--ink-900);
+  }
+  .h2 {
+    font-family: var(--font-head);
+    font-size: var(--size-2xl);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+    color: var(--ink-900);
+  }
+  .subhead {
+    font-size: var(--size-lg);
+    line-height: var(--leading-normal);
+    color: var(--ink-700);
+  }
+  .eyebrow {
+    font-size: var(--size-xs);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .caption {
+    font-size: var(--size-xs);
+    line-height: var(--leading-relaxed);
+    color: var(--muted);
+  }
+
+  /* ================== Buttons ================== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    padding: 0.5rem 1rem;
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-soft);
+    cursor: pointer;
+    transition: transform var(--dur-2) var(--ease-out),
+      background var(--dur-2) var(--ease-out),
+      color var(--dur-2) var(--ease-out),
+      border-color var(--dur-2) var(--ease-out);
+  }
+  .btn:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn:hover {
+      transform: scale(1.015);
+    }
+    .btn:active {
+      transform: scale(0.985);
+    }
+  }
+  .btn-primary {
+    color: #fff;
+    background: var(--green-forest-700);
+  }
+  .btn-primary:hover {
+    background: var(--green-pine-800);
+  }
+
+  .btn-secondary {
+    color: var(--ink-900);
+    background: #fff;
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    background: var(--sage-100);
+  }
+
+  /* Outline green (Free Aisle) */
+  .btn-free {
+    color: var(--green-forest-700);
+    background: transparent;
+    border: 1px solid var(--green-forest-700);
+  }
+  .btn-free:hover {
+    background: var(--sage-100);
+  }
+
+  /* ================== Surfaces ================== */
+  .section {
+    width: 100%;
+    background: var(--bg-cream);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-16) 0;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  .card:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Soft glass panels (for “soft-intelligent” vibe) */
+  .glass {
+    background: color-mix(in oklab, var(--white) 70%, transparent);
+    backdrop-filter: blur(10px) saturate(115%);
+    -webkit-backdrop-filter: blur(10px) saturate(115%);
+    border: 1px solid color-mix(in oklab, #000 6%, transparent);
+    box-shadow: 0 8px 30px rgb(0 0 0 / 0.06);
+  }
+
+  /* ================== Quick color helpers ================== */
+  .bg-ivory {
+    background: var(--bg-ivory);
+  }
+  .bg-cream {
+    background: var(--bg-cream);
+  }
+  .bg-sand {
+    background: var(--bg-sand);
+  }
+  .text-ink {
+    color: var(--ink-900);
+  }
+  .text-ink-muted {
+    color: var(--ink-700);
+  }
+
+  /* ================== Hero aspect reservations ================== */
+  .hero-16x9 {
+    aspect-ratio: 16 / 9;
+  }
+  .hero-21x9 {
+    aspect-ratio: 21 / 9;
+  }
+  .hero-4x3 {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* ================== Animations ================== */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fadeUp {
+    animation: fadeUp var(--dur-3) var(--ease-out) both;
+  }
+}
+
+/* ================== Announcement Marquee ================== */
+@keyframes ab-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  } /* move one content-length left */
+}
+.ab-marquee {
+  position: relative;
+  overflow: hidden;
+  background: var(--sage-100);
+  color: var(--green-forest-700);
+  border-bottom: 1px solid var(--border);
+}
+.ab-marquee__inner {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  will-change: transform;
+  animation-name: ab-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.ab-marquee--paused .ab-marquee__inner {
+  animation-play-state: paused;
+}
+.ab-marquee__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 48px;
+  padding: 8px 16px;
+}
+.ab-marquee__sep {
+  opacity: 0.6;
+}
+.announcement-link {
+  cursor: pointer;
+}
+.announcement-link:hover {
+  opacity: 0.9;
+}
+
+/* Edge fades (graceful degrade) */
+.ab-marquee::before,
+.ab-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  pointer-events: none;
+}
+.ab-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--sage-100), transparent);
+}
+.ab-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--sage-100), transparent);
+}
+
+/* Reduced motion: stop animation */
+@media (prefers-reduced-motion: reduce) {
+  .ab-marquee__inner {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ================== Nav: solid-on-scroll ================== */
+.nav-is-solid {
+  background: color-mix(in oklab, var(--white) 92%, transparent);
+  backdrop-filter: saturate(120%) blur(6px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid
+    color-mix(in oklab, var(--muted-400) 25%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  nav {
+    transition: none !important;
+  }
+}

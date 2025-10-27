@@ -1,0 +1,104 @@
+:root {
+  /* Backgrounds */
+  --bg-ivory: #faf9f6;
+  --bg-crem: #5d3a06ff; /* soft cream band */
+  --bg-cream: #fef9f4ff; /* soft cream band */
+  --bg-sand: #ede5d6; /* trust/reviews strips */
+
+  /* Base colors */
+  --white: #ffffff;
+
+  /* Text */
+  --ink-900: #0e141b;
+  --ink-700: #3d4652;
+
+  /* Greens (brand) */
+  --green-forest-700: #145a45; /* Primary CTA */
+  --green-pine-800: #154a3a; /* Hover/Dark */
+  --green-emerald-500: #2f855a; /* Accent only */
+  /* alias used by some components */
+  --green-500: var(--green-emerald-500);
+
+  /* Sages (soft backgrounds) */
+  --sage-100: #eaf4ef;
+  --sage-200: #ddece4;
+
+  /* Utility */
+  --focus: #8ed1be; /* accessible ring */
+  --border: #dfe3e8; /* card/nav borders */
+  --muted: #6b7280; /* muted text */
+  --muted-400: #9aa3af; /* mid-muted (used in hero/marquee) */
+
+  /* Radius & shadows */
+  --r-xs: 8px;
+  --r-sm: 10px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --shadow-soft: 0 2px 8px rgb(0 0 0 / 0.06);
+  --shadow-card: 0 6px 20px rgb(0 0 0 / 0.08);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Typography Rhythm */
+  --font-head: var(
+    --font-display,
+    "Poppins",
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif
+  );
+  --font-body: var(
+    --font-body,
+    "Inter",
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    sans-serif
+  );
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --size-xs: 12px;
+  --size-sm: 14px;
+  --size-base: 16px;
+  --size-lg: 18px;
+  --size-xl: 24px;
+  --size-2xl: 32px;
+  --size-3xl: 40px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.17, 0.67, 0.3, 1);
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+  --dur-3: 250ms;
+}
+
+/* Focus ring baseline */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Helpful utilities */
+.transition-base {
+  transition: all var(--dur-2) var(--ease-out);
+}
+.hover-raise:hover {
+  transform: translateY(-1px);
+}
