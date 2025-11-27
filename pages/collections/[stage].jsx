@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Hero from "@/components/Hero";
+import Hero from "@/components/home/Hero";
 import { Meta } from "@/lib/seo";
 
 export default function CollectionStage() {

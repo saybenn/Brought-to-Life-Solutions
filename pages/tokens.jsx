@@ -26,6 +26,19 @@ function Divider() {
 }
 
 export default function Tokens() {
+  const spacingTokens = [
+    ["--space-1", "4px"],
+    ["--space-2", "8px"],
+    ["--space-3", "12px"],
+    ["--space-4", "16px"],
+    ["--space-5", "20px"],
+    ["--space-6", "24px"],
+    ["--space-8", "32px"],
+    ["--space-10", "40px"],
+    ["--space-12", "48px"],
+    ["--space-16", "64px"],
+  ];
+
   return (
     <>
       <Head>
@@ -38,29 +51,50 @@ export default function Tokens() {
         <h1 className="h1">Design Tokens & Primitives</h1>
         <p className="subhead mt-2">
           Live preview of colors, type, spacing, focus, buttons, sections, and
-          cards.
+          cards for the Brought to Life visual system.
         </p>
 
         {/* --- COLORS --- */}
         <Divider />
         <h2 className="h2">Colors</h2>
         <p className="caption mt-1">
-          All background, text, border, and accent swatches from CSS variables.
+          Brand neutrals, pine anchor, and semantic background / text tokens
+          pulled directly from <code>:root</code>.
         </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-          <Swatch label="bg-ivory" cls="bg-[var(--bg-ivory)]" />
-          <Swatch label="bg-cream" cls="bg-[var(--bg-cream)]" />
-          <Swatch label="bg-sand" cls="bg-[var(--bg-sand)]" />
-          <Swatch label="ink-900" cls="bg-[var(--ink-900)]" />
-          <Swatch label="ink-700" cls="bg-[var(--ink-700)]" />
-          <Swatch label="forest-700" cls="bg-[var(--green-forest-700)]" />
-          <Swatch label="pine-800" cls="bg-[var(--green-pine-800)]" />
-          <Swatch label="emerald-500" cls="bg-[var(--green-emerald-500)]" />
-          <Swatch label="sage-100" cls="bg-[var(--sage-100)]" />
-          <Swatch label="sage-200" cls="bg-[var(--sage-200)]" />
-          <Swatch label="border" cls="bg-[var(--border)]" />
-          <Swatch label="focus" cls="bg-[var(--focus)]" />
+        {/* Core palette */}
+        <div className="mt-4">
+          <div className="eyebrow mb-2">Core Palette</div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <Swatch label="isabelline" cls="bg-[var(--isabelline)]" />
+            <Swatch label="southern-sand" cls="bg-[var(--southern-sand)]" />
+            <Swatch label="taupe" cls="bg-[var(--taupe)]" />
+            <Swatch label="vintage-coin" cls="bg-[var(--vintage-coin)]" />
+            <Swatch label="pine-tree" cls="bg-[var(--pine-tree)]" />
+          </div>
+        </div>
+
+        {/* Semantic tokens */}
+        <div className="mt-6">
+          <div className="eyebrow mb-2">Semantic Tokens</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Swatch label="bg-ivory" cls="bg-[var(--bg-ivory)]" />
+            <Swatch label="bg-cream" cls="bg-[var(--bg-cream)]" />
+            <Swatch label="bg-sand" cls="bg-[var(--bg-sand)]" />
+            <Swatch label="bg-elevated" cls="bg-[var(--bg-elevated)]" />
+            <Swatch label="ink-900" cls="bg-[var(--ink-900)]" />
+            <Swatch label="ink-700" cls="bg-[var(--ink-700)]" />
+            <Swatch label="muted" cls="bg-[var(--muted)]" />
+            <Swatch label="muted-400" cls="bg-[var(--muted-400)]" />
+            <Swatch label="forest-700" cls="bg-[var(--green-forest-700)]" />
+            <Swatch label="pine-800" cls="bg-[var(--green-pine-800)]" />
+            <Swatch label="emerald-500" cls="bg-[var(--green-emerald-500)]" />
+            <Swatch label="sage-100" cls="bg-[var(--sage-100)]" />
+            <Swatch label="sage-200" cls="bg-[var(--sage-200)]" />
+            <Swatch label="border" cls="bg-[var(--border)]" />
+            <Swatch label="focus" cls="bg-[var(--focus)]" />
+            <Swatch label="success" cls="bg-[var(--success)]" />
+          </div>
         </div>
 
         {/* --- TYPOGRAPHY --- */}
@@ -69,32 +103,32 @@ export default function Tokens() {
         <p className="caption mt-1">
           Uses your classes: <code>.h1</code>, <code>.h2</code>,{" "}
           <code>.subhead</code>, <code>.eyebrow</code>, <code>.caption</code>.
-          Font families and sizes are driven by CSS variables (e.g.,{" "}
-          <code>--font-head</code>, <code>--size-3xl</code>).
+          Headings use <code>Libre Caslon</code> via <code>--font-head</code>,
+          body uses <code>Manrope</code> via <code>--font-body</code>.
         </p>
 
         <div className="card p-6 mt-4">
           <div className="eyebrow">Demo</div>
-          <h1 className="h1 mt-2">
-            H1 — Get backed. Get seen. Get heard. Get paid.
-          </h1>
-          <h2 className="h2 mt-2">H2 — Outcomes over hype</h2>
+          <h1 className="h1 mt-2">H1 — Clarity, craft, and calm outcomes.</h1>
+          <h2 className="h2 mt-2">H2 — A sage studio for real work</h2>
           <p className="subhead mt-2">
-            Lead — Practical sites, real SEO, clear coaching, honest imagery.
+            Lead — Thoughtful websites, honest SEO, and grounded coaching for
+            local businesses who want results without the noise.
           </p>
           <p className="mt-2">
             Paragraph — This is standard body copy using{" "}
-            <code>--font-body</code>. Keep sentences short and direct. Favor
-            specificity over hype. Communicate timelines, deliverables, and
-            responsibilities explicitly.
+            <code>--font-body</code>. Keep sentences precise and concrete.
+            Explain what happens, when it happens, and what clients can expect
+            to receive.
           </p>
           <ul className="mt-3 list-disc pl-6">
-            <li>Promise one thing per section.</li>
+            <li>Promise one outcome per section.</li>
             <li>Show “Includes / Doesn’t include.”</li>
-            <li>Use numbers: “launch in 14 days.”</li>
+            <li>Use specifics: “Launch in 14 days.”</li>
           </ul>
           <blockquote className="mt-3 border-l-4 pl-3 border-[var(--border)] text-[var(--ink-700)]">
-            “Clarity beats cleverness. Buyers need confidence, not fireworks.”
+            “Calm, clear structure gives buyers more confidence than clever
+            slogans.”
           </blockquote>
           <p className="caption mt-3">
             Caption — small helper text in a muted tone.
@@ -200,29 +234,15 @@ export default function Tokens() {
 
         <div className="card p-6 mt-4">
           <div className="grid md:grid-cols-2 gap-6">
-            {[
-              ["--space-1", "4px"],
-              ["--space-2", "8px"],
-              ["--space-3", "12px"],
-              ["--space-4", "16px"],
-              ["--space-5", "20px"],
-              ["--space-6", "24px"],
-              ["--space-8", "32px"],
-              ["--space-10", "40px"],
-              ["--space-12", "48px"],
-              ["--space-16", "64px"],
-            ].map(([token, px]) => (
+            {spacingTokens.map(([token, px]) => (
               <div key={token}>
                 <div className="text-sm text-[var(--ink-700)]">
                   {token} ({px})
                 </div>
+                <div className="bg-[var(--sage-200)] rounded-[var(--r-sm)] mt-1 h-2 w-full" />
                 <div
-                  className="bg-[var(--sage-200)] rounded-[var(--r-sm)] mt-1"
-                  style={{ height: "8px", width: "100%" }}
-                />
-                <div
-                  className="bg-[var(--green-forest-700)] rounded-[var(--r-sm)] mt-1"
-                  style={{ height: "8px", width: `calc(${token})` }}
+                  className="bg-[var(--green-forest-700)] rounded-[var(--r-sm)] mt-1 h-2"
+                  style={{ width: `var(${token})` }}
                 />
               </div>
             ))}
@@ -241,17 +261,14 @@ export default function Tokens() {
         <Divider />
         <h2 className="h2">Focus Ring & Interactions</h2>
         <p className="caption mt-1">
-          Tab to the controls to see the <code>--focus</code> outline. Buttons
-          use subtle scale on hover/active.
+          Tab to the controls to see the warm <code>--focus</code> outline.
+          Buttons use subtle scale on hover/active.
         </p>
 
         <div className="card p-6 mt-4 flex flex-wrap gap-3">
           <button className="btn btn-primary">Primary</button>
           <button className="btn btn-secondary">Secondary</button>
-          <button className="btn btn-free">Free Aisle</button>
-          <a href="#" className="btn btn-ghost">
-            Ghost Link
-          </a>
+          <button className="btn btn-free">Outline</button>
           <input
             className="border border-[var(--border)] rounded-[var(--r-md)] px-3 py-2"
             placeholder="Focusable input"
@@ -268,7 +285,8 @@ export default function Tokens() {
         <Divider />
         <h2 className="h2">Sections & Cards</h2>
         <p className="caption mt-1">
-          Global surface patterns. Cards lift slightly on hover.
+          Global surface patterns. Sections feel like calm editorial bands;
+          cards lift slightly on hover.
         </p>
 
         <div className="grid md:grid-cols-2 gap-4 mt-4">
@@ -286,8 +304,8 @@ export default function Tokens() {
             <div className="eyebrow">Card</div>
             <h3 className="h2 mt-1">Hover-lift card</h3>
             <p className="mt-2">
-              Cards use a white background and soft shadow. On hover, translate
-              Y by 1px.
+              Cards use a white background and soft shadow. On hover, they rise
+              by 1px for a subtle “alive” effect.
             </p>
             <button className="btn btn-secondary mt-4">Secondary CTA</button>
           </div>
@@ -296,10 +314,10 @@ export default function Tokens() {
         <Code>
           {`/* Section / Card classes (components.css)
 .section { background: var(--bg-cream); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow-card); }
-.card    { background: #fff; border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--shadow-soft); }`}
+.card    { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--shadow-soft); }`}
         </Code>
 
-        {/* --- RADIUS & SHADOWS PREVIEW --- */}
+        {/* --- RADII & SHADOWS PREVIEW --- */}
         <Divider />
         <h2 className="h2">Radii & Shadows</h2>
         <div className="grid md:grid-cols-3 gap-4 mt-4">
@@ -335,42 +353,44 @@ export default function Tokens() {
 --shadow-card: 0 6px 20px rgb(0 0 0 / 0.08);`}
         </Code>
 
-        {/* --- HERO EXAMPLE (COPY-PASTE READY) --- */}
+        {/* --- HERO EXAMPLE (ON-BRAND) --- */}
         <Divider />
         <h2 className="h2">Copy-paste Hero Example</h2>
         <section className="section p-8 mt-4 bg-[var(--bg-cream)]">
-          <div className="eyebrow">Brought to Life</div>
+          <div className="eyebrow">Brought to Life Solutions</div>
           <h1 className="h1 mt-1">
-            Get backed. Get seen. Get heard. Get paid.
+            Calm, crafted websites for serious small businesses.
           </h1>
           <p className="subhead mt-2">
-            Practical sites, real SEO, clear coaching, honest imagery. No
-            fluff—just outcomes.
+            We build clear, grounded systems—sites, SEO, and coaching—that help
+            you move from vague ideas to booked work without the noise.
           </p>
-          <div className="mt-4 flex gap-3">
-            <button className="btn btn-primary">Shop Services</button>
-            <button className="btn btn-secondary">Free Aisle</button>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <button className="btn btn-primary">Start a project</button>
+            <button className="btn btn-secondary">Book a call</button>
           </div>
         </section>
 
         <Code>
           {`<section className="section p-8 bg-[var(--bg-cream)]">
-  <div className="eyebrow">Brought to Life</div>
-  <h1 className="h1">Get backed. Get seen. Get heard. Get paid.</h1>
-  <p className="subhead mt-[var(--space-2)]">Practical sites, real SEO, clear coaching, honest imagery.</p>
-  <div className="mt-[var(--space-4)] flex gap-3">
-    <button className="btn btn-primary">Shop Services</button>
-    <button className="btn btn-secondary">Free Aisle</button>
+  <div className="eyebrow">Brought to Life Solutions</div>
+  <h1 className="h1">Calm, crafted websites for serious small businesses.</h1>
+  <p className="subhead mt-[var(--space-2)]">
+    We build clear, grounded systems—sites, SEO, and coaching—that help you move
+    from vague ideas to booked work without the noise.
+  </p>
+  <div className="mt-[var(--space-4)] flex flex-wrap gap-3">
+    <button className="btn btn-primary">Start a project</button>
+    <button className="btn btn-secondary">Book a call</button>
   </div>
 </section>`}
         </Code>
 
         <Divider />
         <p className="caption">
-          Tip: If a class has no effect, confirm it exists in{" "}
-          <code>/styles/components.css</code> and that
-          <code>globals.css</code> imports <code>tokens.css</code> then{" "}
-          <code>components.css</code> (in that order).
+          If a token doesn&apos;t render as expected, confirm it exists in{" "}
+          <code>tokens.css</code> and that <code>components.css</code> is
+          imported in your global styles after the tokens.
         </p>
       </SiteContainer>
     </>

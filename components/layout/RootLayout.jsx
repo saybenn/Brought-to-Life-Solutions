@@ -8,6 +8,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { siteMeta } from "@/lib/siteMeta";
 import { getMeta, orgSchema } from "@/lib/seo";
+import Script from "next/script";
+import ToastHost from "@/components/ui/Toast";
 
 const announcements = [
   {
@@ -38,9 +40,7 @@ export default function RootLayout({ children }) {
   const [annH, setAnnH] = useState(0);
   const onAnnounceHeight = useCallback((h) => setAnnH(h || 0), []);
 
-  const navH = 56; // h-14
   const stickyAnn = true; // you can flip to false
-  const spacerH = (stickyAnn ? annH : 0) + navH; // CONSTANT push-down (no “breathing”)
 
   return (
     <>
@@ -57,23 +57,25 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema()) }}
         />
       </Head>
-
+      {/* 
       <AnnouncementMarquee
         items={announcements}
         sticky={stickyAnn}
         dismissible
         onHeightChange={onAnnounceHeight}
-      />
+      /> */}
 
       {/* Navbar sits beneath the banner by exact measured height */}
-      <Navbar offsetTop={stickyAnn ? annH : 0} />
-
-      {/* Constant spacer: reserve space for BOTH banner + nav */}
-      <div style={{ height: spacerH }} />
+      <Navbar />
 
       {/* Page content */}
-      <main className="pt-20">
-        <SiteContainer className="py-10">{children}</SiteContainer>
+      <main>
+        <Script
+          src="https://assets.calendly.com/assets/external/widget.js"
+          strategy="afterInteractive"
+        />
+        {children}
+        <ToastHost />
       </main>
       {/* Cookie consent banner */}
       {/* <div className="fixed bottom-4 left-4 right-4 md:left-1/2 md:-translate-x-1/2 max-w-md bg-[var(--bg-cream)] text-[var(--ink-900)] border border-[var(--border)] p-4 rounded-[var(--r-md)] shadow-md z-50">

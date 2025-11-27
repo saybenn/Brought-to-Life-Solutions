@@ -1,43 +1,63 @@
 :root {
-  /* Backgrounds */
-  --bg-ivory: #faf9f6;
-  --bg-crem: #5d3a06ff; /* soft cream band */
-  --bg-cream: #fef9f4ff; /* soft cream band */
-  --bg-sand: #ede5d6; /* trust/reviews strips */
+  /* ================== Core Neutrals / Backgrounds ================== */
+  /* Master tokens */
+  --bg-page: #f7f3eb; /* main page background (paper) */
+  --bg-alt: #eae2d3; /* soft band / hero / alt sections */
+  --bg-elevated: #ffffff; /* cards, nav, modals */
 
-  /* Base colors */
+  /* Legacy aliases (same colors, no new hues) */
+  --isabelline: var(--bg-page);
+  --southern-sand: var(--bg-alt);
+
+  --bg-ivory: var(--bg-page); /* main page background */
+  --bg-cream: var(--bg-alt); /* hero + key sections */
+  --bg-sand: var(--bg-alt); /* trust / strips */
+  --bg-crem: var(--bg-alt); /* legacy alias */
+
+  /* ================== Text ================== */
+  --ink-900: #1f2520; /* deep charcoal for headings */
+  --ink-700: #4a4f49; /* body text */
+  --muted: #7a756e; /* captions, eyebrows, meta */
+
+  /* Keep mid-muted for rare use if needed (same family, slightly lighter) */
+  --muted-400: #a79f96;
+
+  /* ================== Brand Greens ================== */
+  --brand-600: #23432e; /* primary brand / CTAs */
+  --brand-700: #1b3323; /* hover / deep states */
+
+  /* Legacy green aliases mapped to brand tokens */
+  --pine-tree: var(--brand-600);
+  --green-forest-700: var(--brand-600);
+  --green-pine-800: var(--brand-700);
+  --green-emerald-500: var(--brand-600);
+  --green-500: var(--brand-600);
+
+  /* We keep a single very light "sage" just in case,
+     but it's aligned with page background so it won't fight */
+  --sage-100: #f7f5f0;
+  --sage-200: #ece4d8;
+
+  /* ================== Utility ================== */
   --white: #ffffff;
 
-  /* Text */
-  --ink-900: #0e141b;
-  --ink-700: #3d4652;
+  --focus: #d6b98a; /* warm, accessible focus ring */
+  --border: #d9d2c7; /* card/nav borders */
+  --error: #b23430;
+  --warning: #b8860b;
+  --success: #2f855a;
 
-  /* Greens (brand) */
-  --green-forest-700: #145a45; /* Primary CTA */
-  --green-pine-800: #154a3a; /* Hover/Dark */
-  --green-emerald-500: #2f855a; /* Accent only */
-  /* alias used by some components */
-  --green-500: var(--green-emerald-500);
-
-  /* Sages (soft backgrounds) */
-  --sage-100: #eaf4ef;
-  --sage-200: #ddece4;
-
-  /* Utility */
-  --focus: #8ed1be; /* accessible ring */
-  --border: #dfe3e8; /* card/nav borders */
-  --muted: #6b7280; /* muted text */
-  --muted-400: #9aa3af; /* mid-muted (used in hero/marquee) */
-
-  /* Radius & shadows */
+  /* ================== Radius & Shadows ================== */
   --r-xs: 8px;
   --r-sm: 10px;
   --r-md: 12px;
   --r-lg: 16px;
-  --shadow-soft: 0 2px 8px rgb(0 0 0 / 0.06);
-  --shadow-card: 0 6px 20px rgb(0 0 0 / 0.08);
 
-  /* Spacing */
+  /* Use sparingly: primary CTA + key cards only */
+  --shadow-soft: 0 2px 8px rgb(0 0 0 / 0.06);
+  --shadow-card: 0 10px 30px rgb(0 0 0 / 0.12);
+
+  /* ================== Spacing ================== */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -50,30 +70,34 @@
   --space-12: 48px;
   --space-16: 64px;
 
-  /* Typography Rhythm */
+  /* ================== Typography Rhythm ================== */
   --font-head: var(
     --font-display,
-    "Poppins",
+    "Libre Caslon Text",
     system-ui,
     -apple-system,
-    Segoe UI,
-    Roboto,
+    "Segoe UI",
+    "Roboto",
+    "Helvetica Neue",
     Arial,
     sans-serif
   );
   --font-body: var(
     --font-body,
-    "Inter",
+    "Manrope",
     system-ui,
     -apple-system,
-    Segoe UI,
-    Roboto,
+    "Segoe UI",
+    "Roboto",
+    "Helvetica Neue",
     Arial,
     sans-serif
   );
+
   --leading-tight: 1.2;
-  --leading-normal: 1.5;
-  --leading-relaxed: 1.7;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+
   --size-xs: 12px;
   --size-sm: 14px;
   --size-base: 16px;
@@ -82,7 +106,7 @@
   --size-2xl: 32px;
   --size-3xl: 40px;
 
-  /* Motion */
+  /* ================== Motion ================== */
   --ease-out: cubic-bezier(0.17, 0.67, 0.3, 1);
   --dur-1: 120ms;
   --dur-2: 180ms;
