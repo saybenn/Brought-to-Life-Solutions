@@ -33,11 +33,32 @@
   --green-emerald-500: var(--brand-600);
   --green-500: var(--brand-600);
 
-  /* We keep a single very light "sage" just in case,
-     but it's aligned with page background so it won't fight */
   --sage-100: #f7f5f0;
   --sage-200: #ece4d8;
+  /* ================== Submerge Layer (Shop / Product Bands) ================== */
+  --bg-deep: #0f1411; /* deepest */
+  --bg-submerge: #132018; /* deep green-charcoal */
+  --bg-submerge-2: #0b0f0d; /* darker edge */
+  /* ================== Submerged Shop Layer ================== */
+  --submerge-900: #0b100d; /* near-black pine */
+  --submerge-800: #0f1a14; /* deep pine */
+  --submerge-700: #132218; /* pine */
+  --gold-400: #d6b98a; /* reuse your focus tone as “gold thread” */
 
+  /* Stronger shadows for dark surfaces */
+  --shadow-deep: 0 18px 60px rgb(0 0 0 / 0.45);
+
+  /* Card edge + inner glow */
+  --card-edge: rgb(214 185 138 / 0.28);
+  --card-glow: rgb(35 67 46 / 0.22);
+
+  /* Gold thread accent (thin line + tiny highlights only) */
+  --thread-gold: #d6b98a; /* reuse your focus warmth as “gold” */
+  /* “Gold thread” (reuse your existing focus hue for consistency) */
+  --gold-500: var(--focus);
+
+  /* Optional: tune grain strength globally */
+  --grain-alpha: 0.06;
   /* ================== Utility ================== */
   --white: #ffffff;
 

@@ -11,18 +11,20 @@ export function WhoWeBuildForBigType() {
           {/* Big type block */}
           <div className="lg:col-span-7">
             <p className="eyebrow text-[var(--muted)] mb-4 animate-fadeUp">
-              WHO THIS IS FOR
+              WHO WE BUILD FOR
             </p>
 
-            <h2
-              id="for-owners-heading"
-              className="font-body text-4xl sm:text-5xl lg:text-6xl font-semibold leading-none tracking-tight text-[var(--ink-900)] animate-fadeUp"
-            >
-              For owners who want{" "}
+            <h2 className="font-body text-4xl sm:text-5xl lg:text-6xl font-semibold leading-none tracking-tight text-[var(--ink-900)] animate-fadeUp">
+              <span className="block mb-4 lg:text-4xl">
+                Tired of income feeling{" "}
+                <span className="text-[var(--green-pine-800)]">random?</span>
+              </span>
+              Websites aren&apos;t digital brochures. They're mechanisms
+              designed to bring owners{" "}
               <span className="font-semibold text-[var(--pine-tree)]">
-                predictable
+                predictable income.
               </span>{" "}
-              revenue.
+              <br className="hidden sm:block" />
             </h2>
 
             {/* Thin baseline accent */}
@@ -32,12 +34,78 @@ export function WhoWeBuildForBigType() {
           {/* Explanatory copy + profiles */}
           <div className="lg:col-span-5 lg:pt-4 space-y-6 animate-fadeUp">
             <p className="subhead text-[var(--ink-700)] max-w-md">
-              BTLS is for people who treat their website like infrastructure,
-              not decoration. You care about leads, credibility, and operational
-              sanity — not just how your homepage looks in a screenshot.
+              A webpage is a tool before anything else, and no matter how
+              stylish a tool looks, if it doesn&apos;t help the owner, it&apos;s
+              dead weight.
             </p>
 
-            <div className="space-y-4 text-sm sm:text-base leading-relaxed text-[var(--ink-700)]">
+            <ul className="space-y-2 text-sm sm:text-base leading-relaxed text-[var(--ink-700)]">
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
+                <span>
+                  Leads show up at random — some weeks slammed, other weeks
+                  crickets.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
+                <span>
+                  Your website looks nice, but it doesn’t reliably bring in
+                  sales.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
+                <span>
+                  You don’t really know what’s working — everything feels like
+                  guesswork.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
+                <span>
+                  Marketing feels like gambling instead of something you can
+                  plan around.
+                </span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
+                <span>
+                  You’re constantly tweaking things manually instead of growing
+                  with a system.
+                </span>
+              </li>
+            </ul>
+
+            <div className="space-y-3 pt-2">
+              <p className="eyebrow text-[var(--muted)]">
+                UNDER THE SURFACE, THE REAL CAUSE
+              </p>
+              <ul className="space-y-1.5 text-sm sm:text-base leading-relaxed text-[var(--ink-700)]">
+                <li>
+                  • <span>No visibility you can rely on.</span>
+                </li>
+                <li>
+                  • <span>No proof that builds instant trust.</span>
+                </li>
+                <li>
+                  •{" "}
+                  <span>
+                    No conversion path that turns visitors into buyers.
+                  </span>
+                </li>
+                <li>
+                  • <span>Offers that haven’t really been tested.</span>
+                </li>
+                <li>
+                  • <span>Operations that slow everything down.</span>
+                </li>
+                <li>
+                  • <span>Zero analytics to show what’s actually working.</span>
+                </li>
+              </ul>
+            </div>
+            {/* <div className="space-y-4 text-sm sm:text-base leading-relaxed text-[var(--ink-700)]">
               <div className="flex gap-3">
                 <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-[var(--pine-tree)]" />
                 <p>
@@ -49,17 +117,16 @@ export function WhoWeBuildForBigType() {
               <div className="flex gap-3">
                 <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-[var(--pine-tree)]" />
                 <p>
-                  You’re done gambling on random tactics, one-off “pretty
-                  sites,” and campaigns you can’t measure.
+                  You&apos;re done gambling on random tactics, one-off “pretty
+                  sites,” and campaigns you can&apos;t measure.
                 </p>
               </div>
 
               <div className="flex gap-3">
                 <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-[var(--pine-tree)]" />
                 <p>
-                  You’re ready to install a calm, durable system wired into
-                  Visibility, Proof, Conversion, Offer Strength, Operations, and
-                  Analytics.
+                  You&apos;re ready to install a calm, durable system wired into
+                  science, not vibes.
                 </p>
               </div>
 
@@ -73,12 +140,12 @@ export function WhoWeBuildForBigType() {
               <div className="flex gap-3">
                 <span className="mt-2 inline-block h-1.5 w-1.5 rounded-full bg-[var(--pine-tree)]" />
                 <p>
-                  You’re a new or growing business that needs a website
-                  engineered to scale with you — not something you’ll outgrow in
-                  six months.
+                  You&apos;re a new or growing business that needs a website
+                  engineered to scale with you — not something you&apos;ll
+                  outgrow in six months.
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

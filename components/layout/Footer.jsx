@@ -1,187 +1,177 @@
+// components/Footer.tsx
+import Link from "next/link";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--bg-ivory)] border-t border-[var(--border)] mt-24">
-      <div className=" mx-auto ">
-        {/* Inner elevated panel */}
-        <div className="rounded-t-[var(--r-lg)] bg-[var(--bg-elevated)] shadow-[var(--shadow-soft)] px-6 py-10 md:px-10 md:py-12">
-          {/* Top Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
-            {/* Brand + Mission */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-full bg-[var(--green-forest-700)] flex items-center justify-center text-xs font-semibold text-white">
-                  BLS
-                </div>
-                <span className="text-sm tracking-[0.18em] uppercase font-semibold text-[var(--pine-tree)]">
-                  Brought to Life Solutions
-                </span>
+    <footer className="border-t border-slate-200 bg-slate-50">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        {/* Top grid */}
+        <div className="grid gap-10 md:grid-cols-4">
+          {/* Brand / intro */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-900 text-xs font-semibold tracking-wide text-slate-50">
+                BLS
               </div>
-
-              <p className="text-sm text-[var(--ink-700)] leading-relaxed">
-                Calm, crafted websites and systems for serious small businesses.
-                Practical builds, honest guidance, and visuals that feel like
-                you — just sharper.
-              </p>
-
-              <p className="text-xs text-[var(--muted-400)]">
-                Built for founders, local pros, and owners who care about their
-                craft as much as their growth.
-              </p>
+              <div className="text-sm font-semibold tracking-[0.22em] text-slate-900 uppercase">
+                Brought to Life
+                <br />
+                Solutions
+              </div>
             </div>
 
-            {/* Services */}
-            <div className="space-y-3 text-sm">
-              <h3 className="text-xs tracking-[0.18em] uppercase text-[var(--pine-tree)] font-bold">
-                Services
-              </h3>
-
-              <ul className="space-y-2 text-[var(--ink-700)]">
-                <li>
-                  <a
-                    href="/shop"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    Lead-Machine Websites
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/shop"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    Local SEO Kickstart
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/bundles"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    Site + SEO Bundles
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/collections/coaching"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    1:1 Coaching
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/resources"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    Resources
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Company */}
-            <div className="space-y-3 text-sm">
-              <h3 className="text-xs tracking-[0.18em] uppercase text-[var(--pine-tree)] font-bold">
-                Company
-              </h3>
-
-              <ul className="space-y-2 text-[var(--ink-700)]">
-                <li>
-                  <a
-                    href="/about"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/results"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    Results
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/resources"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    Resources
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/legal/faq"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    FAQs
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/contact"
-                    className="hover:text-[var(--green-forest-700)] transition-colors"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div className="space-y-3 text-sm">
-              <h3 className="text-xs tracking-[0.18em] uppercase text-[var(--pine-tree)] font-bold">
-                Contact
-              </h3>
-
-              <p className="text-[var(--ink-700)]">
-                Email:
-                <a
-                  href="mailto:hello@broughttolifesolutions.com"
-                  className="ml-1 underline decoration-[var(--green-forest-700)]/40 hover:text-[var(--green-forest-700)]"
-                >
-                  hello@broughttolifesolutions.com
-                </a>
-              </p>
-
-              {/* Optional button — or remove if not needed */}
-              <a
-                href="/book"
-                className="inline-flex items-center justify-center px-4 py-2 rounded-[999px] bg-[var(--green-forest-700)] text-xs font-medium text-white shadow-[var(--shadow-soft)] hover:bg-[var(--green-pine-800)] transition-colors"
-              >
-                Book a call
-              </a>
-            </div>
-          </div>
-
-          {/* Bottom Row */}
-          <div className="mt-10 pt-6 border-t border-[var(--border)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-            <p className="text-xs text-[var(--muted-400)]">
-              © {year} Brought to Life Solutions. All rights reserved.
+            <p className="text-sm leading-relaxed text-slate-600">
+              Calm, crafted websites and systems for serious small businesses.
+              Practical builds, honest guidance, and visuals that feel like you
+              — just sharper.
+            </p>
+            <p className="text-xs text-slate-500">
+              Built for founders, local pros, and owners who care about their
+              craft as much as their growth.
             </p>
 
-            <div className="flex flex-wrap gap-4 text-xs text-[var(--muted-400)]">
+            {/* Optional newsletter */}
+            <form
+              className="mt-4 space-y-2"
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <p className="text-xs font-medium text-slate-700">
+                Get occasional, no-fluff breakdowns on turning sites into
+                revenue systems.
+              </p>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <input
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  className="h-9 flex-1 rounded-full border border-slate-300 bg-white px-3 text-xs text-slate-900 placeholder:text-slate-400 focus:border-emerald-700 focus:outline-none focus:ring-1 focus:ring-emerald-700"
+                />
+                <button
+                  type="submit"
+                  className="inline-flex items-center justify-center rounded-full bg-emerald-900 px-4 py-2 text-xs font-semibold text-slate-50 shadow-sm transition hover:bg-emerald-800"
+                >
+                  Get updates
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Services */}
+          <div className="text-sm">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+              Services
+            </h3>
+            <ul className="mt-4 space-y-2 text-slate-700">
+              <li>
+                <Link href="/services/lead-machine" className="hover:underline">
+                  Lead-Machine Websites
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/local-seo" className="hover:underline">
+                  Local SEO Kickstart
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/site-seo-bundles"
+                  className="hover:underline"
+                >
+                  Site + SEO Bundles
+                </Link>
+              </li>
+              <li>
+                <Link href="/coaching" className="hover:underline">
+                  1:1 Coaching
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources" className="hover:underline">
+                  Resources
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div className="text-sm">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+              Company
+            </h3>
+            <ul className="mt-4 space-y-2 text-slate-700">
+              <li>
+                <Link href="/about" className="hover:underline">
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/results" className="hover:underline">
+                  Results
+                </Link>
+              </li>
+              <li>
+                <Link href="/resources" className="hover:underline">
+                  Resources
+                </Link>
+              </li>
+              <li>
+                <Link href="/faqs" className="hover:underline">
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:underline">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="text-sm space-y-4">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+              Contact
+            </h3>
+            <div className="space-y-1 text-slate-700">
+              <p className="text-xs font-medium text-slate-500">Email</p>
               <a
-                href="/legal/privacy"
-                className="hover:text-[var(--green-forest-700)]"
+                href="mailto:hello@broughttolife.studio"
+                className="text-sm text-emerald-900 underline-offset-2 hover:underline"
               >
+                hello@broughttolife.studio
+              </a>
+            </div>
+
+            <div>
+              <Link
+                href="/contact#book"
+                className="inline-flex items-center justify-center rounded-full bg-emerald-900 px-5 py-2.5 text-xs font-semibold text-slate-50 shadow-sm transition hover:bg-emerald-800"
+              >
+                Book a call
+              </Link>
+              <p className="mt-2 text-xs text-slate-500">
+                30-minute revenue call, no pressure.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="mt-10 border-t border-slate-200 pt-6">
+          <div className="flex flex-col gap-4 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+            <p>© {year} Brought to Life Solutions. All rights reserved.</p>
+            <div className="flex flex-wrap gap-4">
+              <Link href="/legal/privacy" className="hover:underline">
                 Privacy Policy
-              </a>
-              <a
-                href="/legal/terms"
-                className="hover:text-[var(--green-forest-700)]"
-              >
+              </Link>
+              <Link href="/legal/terms" className="hover:underline">
                 Terms of Service
-              </a>
-              <a
-                href="/legal/refunds"
-                className="hover:text-[var(--green-forest-700)]"
-              >
+              </Link>
+              <Link href="/legal/refund" className="hover:underline">
                 Refund Policy
-              </a>
+              </Link>
             </div>
           </div>
         </div>

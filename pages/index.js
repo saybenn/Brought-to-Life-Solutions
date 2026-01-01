@@ -12,6 +12,12 @@ import {
 import { WhoWeBuildFor } from "@/components/home/WhoWeBuildFor";
 import { WhoWeBuildForShelf } from "@/components/home/WhoWeBuildForShelf";
 import { WhoWeBuildForBigType } from "@/components/home/WhoWeBuildForBigType";
+import { RealProblemSection } from "../components/home/RealProblemSection";
+import { SixSocketsIntro } from "@/components/home/SixSocketsIntro";
+import { ProductSection } from "@/components/home/ProductSection";
+import { ResultsSection } from "@/components/results/ResultsSection";
+import FaqSection from "../components/FAQSection";
+import FinalCtaSection from "@/components/FinalCtaSection";
 
 export default function Home() {
   return (
@@ -27,8 +33,14 @@ export default function Home() {
       <main>
         <Hero />
         <TrustStripB />
-        <WhoWeBuildForBigType />
+        {/* <WhoWeBuildForBigType /> */}
+        <RealProblemSection />
         <WhoWeAre />
+        <SixSocketsIntro />
+        <ProductSection />
+        <ResultsSection />
+        <FaqSection />
+        <FinalCtaSection />
       </main>
       {/* Inline keyframes to avoid extra file; place this in globals.css later if you like */}
       <style jsx global>{`

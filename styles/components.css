@@ -272,3 +272,52 @@
     min-height: 640px;
   }
 }
+
+@layer utilities {
+  .font-head {
+    font-family: var(--font-head);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+}
+@keyframes socketFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    transform: translate3d(0.5px, -1px, 0);
+  }
+  40% {
+    transform: translate3d(-1px, 0.5px, 0);
+  }
+  60% {
+    transform: translate3d(0.75px, 1px, 0);
+  }
+  80% {
+    transform: translate3d(-0.5px, -0.5px, 0);
+  }
+}
+
+.socket-float {
+  animation-name: socketFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+}
+
+/* Pause wobble + add slight scale-only on hover/focus */
+.group:hover .socket-float,
+.group:focus-within .socket-float {
+  animation-play-state: paused;
+  transform: translate3d(0, 0, 0) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .socket-float {
+    animation: none;
+    transform: none;
+  }
+}
