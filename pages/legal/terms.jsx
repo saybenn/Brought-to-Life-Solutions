@@ -2,8 +2,7 @@ import { Meta } from "@/lib/seo";
 import SiteContainer from "@/components/layout/SiteContainer";
 
 export default function Terms() {
-  const updated = new Date().toISOString().slice(0, 10);
-
+  const updated = "2026-01-04";
   return (
     <>
       <Meta
@@ -12,7 +11,7 @@ export default function Terms() {
       />
 
       {/* Hero */}
-      <section className="bg-ivory pt-6">
+      <section className="bg-ivory pt-16">
         <SiteContainer>
           <div
             className="mt-6 rounded-[var(--r-lg)] border border-[var(--border)] p-8 md:p-12"
@@ -27,7 +26,7 @@ export default function Terms() {
               Last updated: {updated}
             </p>
             <p className="subhead mt-4 max-w-2xl">
-              Productized services with clear scope, timelines, and fair
+              Productized systems with clear scope, timelines, and fair
               policies.
             </p>
           </div>
@@ -41,56 +40,106 @@ export default function Terms() {
             <section>
               <h2 className="h2">Scope</h2>
               <p className="mt-2 text-ink-muted">
-                We provide productized services (Web, SEO, Coaching,
-                Photography). Each product page lists what’s included and not
-                included.
+                Brought to Life Solutions provides productized website and
+                revenue-system services. Each product page (or written scope)
+                defines what is included and what is not included.
+              </p>
+              <p className="mt-3 text-ink-muted">
+                We do not provide open-ended consulting. Introductory calls are
+                used for routing and fit, not audits or troubleshooting.
               </p>
             </section>
 
             <section>
-              <h2 className="h2">Payments & subscriptions</h2>
+              <h2 className="h2">Purchases, invoices, and payment</h2>
               <p className="mt-2 text-ink-muted">
-                One-time purchases run via Stripe Checkout. Monthly plans renew
-                until canceled. Failed payments may pause delivery.
+                Payments are processed through Stripe (Checkout or invoice),
+                unless otherwise agreed in writing. Work is scheduled only after
+                payment requirements and intake steps are completed.
+              </p>
+              <p className="mt-3 text-ink-muted">
+                If a payment fails or is reversed, delivery may pause until the
+                account is brought current.
               </p>
             </section>
 
             <section>
-              <h2 className="h2">Timelines & client responsibilities</h2>
+              <h2 className="h2">
+                Scheduling, timelines, and client responsibilities
+              </h2>
               <p className="mt-2 text-ink-muted">
-                Lead-Machine Sites launch in 14 days from completed intake &
-                assets. If inputs are late, timelines pause.
+                Timelines vary by product and are confirmed after intake.
+                Delivery depends on timely access to required materials (e.g.,
+                copy approvals, brand assets, hosting/domain access, third-party
+                logins).
+              </p>
+              <p className="mt-3 text-ink-muted">
+                If required inputs are delayed, timelines pause until the
+                missing items are received.
               </p>
             </section>
 
             <section>
-              <h2 className="h2">Revisions & refunds</h2>
-              <ul className="mt-2 list-disc pl-6 text-ink-muted space-y-1">
+              <h2 className="h2">Revisions</h2>
+              <p className="mt-2 text-ink-muted">
+                Revisions are limited to the number and type listed on the
+                product page or written scope. Requests outside scope may
+                require a change order or a separate purchase.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="h2">Cancellations & refunds</h2>
+              <p className="mt-2 text-ink-muted">
+                Refund eligibility depends on whether work has started. “Work
+                started” means we have begun producing deliverables or completed
+                setup tasks beyond intake (e.g., technical configuration,
+                drafts, builds, or implementation).
+              </p>
+
+              <ul className="mt-3 list-disc pl-6 text-ink-muted space-y-1">
                 <li>
-                  Revisions: as listed on each product page (e.g., 2 rounds for
-                  sites).
+                  <strong>Full refund</strong> if canceled within 48 hours of
+                  purchase <em>and</em> before work has started.
                 </li>
                 <li>
-                  Refunds:
-                  <ul className="list-disc pl-6 mt-1 space-y-1">
-                    <li>
-                      Full if cancelled within 48 hours before work begins.
-                    </li>
-                    <li>
-                      Partial if work has started, proportional to work
-                      delivered.
-                    </li>
-                    <li>None after final delivery.</li>
-                  </ul>
+                  <strong>Partial refund</strong> if work has started, based on
+                  completed milestones or work delivered.
+                </li>
+                <li>
+                  <strong>No refund</strong> after final delivery or once the
+                  system has been deployed, whichever applies.
                 </li>
               </ul>
+
+              <p className="mt-3 text-ink-muted">
+                If a product includes third-party costs (domains, hosting, paid
+                plugins, ads, or subscriptions), those charges are
+                non-refundable.
+              </p>
             </section>
 
             <section>
               <h2 className="h2">Intellectual property</h2>
               <p className="mt-2 text-ink-muted">
-                Upon full payment, you receive a license to use deliverables for
-                your business. Third-party assets keep their original licenses.
+                Upon full payment, you receive the right to use the delivered
+                work for your business. You retain ownership of content you
+                provide. We retain ownership of our underlying frameworks,
+                templates, and internal tooling used to produce the
+                deliverables.
+              </p>
+              <p className="mt-3 text-ink-muted">
+                Third-party assets and software remain subject to their original
+                licenses.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="h2">Limitation of liability</h2>
+              <p className="mt-2 text-ink-muted">
+                We are not liable for indirect or consequential losses. Our
+                total liability for any claim is limited to the amount paid for
+                the specific product or service giving rise to the claim.
               </p>
             </section>
 
@@ -109,8 +158,11 @@ export default function Terms() {
               <h2 className="h2">Contact</h2>
               <p className="mt-2 text-ink-muted">
                 Questions? Email{" "}
-                <a className="underline" href="mailto:hello@example.com">
-                  hello@example.com
+                <a
+                  className="underline"
+                  href="mailto:hello@broughttolife.studio"
+                >
+                  hello@broughttolife.studio
                 </a>
                 .
               </p>

@@ -1,33 +1,14 @@
 // /components/layout/RootLayout.jsx
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import SiteContainer from "@/components/layout/SiteContainer";
-import AnnouncementMarquee from "@/components/ui/AnnouncementMarquee";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { siteMeta } from "@/lib/siteMeta";
 import { getMeta, orgSchema } from "@/lib/seo";
 import Script from "next/script";
 import ToastHost from "@/components/ui/Toast";
-
-const announcements = [
-  {
-    id: "a1",
-    text: "Lead-Machine Sites launch in 14 days when your intake is on time.",
-    href: "/product/lead-machine-site",
-  },
-  {
-    id: "a2",
-    text: "Free Aisle: Local SEO Scorecard & Brand Photo Checklist.",
-    href: "/resources",
-  },
-  {
-    id: "a3",
-    text: "Scholarships: 1 per 10 paid orders—see criteria.",
-    href: "/legal/scholarships",
-  },
-];
+import { track } from "@/lib/analytics";
 
 export default function RootLayout({ children }) {
   const router = useRouter();
@@ -37,10 +18,21 @@ export default function RootLayout({ children }) {
     description: undefined,
     canonical: `${siteMeta.url}${router.asPath || ""}`,
   });
-  const [annH, setAnnH] = useState(0);
-  const onAnnounceHeight = useCallback((h) => setAnnH(h || 0), []);
+  useEffect(() => {
+    const handler = (e) => {
+      const el = e.target.closest("[data-track]");
+      if (!el) return;
 
-  const stickyAnn = true; // you can flip to false
+      track(el.dataset.track, {
+        location: el.dataset.location,
+        intent: el.dataset.intent,
+        label: el.dataset.label,
+      });
+    };
+
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
+  }, []);
 
   return (
     <>

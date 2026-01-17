@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import OfferSection from "./OfferSection";
 import type { Offer } from "@/lib/catalog/types";
 import { trackShopEvent } from "@/lib/catalog/offers";
+import Link from "next/link";
 
 type Props = { offers: Offer[] };
 
@@ -17,56 +18,61 @@ export default function OfferGrid({ offers }: Props) {
 
   // Stage ladder — Revenue Engine first (your request)
   const ladder = byIds(offers, [
-    "revenue_engine",
     "starter_system",
+    "revenue_engine",
     "growth_partner",
   ]);
 
   const care = byIds(offers, ["care_plan"]);
   const growth = byIds(offers, ["seo_maintenance", "seo_momentum"]);
-  const assets = byIds(offers, ["revenue_roadmap", "copywriting"]);
+  const assets = byIds(offers, [
+    "revenue_roadmap",
+    "copywriting",
+    "trust_asset_photography",
+  ]);
 
   return (
     <div className="pb-(--space-16)">
       <OfferSection
-        title="Choose your stage"
-        description="A guided ladder. Foundation → measurable lead flow → long-term optimization."
+        title="Business Systems"
+        description="Orient, capture, and convert inbound visitors into clients on different levels."
         sectionKey="stage"
         offers={ladder}
         align="left"
-        helperLinkText="Not sure? Book a call →"
         helperLinkSection="stage"
       />
-
       <OfferSection
-        title="Keep it healthy"
-        description="Reliability is a revenue strategy. Broken pages silently bleed leads."
+        title="Maintain"
+        description="Hosting, monitoring, updates, load speed, broken pages, downtime."
         sectionKey="care"
         offers={care}
-        align="right"
-        helperLinkText="Prefer to talk first? Book a call →"
-        helperLinkSection="care"
+        align="left"
       />
-
       <OfferSection
-        title="Grow it"
-        description="Visibility systems that compound once your foundation is solid."
+        title="Increase"
+        description="Visibility improvements that compound once your foundation is solid."
         sectionKey="growth"
         offers={growth}
         align="left"
-        helperLinkText="Want a quick recommendation? Book a call →"
-        helperLinkSection="growth"
       />
-
       <OfferSection
-        title="Assets"
+        title="Advantages"
         description="Messaging upgrades that lift conversion without changing your entire business."
         sectionKey="assets"
         offers={assets}
-        align="right"
-        helperLinkText="Need help choosing? Book a call →"
-        helperLinkSection="assets"
+        align="left"
       />
+      <div className="mx-auto w-full text-center">
+        <Link
+          href="/contact"
+          className=" items-center gap-2 font-semibold hover:underline underline-offset-4 hover:scale-[101%] opacity-70 hover:opacity-100 flex flex-col"
+        >
+          Not sure? Talk first.
+          <span className="no-underline ">
+            We&apos;ll route you correctly before anything is built.
+          </span>
+        </Link>
+      </div>
     </div>
   );
 }

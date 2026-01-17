@@ -1,10 +1,11 @@
 // /components/results/ResultsSection.tsx
+import Link from "next/link";
 import { CaseCard } from "./CaseCard";
 import { TestimonialStrip } from "./TestimonialStrip";
 
 const CASES = [
   {
-    title: "Bold City IAQ — from invisible to 3× more calls",
+    title: "Bold City IAQ — From invisible to 3× more calls",
     clientType: "WATER RESTORATION · JACKSONVILLE, FL",
     sockets: ["Visibility", "Proof", "Conversion", "Operations"],
     before:
@@ -13,12 +14,12 @@ const CASES = [
       "We built a custom Next.js site, shot real on-site photography from hurricane cleanup jobs, clarified services, and wired an emergency-first navigation with local SEO best practices and a fast, stable core.",
     after:
       "The owner reports roughly three times as many calls, more inquiries, and a site he’s proud to show off—one that even helped him refer us to another restoration company.",
-    imageSrc: "/images/boldcity.webp", // swap with your actual path
+    imageSrc: "/images/boldcity.webp",
     highlight: true,
   },
   {
     title:
-      "Apollos Cleaning — a credible home base for a veteran-owned cleaner",
+      "Apollos Cleaning — A credible home base for a veteran-owned cleaner",
     clientType: "CLEANING SERVICES · VETERAN-OWNED",
     sockets: ["Visibility", "Proof", "Offer Strength"],
     before:
@@ -31,7 +32,7 @@ const CASES = [
     highlight: false,
   },
   {
-    title: "CES757 — ad-ready funnel for epoxy garage floors",
+    title: "CES757 — Ad-ready funnel for epoxy garage floors",
     clientType: "EPOXY FLOORING · HAMPTON ROADS, VA",
     sockets: ["Visibility", "Offer Strength", "Conversion"],
     before:
@@ -43,9 +44,8 @@ const CASES = [
     imageSrc: "/images/ces.webp",
     highlight: false,
   },
-
   {
-    title: "Aloyo Money Management — elevating a DIY Wix site",
+    title: "Aloyo Money Management — Elevating a DIY Wix site",
     clientType: "FINANCIAL SERVICES · RHODE ISLAND",
     sockets: ["Offer Strength", "Proof", "Conversion"],
     before:
@@ -58,7 +58,7 @@ const CASES = [
     highlight: false,
   },
   {
-    title: "The Swade Group — simplifying a broad service offering",
+    title: "The Swade Group — Simplifying a broad service offering",
     clientType: "WATER RESTORATION · MULTI-SERVICE",
     sockets: ["Conversion", "Operations", "Visibility"],
     before:
@@ -80,30 +80,47 @@ export function ResultsSection() {
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.2em] text-(--ink-500) uppercase">
-            Results & Proof
+        <header className="max-w-4xl">
+          <p className="eyebrow text-[var(--muted)] text-sm  w-fit">
+            05. Results & Proof
           </p>
-          <h2 className="mt-3 text-2xl sm:text-3xl md:text-[2rem] font-semibold text-(--ink-900)">
-            What happens when a website finally behaves like a revenue system?
+
+          <h2 className="h2 mt-3 text-3xl sm:text-4xl lg:text-5xl leading-tight">
+            Not redesigns. System installations that fixed problems.
           </h2>
+
           <p className="mt-3 text-sm sm:text-base text-(--ink-700)">
-            We don’t ship “pretty pages.” We build systems that help owners get
-            seen, trusted, and booked—by plugging their sites into the Six
-            Sockets of Predictable Revenue.
+            No “pretty pages.” We wire visibility, proof, conversion, offers,
+            operations, and analytics so revenue stops feeling random.
           </p>
         </header>
 
+        {/* Scan row (new) */}
+        <div className="mt-8 grid gap-3 sm:grid-cols-3 text-sm text-(--ink-700)">
+          <div className="rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) px-4 py-3">
+            <span className="font-semibold text-(--ink-900)">More calls</span>{" "}
+            from higher-intent traffic
+          </div>
+          <div className="rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) px-4 py-3">
+            <span className="font-semibold text-(--ink-900)">Higher trust</span>{" "}
+            so buyers choose faster
+          </div>
+          <div className="rounded-2xl border border-(--border-subtle) bg-(--surface-elevated) px-4 py-3">
+            <span className="font-semibold text-(--ink-900)">
+              Less manual work
+            </span>{" "}
+            through sane systems
+          </div>
+        </div>
+
         {/* Case grid */}
         <div className="mt-10 space-y-8">
-          {/* Top row: 3 strongest cases */}
           <div className="grid gap-6 md:grid-cols-3">
             {CASES.slice(0, 3).map((item) => (
               <CaseCard key={item.title} {...item} />
             ))}
           </div>
 
-          {/* Bottom row: 2 supporting cases */}
           <div className="grid gap-6 md:grid-cols-2">
             {CASES.slice(3).map((item) => (
               <CaseCard key={item.title} {...item} />
@@ -114,31 +131,40 @@ export function ResultsSection() {
         {/* Testimonials */}
         <TestimonialStrip />
 
-        {/* CTA */}
+        {/* CTA (updated to system review -> /contact) */}
         <div className="mt-12 flex flex-col gap-3 border-t border-(--border-subtle) pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h3 className="text-base sm:text-lg font-semibold text-(--ink-900)">
-              Ready for your site to act like a system, not a brochure?
+              Want to know where revenue is leaking?
             </h3>
             <p className="mt-1 text-sm text-(--ink-700)">
-              We’ll plug your site into the sockets that move the needle:
-              visibility, proof, conversion, offer strength, operations, and
-              analytics.
+              We&apos;ll review your current site and point out which socket(s)
+              are breaking predictability.
             </p>
           </div>
+
           <div className="flex flex-wrap gap-3">
-            <a
-              href="#pricing"
-              className="inline-flex items-center justify-center rounded-full bg-(--ink-900) px-5 py-2.5 text-sm font-medium text-(--white) hover:bg-(--ink-800) transition-colors"
+            <Link
+              href="/contact?intent=system-review"
+              className="inline-flex items-center justify-center rounded-full  px-5 py-2.5 text-sm font-medium btn btn-primary"
+              data-track="click cta"
+              data-location="results section"
+              data-intent="Request a review"
+              data-label="Request a system review"
             >
-              View packages
-            </a>
-            <a
-              href="#process"
+              Request a system review
+            </Link>
+
+            <Link
+              href="/process"
               className="inline-flex items-center justify-center rounded-full border border-(--border-soft) bg-(--surface-muted) px-5 py-2.5 text-sm font-medium text-(--ink-900) hover:bg-(--surface-elevated) transition-colors"
+              data-track="click cta"
+              data-location="results section"
+              data-intent="See how it works"
+              data-label="See how it works"
             >
               See how it works
-            </a>
+            </Link>
           </div>
         </div>
       </div>

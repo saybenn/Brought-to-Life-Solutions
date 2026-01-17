@@ -8,13 +8,13 @@ export default function WhoWeAre() {
       <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center space-y-6">
         {/* Eyebrow */}
         <p className="eyebrow text-[var(--muted)] text-sm md:border-b md:border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
-          .02 WHO WE ARE
+          02. WHO WE ARE
         </p>
 
         {/* Headline */}
-        <h2 className="font-head text-4xl leading-tight sm:text-5xl lg:text-6xl">
+        <h2 className="font-head font-bold text-4xl leading-tight sm:text-5xl lg:text-6xl">
           Systems take the stress out of operating,
-          <span className="block mt-1 text-[var(--green-pine-800)]">
+          <span className="block font-normal mt-1 text-[var(--green-pine-800)]">
             so you can enjoy your craft again.
           </span>
         </h2>
@@ -32,6 +32,10 @@ export default function WhoWeAre() {
           <Link
             href="/about"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--green-pine-800)] hover:underline underline-offset-4"
+            data-track="click cta"
+            data-location="about"
+            data-intent="learn about us"
+            data-label="Learn how we think about structure and systems"
           >
             Learn how we think about structure and systems
             <span aria-hidden>→</span>

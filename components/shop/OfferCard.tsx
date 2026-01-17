@@ -92,8 +92,8 @@ export default function OfferCard({ offer, sectionKey, index }: Props) {
       </div>
 
       {/* Copy */}
-      <div className="space-y-2.5 mb-5 sm:mb-6">
-        <p className="text-sm font-semibold text-[rgba(247,243,235,0.94)]">
+      <div className="space-y-4 mb-5 sm:mb-6">
+        <p className="text-md font-bold text-[rgba(247,243,235,0.94)]">
           {headline}
         </p>
 
@@ -118,14 +118,19 @@ export default function OfferCard({ offer, sectionKey, index }: Props) {
           </div>
         ) : null}
 
-        <p className="text-xs text-[rgba(247,243,235,0.70)] italic">
-          Best for: {offer.bestFor}
+        <p className="text-sm font-bold text-white ">
+          Built For: <span className="font-normal">{offer.bestFor}</span>
         </p>
       </div>
 
       {/* CTA */}
       <div className="mt-auto pt-3 flex flex-col gap-2">
         <Link
+          data-track="click cta"
+          data-offer={offer.title}
+          data-location="offer card"
+          data-intent="view product"
+          data-label="View System"
           href={buildPrimaryHref(offer)}
           onClick={onPrimary}
           className={cn(
@@ -133,7 +138,7 @@ export default function OfferCard({ offer, sectionKey, index }: Props) {
             featured && "shadow-[0_18px_50px_rgba(0,0,0,0.35)]"
           )}
         >
-          {primaryLabel}
+          View System
         </Link>
       </div>
     </ShopGlassCard>

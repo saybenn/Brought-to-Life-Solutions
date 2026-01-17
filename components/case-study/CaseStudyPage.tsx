@@ -164,7 +164,7 @@ function MobileEvidenceRail({
 
 export default function CaseStudyPage({ study }: { study: CaseStudy }) {
   return (
-    <main className="bg-[var(--bg-page)]">
+    <main className="bg-[var(--bg-page)] pt-16">
       {/* HERO */}
       <section className="bg-[var(--bg-page)] pt-10 sm:pt-14 lg:pt-16">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-12 lg:items-center">

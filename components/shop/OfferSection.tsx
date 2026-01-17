@@ -22,7 +22,7 @@ export default function OfferSection({
   sectionKey,
   offers,
   align = "left",
-  helperLinkText = "Book a call →",
+  helperLinkText,
   helperLinkSection = sectionKey,
 }: Props) {
   const ref = useRef<HTMLElement | null>(null);

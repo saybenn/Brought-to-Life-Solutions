@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export function Hero() {
   const router = useRouter();
@@ -57,7 +58,8 @@ export function Hero() {
             <div className="space-y-6 sm:space-y-7 lg:space-y-8">
               <div className="space-y-3">
                 <p className="eyebrow on-dark-muted">
-                  Science Over Trends—Outcomes Over Hype
+                  Refined and Designed around how service businesses actually
+                  operate.{" "}
                 </p>
                 <h1 className="h1 on-dark text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-snug">
                   Revenue-engineered web systems that generate predictable
@@ -66,34 +68,47 @@ export function Hero() {
               </div>
 
               <p className="subhead on-dark-sub hidden md:block">
-                No more guessing games, plug your business into the six power
-                that make earnings you can count on.
+                For business operators tired of random leads and fragile
+                websites.
               </p>
 
               <div className="hidden flex-wrap items-center gap-3 md:flex">
-                <button className="btn btn-primary py-1 px-4">
-                  Start your project
-                </button>
-                <button className="btn btn-free py-1 px-4">Get Strategy</button>
+                <Link
+                  data-track="click cta"
+                  data-location="hero"
+                  data-intent="start routing call"
+                  data-label="Start with a routing call"
+                  href="/contact"
+                  className="btn btn-primary py-1 px-4"
+                >
+                  Start with a routing call
+                </Link>
+                <Link href="/shop" className="btn btn-free py-1 px-4">
+                  View Our Systems
+                </Link>
               </div>
             </div>
 
             {/* Mobile CTAs */}
             <div className="mt-6 flex items-center gap-3 md:hidden">
-              <button
+              <Link
+                data-track="click cta"
+                data-location="hero"
+                data-intent="start routing call"
+                data-label="Start with a routing call"
+                href="/contact"
                 type="button"
-                className="btn btn-primary px-4 py-2 text-sm leading-none"
-                onClick={handleStartProject}
+                className="btn btn-primary px-4 py-2 text-sm text-center leading-none"
               >
-                Start a Project
-              </button>
-              <button
+                Start with a routing call
+              </Link>
+              <Link
+                href="/shop"
                 type="button"
-                className="btn btn-free px-4 py-2 text-sm leading-none"
-                onClick={handleBookCall}
+                className="btn btn-free px-4 py-2 text-sm flex mx-auto text-center leading-none"
               >
-                Get Strategy
-              </button>
+                View Systems
+              </Link>
             </div>
           </div>
         </div>

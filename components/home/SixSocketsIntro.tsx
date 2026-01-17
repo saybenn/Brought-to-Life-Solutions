@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 type SocketId =
   | "visibility"
@@ -109,11 +110,27 @@ export function SixSocketsIntro() {
             </p>
 
             <h2 className="h2 on-dark text-3xl sm:text-4xl lg:text-5xl leading-tight">
-              When a website plugs into all six sockets, it&apos; an asset, not
-              an expense.
+              When a website is built as a complete system, it becomes an
+              asset—not an expense.
             </h2>
 
             <p className="subhead on-dark-sub">{activeCopy}</p>
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                data-track="click cta"
+                data-location="six sockets"
+                data-intent="request a review"
+                data-label="Request a review of your system"
+                href="/contact?intent=system-review"
+                className={cn(
+                  "inline-flex items-center justify-center rounded-full px-5 py-2.5",
+                  "text-sm font-medium transition-colors",
+                  "bg-white text-[var(--ink-900)] hover:bg-white/90"
+                )}
+              >
+                Request a review of your system
+              </Link>
+            </div>
           </div>
 
           {/* Circular sockets visual */}

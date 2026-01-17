@@ -15,9 +15,9 @@ import { WhoWeBuildForBigType } from "@/components/home/WhoWeBuildForBigType";
 import { RealProblemSection } from "../components/home/RealProblemSection";
 import { SixSocketsIntro } from "@/components/home/SixSocketsIntro";
 import { ProductSection } from "@/components/home/ProductSection";
-import { ResultsSection } from "@/components/results/ResultsSection";
-import FaqSection from "../components/FAQSection";
-import FinalCtaSection from "@/components/FinalCtaSection";
+import { ResultsSection } from "@/components/home/ResultsSection";
+import FaqSection from "../components/home/FAQSection";
+import FinalCtaSection from "@/components/home/FinalCtaSection";
 
 export default function Home() {
   return (

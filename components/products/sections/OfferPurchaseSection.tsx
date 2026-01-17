@@ -4,12 +4,20 @@ import type { Offer, OfferDetail } from "@/lib/catalog/types";
 import SectionContainer from "@/components/ui/SectionContainer";
 import OfferGlassCard from "@/components/ui/OfferGlassCard";
 import { getPriceSignal } from "@/lib/catalog/offers";
+import Link from "next/link";
 
 type Props = { offer: Offer; detail: OfferDetail };
 
 export default function OfferPurchaseSection({ offer, detail }: Props) {
   const { purchase } = detail;
   const priceSignal = purchase.price.display || getPriceSignal(offer);
+
+  // Routing-first: if a secondary CTA exists, treat it as the primary action.
+  const routingCta = purchase.secondaryCta;
+  const directCta = purchase.primaryCta;
+
+  const primaryCta = routingCta ?? directCta;
+  const showDirectAsLink = !!routingCta && !!directCta;
 
   return (
     <section id="purchase" aria-label="Purchase" className="scroll-mt-24">
@@ -32,7 +40,7 @@ export default function OfferPurchaseSection({ offer, detail }: Props) {
           {/* Steps */}
           <div className="rounded-[var(--r-lg)] border border-white/12 bg-white/5 p-(--space-7)">
             <p className="text-[12px] tracking-[0.26em] text-[rgba(247,243,235,0.62)] uppercase">
-              {purchase.stepsTitle || "After purchase"}
+              {purchase.stepsTitle || "Next steps"}
             </p>
 
             <ol className="mt-4 space-y-2 list-decimal list-inside">
@@ -46,7 +54,6 @@ export default function OfferPurchaseSection({ offer, detail }: Props) {
               ))}
             </ol>
 
-            {/* Risk removal is supportive, not competing */}
             {purchase.riskRemoval?.length ? (
               <div className="mt-(--space-6)">
                 <p className="text-[12px] tracking-[0.22em] uppercase text-[rgba(247,243,235,0.56)]">
@@ -83,20 +90,40 @@ export default function OfferPurchaseSection({ offer, detail }: Props) {
             ) : null}
 
             <div className="mt-(--space-6) flex flex-col gap-(--space-3)">
-              <a
-                className="btn btn-primary w-full"
-                href={purchase.primaryCta.href}
-              >
-                {purchase.primaryCta.label}
+              <a className="btn btn-primary w-full" href={primaryCta.href}>
+                {primaryCta.label}
               </a>
 
-              {purchase.secondaryCta ? (
-                <a
+              {/* Inline reassurance: supportive, not competing */}
+              {routingCta ? (
+                <p className="text-[12px] text-[rgba(247,243,235,0.64)] leading-[1.55]">
+                  We’ll confirm fit before any work or payment begins.
+                </p>
+              ) : null}
+
+              {/* Optional: if routing is primary, demote direct checkout to a quiet link */}
+              {showDirectAsLink ? (
+                <Link
+                  data-track="click cta"
+                  data-location={`product/offer page final ${offer.title}`}
+                  data-intent="Start a routing call"
+                  data-label="Start a routing call"
+                  className="text-[13px] text-[rgba(247,243,235,0.66)] underline underline-offset-4 hover:text-[rgba(247,243,235,0.82)]"
+                  href={directCta.href}
+                >
+                  {directCta.label}
+                </Link>
+              ) : purchase.secondaryCta ? (
+                <Link
+                  data-track="click cta"
+                  data-location={`product/offer page final ${offer.title}`}
+                  data-intent={`Start ${offer.title}`}
+                  data-label={`Start ${offer.title}`}
                   className="btn btn-secondary w-full"
                   href={purchase.secondaryCta.href}
                 >
                   {purchase.secondaryCta.label}
-                </a>
+                </Link>
               ) : null}
             </div>
           </OfferGlassCard>

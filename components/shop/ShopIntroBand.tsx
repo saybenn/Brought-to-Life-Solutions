@@ -9,7 +9,7 @@ type Props = {
 
 export default function ShopIntroBand({
   headline = "Buy systems.\nNot guesses.",
-  subhead = "This isn’t browsing. It’s selecting the next mechanism your business runs on — with outcomes, scope, and a clear next step.",
+  subhead = "Each system corresponds to a specific stage of business maturity. You’re not shopping—you're matching.",
   sockets = [
     "Visibility",
     "Proof",
@@ -28,7 +28,7 @@ export default function ShopIntroBand({
       {/* Gold thread (thin, intentional) */}
       <div
         aria-hidden="true"
-        className="absolute left-0 right-0 top-[72%] h-px"
+        className="absolute left-0 right-0 top-[75%] h-px"
         style={{
           background:
             "linear-gradient(90deg, rgba(214,185,138,0) 0%, rgba(214,185,138,0.55) 18%, rgba(214,185,138,0.20) 52%, rgba(214,185,138,0.0) 100%)",
@@ -54,10 +54,11 @@ export default function ShopIntroBand({
             </p>
 
             <div className="mt-(--space-8)">
-              <p className="text-[11px] tracking-[0.22em] text-[rgba(247,243,235,0.64)]">
-                THE SIX SOCKETS (YOUR REVENUE FRAME)
+              <p className=" text-sm tracking-[0.22em] text-[rgba(247,243,235,0.64)]">
+                This page is for orientation, not checkout. Explore systems by
+                business stage, or talk with us to get routed correctly.
               </p>
-              <div className="mt-(--space-3) flex flex-wrap gap-(--space-2)">
+              {/* <div className="mt-(--space-3) flex flex-wrap gap-(--space-2)">
                 {sockets.map((s) => (
                   <span
                     key={s}
@@ -72,7 +73,7 @@ export default function ShopIntroBand({
                     {s}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -102,16 +103,16 @@ export default function ShopIntroBand({
               </Link>
 
               <Link
-                href="/booking?section=intro&intent=talk"
+                data-track="click cta"
+                data-location="shop intro band"
+                data-intent="Request a routing call"
+                data-label="Talk first"
+                href="/contact"
                 className="btn btn-secondary w-full justify-center"
               >
                 Talk first
               </Link>
             </div>
-
-            <p className="mt-(--space-4) text-[12px] text-[rgba(247,243,235,0.62)]">
-              You’re entering a buying experience, not window shopping.
-            </p>
           </aside>
         </div>
       </div>

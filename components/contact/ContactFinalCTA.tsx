@@ -1,4 +1,4 @@
-import { cardBase, heading, body, btnPrimary } from "./ui";
+import { cardBase, heading, body } from "./ui";
 
 export default function ContactFinalCTA() {
   return (
@@ -6,17 +6,9 @@ export default function ContactFinalCTA() {
       <h2 className={`${heading} text-xl`}>A Final Note</h2>
 
       <p className={`${body} mt-3`}>
-        We build systems meant to hold weight. That requires clarity, intention,
-        and structure.
+        Most engagements begin with a routing call. If you&apos;re ready to move
+        forward with definition, begin here.
       </p>
-
-      <p className={`${body} mt-3`}>
-        If you’re ready to move forward with definition, begin here.
-      </p>
-
-      <a href="#routing-form" className={`${btnPrimary} mt-5`}>
-        Request Routing Call
-      </a>
     </section>
   );
 }

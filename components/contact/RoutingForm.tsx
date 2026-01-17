@@ -1,6 +1,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { cardBase, heading, body, muted, btnPrimary } from "./ui";
+import { track } from "@/lib/analytics";
 
 type ContactPath = "routing" | "support" | "general";
 type Status = "idle" | "submitting" | "success" | "error";
@@ -82,6 +83,8 @@ export default function RoutingForm() {
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    if (status === "submitting") return;
+
     setError(null);
 
     const v = validate();
@@ -104,9 +107,112 @@ export default function RoutingForm() {
 
       setStatus("success");
 
-      // MVP gating: schedule only after submission, and only for routing calls
+      function getUtmBundle() {
+        if (typeof window === "undefined") return null;
+
+        const fromUrl = new URLSearchParams(window.location.search);
+        const get = (k: string) => fromUrl.get(k) || "";
+
+        const urlUtm = {
+          utm_source: get("utm_source"),
+          utm_medium: get("utm_medium"),
+          utm_campaign: get("utm_campaign"),
+          utm_term: get("utm_term"),
+          utm_content: get("utm_content"),
+          gclid: get("gclid"),
+          fbclid: get("fbclid"),
+        };
+
+        // If you store UTMs on landing in sessionStorage, merge here
+        const stored = (() => {
+          try {
+            const raw = sessionStorage.getItem("btl_utms");
+            return raw ? (JSON.parse(raw) as Record<string, string>) : {};
+          } catch {
+            return {};
+          }
+        })();
+
+        // Prefer stored values, then URL values (URL values usually exist only on first land)
+        const merged = { ...urlUtm, ...stored };
+
+        // Strip empties
+        const cleaned = Object.fromEntries(
+          Object.entries(merged).filter(([, v]) => Boolean(v))
+        );
+
+        return Object.keys(cleaned).length ? cleaned : null;
+      }
+
+      const utm = getUtmBundle();
+
+      // 2) Build the “carry-over” payload for /contact/success -> Calendly prefill
+      const bookingNotesLines = [
+        `Inquiry type: ${path}`,
+        isRouting ? `Primary goal: ${form.goal || "—"}` : null,
+        isRouting ? `Urgency: ${form.urgency || "—"}` : null,
+        form.revenueRange ? `Revenue range: ${form.revenueRange}` : null,
+        form.businessName ? `Business: ${form.businessName}` : null,
+        form.role ? `Role: ${form.role}` : null,
+        form.website ? `Website: ${form.website}` : null,
+        form.referral ? `Referral: ${form.referral}` : null,
+        form.message ? `Message: ${form.message}` : null,
+      ].filter(Boolean) as string[];
+
+      const contactPayload = {
+        // calendly prefill keys
+        fullName: form.fullName.trim(),
+        email: form.email.trim(),
+
+        // routing context
+        contactPath: path,
+        intent: path === "routing" ? "request routing call" : "contact",
+        service:
+          path === "routing"
+            ? "routing call"
+            : path === "support"
+            ? "client support"
+            : "general inquiry",
+
+        // carry-over “notes” (Calendly customAnswers.a1 on success page)
+        notes: bookingNotesLines.join("\n"),
+
+        // attribution
+        utm,
+
+        // metadata
+        submittedAt: new Date().toISOString(),
+        page: "/contact",
+      };
+
+      sessionStorage.setItem(
+        "btl_contact_payload",
+        JSON.stringify(contactPayload)
+      );
+
+      // 3) Analytics (use your existing track() helper; it should push to dataLayer/GA4)
+      // Keep names consistent with your event philosophy: Verb + Location + Intent
+      track("submit form", {
+        location: "routing form",
+        intent: path === "routing" ? "request routing call" : "contact",
+        service:
+          path === "routing"
+            ? "routing call"
+            : path === "support"
+            ? "client support"
+            : "general inquiry",
+      });
+
+      // Optional: explicitly track that you are about to show the booking step (only for routing)
       if (path === "routing") {
-        router.push("/schedule-routing-call");
+        track("Route | ContactSuccess | ScheduleNext", {
+          location: "/contact",
+          next_location: "/contact/success",
+          intent: "schedule routing call",
+          utm: utm || undefined,
+        });
+
+        router.push("/contact/success");
       }
     } catch (err) {
       setStatus("error");
@@ -139,7 +245,7 @@ export default function RoutingForm() {
         <form onSubmit={onSubmit} className="mt-6 space-y-5">
           <Field
             label="Inquiry type"
-            hint="Choose the path you want. Routing Calls are scheduled after submission."
+            hint="Choose the conversation you need. Routing Calls are scheduled after submission."
           >
             <select
               className={inputBase}

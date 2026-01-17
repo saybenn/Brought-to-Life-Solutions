@@ -23,13 +23,13 @@ export function getPrimaryCtaLabel(o: Offer) {
     case "Buy":
       return "View System";
     case "Subscribe":
-      return "View Plan";
+      return "View System";
     case "Apply":
-      return "Apply";
+      return "View System";
     case "BookCall":
-      return "Book Session";
+      return "View System";
     default:
-      return "View";
+      return "View System";
   }
 }
 
@@ -82,7 +82,7 @@ export const OFFERS: Offer[] = [
     stage: "MostChosen",
     // overwrite with plain-English outcome
     promise:
-      "A website that reliably turns visitors into phone calls and booked jobs.",
+      "A website designed to reliably turn visitors into phone calls and booked jobs.",
     subpromise:
       "We wire your site so the right people find you, trust you, and contact you — without guessing what’s working.",
     bestFor:
@@ -95,7 +95,7 @@ export const OFFERS: Offer[] = [
 
     // added: receipt-test copy
     outcomeHeadline:
-      "A website that reliably turns visitors into phone calls and booked jobs.",
+      "A website designed to reliably turn visitors into phone calls and booked jobs.",
     outcomeNarrative:
       "We wire your site so the right people find you, trust you, and contact you — without guessing what’s working.",
     deliverablesIntro: "You get:",
@@ -257,6 +257,33 @@ export const OFFERS: Offer[] = [
       "Copy that supports basic search visibility",
     ],
   },
+  {
+    id: "trust_asset_photography",
+    slug: "trust-asset-photography",
+    title: "Trust Asset Photography",
+    category: "Assets",
+    stage: "Support",
+    promise: "Credibility-first photos that make calling feel safe.",
+    subpromise:
+      "We capture the exact images your site needs to build trust fast—work, process, proof, and people—without a brand-shoot vibe.",
+    bestFor:
+      "Service businesses whose website is structurally sound but visually unconvincing (stock, phone pics, or nothing).",
+    startingAtCents: 150000,
+    cadence: "one_time",
+    cta: "BookCall",
+
+    outcomeHeadline: "Credibility-first photos that make calling feel safe.",
+    outcomeNarrative:
+      "We shoot what your website actually needs to earn trust: real work, real process, and real proof—edited and delivered by page-use so you can install them immediately.",
+    deliverablesIntro: "You get:",
+    deliverables: [
+      "Shot list mapped to your key pages (hero, services, proof, about)",
+      "On-site session (half-day or scoped block)",
+      "Web-optimized edits (not a massive gallery dump)",
+      "Files named + organized by page-use for easy install",
+    ],
+  },
+
 
   // CONVERSION BRIDGE
   {

@@ -1,15 +1,9 @@
 // components/FaqSection.tsx
 import React from "react";
+import { cn } from "@/lib/utils";
 
-type FaqItem = {
-  question: string;
-  answer: string;
-};
-
-type FaqGroup = {
-  title: string;
-  items: FaqItem[];
-};
+type FaqItem = { question: string; answer: string };
+type FaqGroup = { title: string; items: FaqItem[] };
 
 const FAQ_GROUPS: FaqGroup[] = [
   {
@@ -92,10 +86,6 @@ const FAQ_GROUPS: FaqGroup[] = [
   },
 ];
 
-function cn(...classes: (string | false | null | undefined)[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function FaqSection() {
   const [openGroups, setOpenGroups] = React.useState<Record<string, boolean>>(
     {}
@@ -103,38 +93,32 @@ export default function FaqSection() {
   const [openItems, setOpenItems] = React.useState<Record<string, boolean>>({});
 
   const toggleGroup = (groupTitle: string) => {
-    setOpenGroups((prev) => ({
-      ...prev,
-      [groupTitle]: !prev[groupTitle],
-    }));
+    setOpenGroups((prev) => ({ ...prev, [groupTitle]: !prev[groupTitle] }));
   };
 
   const toggleItem = (key: string) => {
-    setOpenItems((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
+    setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   return (
     <section
       id="faq"
-      className="border-t border-slate-200 bg-slate-50/60"
       aria-labelledby="faq-heading"
+      className="border-t border-[var(--border)] bg-[var(--bg-ivory)]"
     >
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-10/12 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         {/* Heading */}
         <header className="mb-10 max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[var(--muted)]">
             FAQ
           </p>
           <h2
             id="faq-heading"
-            className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl"
+            className="mt-2 text-2xl font-semibold tracking-tight text-[var(--ink-900)] sm:text-3xl"
           >
             Questions owners usually ask before we start
           </h2>
-          <p className="mt-3 text-sm text-slate-600 sm:text-base">
+          <p className="mt-3 text-sm text-[var(--ink-700)] sm:text-base">
             Straight answers so you can decide if we’re the right partner.
           </p>
         </header>
@@ -148,7 +132,7 @@ export default function FaqSection() {
             return (
               <div
                 key={group.title}
-                className="rounded-2xl border border-slate-200 bg-white/80 shadow-sm"
+                className="rounded-2xl border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-soft)]"
               >
                 {/* Group header */}
                 <button
@@ -158,15 +142,16 @@ export default function FaqSection() {
                   aria-expanded={isGroupOpen}
                   aria-controls={`${groupId}-panel`}
                 >
-                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-700">
+                  <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--ink-900)]">
                     {group.title}
                   </h3>
                   <span
                     className={cn(
-                      "flex h-7 w-7 flex-none items-center justify-center rounded-full border border-slate-300 text-sm text-slate-500 transition",
+                      "flex h-7 w-7 flex-none items-center justify-center rounded-full border text-sm transition",
+                      "border-[var(--border)] text-[var(--muted)]",
                       isGroupOpen
-                        ? "rotate-45 bg-slate-900 text-slate-50"
-                        : "bg-white"
+                        ? "rotate-45 bg-[var(--ink-900)] text-white"
+                        : "bg-[var(--bg-elevated)]"
                     )}
                   >
                     +
@@ -177,14 +162,15 @@ export default function FaqSection() {
                 <div
                   id={`${groupId}-panel`}
                   className={cn(
-                    "grid overflow-hidden border-t border-slate-200/80 transition-all duration-300 ease-out",
+                    "grid overflow-hidden border-t transition-all duration-300 ease-out",
+                    "border-[var(--border)]",
                     isGroupOpen
                       ? "grid-rows-[1fr] opacity-100"
                       : "grid-rows-[0fr] opacity-0"
                   )}
                 >
                   <div className="min-h-0">
-                    <div className="divide-y divide-slate-200">
+                    <div className="divide-y divide-[var(--border)]">
                       {group.items.map((item) => {
                         const key = `${group.title}-${item.question}`;
                         const isOpen = !!openItems[key];
@@ -194,7 +180,7 @@ export default function FaqSection() {
                           <div key={key} className="group">
                             <button
                               type="button"
-                              className="flex w-full items-start justify-between gap-4 px-4 py-4 text-left text-sm font-medium text-slate-900 sm:px-6 sm:py-4"
+                              className="flex w-full items-start justify-between gap-4 px-4 py-4 text-left text-sm font-medium text-[var(--ink-900)] sm:px-6 sm:py-4"
                               aria-expanded={isOpen}
                               aria-controls={panelId}
                               onClick={() => toggleItem(key)}
@@ -202,10 +188,11 @@ export default function FaqSection() {
                               <span>{item.question}</span>
                               <span
                                 className={cn(
-                                  "mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full border border-slate-300 text-xs text-slate-500 transition",
+                                  "mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full border text-xs transition",
+                                  "border-[var(--border)] text-[var(--muted)]",
                                   isOpen
-                                    ? "rotate-45 bg-slate-900 text-slate-50"
-                                    : "bg-white"
+                                    ? "rotate-45 bg-[var(--ink-900)] text-white"
+                                    : "bg-[var(--bg-elevated)]"
                                 )}
                               >
                                 +
@@ -221,7 +208,7 @@ export default function FaqSection() {
                                   : "grid-rows-[0fr] opacity-0"
                               )}
                             >
-                              <div className="min-h-0 px-4 pb-4 text-sm leading-relaxed text-slate-600 sm:px-6 sm:pb-4">
+                              <div className="min-h-0 px-4 pb-4 text-sm leading-relaxed text-[var(--ink-700)] sm:px-6 sm:pb-4">
                                 {item.answer}
                               </div>
                             </div>
@@ -237,11 +224,13 @@ export default function FaqSection() {
         </div>
 
         {/* Closing line */}
-        <p className="mt-10 max-w-2xl text-sm text-slate-600">
+        <p className="mt-10 max-w-2xl text-sm text-[var(--ink-700)]">
           Underneath every answer here is the same idea: we don’t treat your
           site as artwork—we treat it as a{" "}
-          <span className="font-semibold text-slate-900">revenue system</span>.
-          The design, copy, and tech are built around how money actually flows
+          <span className="font-semibold text-[var(--ink-900)]">
+            revenue system
+          </span>
+          . The design, copy, and tech are built around how money actually flows
           through your business.
         </p>
       </div>

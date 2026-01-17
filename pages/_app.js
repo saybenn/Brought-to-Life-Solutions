@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import RootLayout from "@/components/layout/RootLayout";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { track } from "@/lib/analytics";
 import Script from "next/script";
 import { captureUTMs } from "@/lib/utm";
 
@@ -15,28 +16,23 @@ export default function App({ Component, pageProps }) {
     captureUTMs?.();
   }, []);
 
-  // 2) Initial pageview + subsequent SPA navigations → dataLayer events
   useEffect(() => {
-    const pushPageview = (url) => {
-      // define dataLayer if absent
-      // don't crash in rare SSR edge-cases
-      if (typeof window === "undefined") return;
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        event: "pageview",
-        page_location: url, // GA4-friendly
-        page_path: url.split("?")[0] || "/",
+    const sendPageView = (url) => {
+      track("view page", {
+        page_path: url.split("?")[0],
+        page_url: url,
       });
     };
 
-    // initial after hydration
-    const initial = window.location.pathname + window.location.search;
-    pushPageview(initial);
+    // initial load
+    sendPageView(window.location.pathname + window.location.search);
 
     // SPA route changes
-    const onRouteChange = (url) => pushPageview(url);
-    router.events.on("routeChangeComplete", onRouteChange);
-    return () => router.events.off("routeChangeComplete", onRouteChange);
+    router.events.on("routeChangeComplete", sendPageView);
+
+    return () => {
+      router.events.off("routeChangeComplete", sendPageView);
+    };
   }, [router.events]);
 
   return (

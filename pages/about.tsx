@@ -85,11 +85,7 @@ function Divider() {
 }
 
 function Kicker({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="text-xs font-semibold tracking-[0.12em] text-[var(--muted)]">
-      {children}
-    </div>
-  );
+  return <div className="eyebrow">{children}</div>;
 }
 
 function H1({ children }: { children: React.ReactNode }) {
@@ -430,15 +426,10 @@ export default function AboutPage() {
 
                 <P className="mt-2">
                   You don’t need to study this framework or memorize
-                  terminology.
-                </P>
-                <P>
-                  It exists to inform priorities, sequencing, and tradeoffs as
-                  work is executed.
-                </P>
-                <P>
-                  Our responsibility is to build with it—quietly and
-                  consistently—so the system does what it’s supposed to do.
+                  terminology. It exists to inform priorities, sequencing, and
+                  tradeoffs as work is executed. This approach exists because
+                  unclear websites consistently fail otherwise capable
+                  businesses.
                 </P>
               </div>
             </div>
@@ -469,32 +460,6 @@ export default function AboutPage() {
               </Card>
             </div>
           </div>
-        </Container>
-      </Section>
-
-      {/* FINAL CTA */}
-      <Section className="bg-[var(--bg-alt)] py-[var(--space-12)]">
-        <Container>
-          <Card className="overflow-hidden">
-            <div className="p-6 md:p-10 md:flex md:items-center md:justify-between md:gap-10">
-              <div>
-                <Kicker>NEXT STEP</Kicker>
-                <H2>Start with the intake.</H2>
-                <P className="mt-3 max-w-2xl">
-                  If you’re ready to move forward, start with contact and we’ll
-                  route you into the appropriate next step.
-                </P>
-              </div>
-              <div className="mt-6 flex flex-wrap gap-3 md:mt-0 md:flex-col md:items-stretch">
-                <ButtonLink href="/contact" variant="primary">
-                  Start with Contact
-                </ButtonLink>
-                <ButtonLink href="/case-studies" variant="secondary">
-                  View Case Studies
-                </ButtonLink>
-              </div>
-            </div>
-          </Card>
         </Container>
       </Section>
     </main>

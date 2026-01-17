@@ -92,6 +92,7 @@ export type OfferDetail = {
 
     // NEW: proof-of-results line (placed under subhead)
     proofLine?: string;
+whyItExists?: string;
 
     // NEW: Perspective Lock diagnosis block (placed below CTA)
     perspectiveLock?: string;
