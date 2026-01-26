@@ -41,7 +41,7 @@ export function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero2.png" // replace with your final photo
+          src="/images/hero2.webp" // replace with your final photo
           alt="Founder working in a calm, focused studio space"
           fill
           priority
@@ -133,7 +133,7 @@ export function Hero() {
 
                 <span
                   className={cn(
-                    "pointer-events-none absolute inset-x-0 -bottom-1 h-[2px] rounded-full bg-[var(--bg-elevated)]/80"
+                    "pointer-events-none absolute inset-x-0 -bottom-1 h-[2px] rounded-full bg-[var(--bg-elevated)]/80",
                   )}
                 />
               </div>
