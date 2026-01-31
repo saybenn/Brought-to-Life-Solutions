@@ -97,7 +97,7 @@ export default function OfferPurchaseSection({ offer, detail }: Props) {
               {/* Inline reassurance: supportive, not competing */}
               {routingCta ? (
                 <p className="text-[12px] text-[rgba(247,243,235,0.64)] leading-[1.55]">
-                  We’ll confirm fit before any work or payment begins.
+                  We&apos;ll confirm fit before any work or payment begins.
                 </p>
               ) : null}
 

@@ -141,7 +141,7 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
         "We take on a limited number of builds at a time so every system gets attention.",
       primaryCta: {
         label: "Start Starter System",
-        href: "/products/starter-system?intent=buy&offerId=starter_system",
+        href: "/checkout?offerId=starter_system&intent=buy",
       },
       secondaryCta: {
         label: "Talk first",
@@ -440,10 +440,6 @@ included: {
         "We take on a limited number of partners so the work stays high-attention.",
       primaryCta: {
         label: "Apply",
-        href: "/products/growth-partner?intent=apply&offerId=growth_partner",
-      },
-      secondaryCta: {
-        label: "Talk first",
         href: "/contact?intent=talk&offerId=growth_partner",
       },
     },
@@ -581,7 +577,7 @@ included: {
       ],
       primaryCta: {
         label: "Start Care Plan",
-        href: "/products/care-plan?intent=subscribe&offerId=care_plan",
+        href: "/checkout?offerId=care_plan&intent=buy",
       },
       secondaryCta: {
         label: "Talk first",
@@ -718,7 +714,7 @@ included: {
       ],
       primaryCta: {
         label: "Start SEO Maintenance",
-        href: "/products/local-seo-maintenance?intent=subscribe&offerId=seo_maintenance",
+        href: "/checkout?offerId=seo_maintenance&intent=buy",
       },
       secondaryCta: {
         label: "Talk first",
@@ -850,7 +846,7 @@ included: {
       ],
       primaryCta: {
         label: "Start SEO Momentum",
-        href: "/products/seo-momentum?intent=subscribe&offerId=seo_momentum",
+        href: "/checkout?offerId=seo_momentum&intent=buy",
       },
       secondaryCta: {
         label: "Talk first",
@@ -988,7 +984,7 @@ included: {
       ],
       primaryCta: {
         label: "Start Copywriting",
-        href: "/products/copywriting?intent=buy&offerId=copywriting",
+        href: "/checkout?offerId=copywriting&intent=buy",
       },
       secondaryCta: {
         label: "Talk first",

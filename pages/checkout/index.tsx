@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/router";
 import { PRICING_CLIENT } from "@/lib/stripe/pricing.client";
+import { OFFER_DETAILS } from "@/lib/catalog/offerDetails"; // adjust if your path/case differs
+import { track } from "@/lib/analytics";
 
 type PaymentMode = "full" | "plan";
 
@@ -15,6 +17,10 @@ function getUTMFromQuery(q: Record<string, any>) {
     utm_content: typeof q.utm_content === "string" ? q.utm_content : undefined,
     utm_term: typeof q.utm_term === "string" ? q.utm_term : undefined,
   };
+}
+
+function humanizeOfferId(id: string) {
+  return id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 export default function CheckoutPage() {
@@ -32,15 +38,29 @@ export default function CheckoutPage() {
     return typeof v === "string" ? v : "";
   }, [router.query.intent]);
 
-  const offer =
+  // PRICING_CLIENT is ONLY for plan UI affordances (label/helper + hasPlan),
+  // NOT for determining whether an offer is valid.
+  const offerClient =
     offerId && offerId in PRICING_CLIENT
       ? PRICING_CLIENT[offerId as keyof typeof PRICING_CLIENT]
       : null;
+
+  const offerTitle =
+    (offerId && (OFFER_DETAILS as any)?.[offerId]?.title) ||
+    offerClient?.title ||
+    (offerId ? humanizeOfferId(offerId) : "");
+
   const canBuy = intent === "buy";
-  const hasPlan = Boolean(offer?.hasPlan);
+  const hasPlan = Boolean(offerClient?.hasPlan);
 
   async function startCheckout(paymentMode: PaymentMode) {
     try {
+      if (!offerId) {
+        setStatus("error");
+        setError("Missing offerId.");
+        return;
+      }
+
       setStatus("loading");
       setError("");
 
@@ -65,9 +85,16 @@ export default function CheckoutPage() {
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data?.error || "Checkout failed");
 
+      if (!data?.url || typeof data.url !== "string") {
+        throw new Error("Checkout failed: missing redirect URL.");
+      }
+      track("start checkout", {
+        offer: offerId,
+        location,
+      });
       window.location.href = data.url;
     } catch (e: any) {
       setStatus("error");
@@ -96,8 +123,8 @@ export default function CheckoutPage() {
 
             <p className="subhead mt-4 text-[var(--ink-700)] animate-fadeUp">
               We normally start with a routing call to confirm fit and scope.
-              This page exists for cases where you’ve already been prescribed a
-              next step.
+              This page exists for cases where you&apos;ve already been
+              prescribed a next step.
             </p>
 
             <div className="mt-10 card p-6 sm:p-8 animate-fadeUp">
@@ -116,28 +143,12 @@ export default function CheckoutPage() {
                     </Link>
                   </div>
                 </>
-              ) : !offer ? (
-                <>
-                  <p className="eyebrow text-[var(--muted)]">UNKNOWN OFFER</p>
-                  <p className="subhead mt-3 text-[var(--ink-700)]">
-                    This offer isn’t recognized. Start with intake and we’ll
-                    route you correctly.
-                  </p>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <Link className="btn btn-primary" href="/contact">
-                      Start with Intake
-                    </Link>
-                    <Link className="btn btn-secondary" href="/process">
-                      View the process
-                    </Link>
-                  </div>
-                </>
               ) : !canBuy ? (
                 <>
                   <p className="eyebrow text-[var(--muted)]">NEXT STEP</p>
                   <h2 className="h3 mt-3">Start with a routing call.</h2>
                   <p className="subhead mt-3 text-[var(--ink-700)]">
-                    We’ll confirm fit and route you into the right product.
+                    We&apos;ll confirm fit and route you into the right product.
                   </p>
                   <div className="mt-6 flex flex-wrap gap-3">
                     <Link className="btn btn-primary" href="/contact">
@@ -150,11 +161,14 @@ export default function CheckoutPage() {
                 </>
               ) : (
                 <>
-                  <p className="eyebrow text-[var(--muted)]">YOU’RE BUYING</p>
-                  <h2 className="h3 mt-3">{offer.title}</h2>
+                  <p className="eyebrow text-[var(--muted)]">
+                    YOU&apos;RE BUYING
+                  </p>
+                  <h2 className="h3 mt-3">{offerTitle}</h2>
+
                   <p className="subhead mt-3 text-[var(--ink-700)]">
-                    You’ll be redirected to Stripe Checkout. Choose a payment
-                    option below.
+                    You&apos;ll be redirected to Stripe Checkout. Choose a
+                    payment option below.
                   </p>
 
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -172,15 +186,15 @@ export default function CheckoutPage() {
                         disabled={status === "loading"}
                         onClick={() => startCheckout("plan")}
                       >
-                        {offer.planLabel || "Payment plan"}
+                        {offerClient?.planLabel || "Payment plan"}
                       </button>
                     ) : null}
                   </div>
 
-                  {hasPlan && offer.planHelperText ? (
+                  {hasPlan && offerClient?.planHelperText ? (
                     <div className="mt-4 rounded-[var(--r-md)] border border-[var(--border)] bg-[var(--bg-page)] px-4 py-3">
                       <p className="caption text-[var(--ink-700)]">
-                        {offer.planHelperText}
+                        {offerClient.planHelperText}
                       </p>
                     </div>
                   ) : null}

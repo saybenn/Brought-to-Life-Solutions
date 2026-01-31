@@ -1,11 +1,45 @@
 // /pages/checkout/canceled.tsx
+import { track } from "@/lib/analytics";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useMemo } from "react";
+
+function getUTMFromQuery(q: Record<string, any>) {
+  return {
+    utm_source: typeof q.utm_source === "string" ? q.utm_source : undefined,
+    utm_medium: typeof q.utm_medium === "string" ? q.utm_medium : undefined,
+    utm_campaign:
+      typeof q.utm_campaign === "string" ? q.utm_campaign : undefined,
+    utm_content: typeof q.utm_content === "string" ? q.utm_content : undefined,
+    utm_term: typeof q.utm_term === "string" ? q.utm_term : undefined,
+  };
+}
 
 export default function CheckoutCanceled() {
   const router = useRouter();
-  const offerId =
-    typeof router.query.offer_id === "string" ? router.query.offer_id : "";
+  const offerId = useMemo(() => {
+    const v = router.query.offer_id;
+    return typeof v === "string" ? v : "";
+  }, [router.query.offer_id]);
+
+  const sessionId = useMemo(() => {
+    const v = router.query.session_id;
+    return typeof v === "string" ? v : "";
+  }, [router.query.session_id]);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const utm = getUTMFromQuery(router.query as any);
+
+    track("cancel checkout", {
+      offer_id: offerId || undefined,
+      session_id: sessionId || undefined, // will be blank unless you add it to cancelUrl
+      cta_location: "checkout_canceled_page",
+      entry_path: router.asPath,
+      ...utm,
+    });
+  }, [router.isReady, offerId, sessionId, router.asPath, router.query]);
 
   return (
     <main className="bg-[var(--bg-ivory)]">

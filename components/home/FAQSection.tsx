@@ -88,7 +88,7 @@ const FAQ_GROUPS: FaqGroup[] = [
 
 export default function FaqSection() {
   const [openGroups, setOpenGroups] = React.useState<Record<string, boolean>>(
-    {}
+    {},
   );
   const [openItems, setOpenItems] = React.useState<Record<string, boolean>>({});
 
@@ -119,7 +119,7 @@ export default function FaqSection() {
             Questions owners usually ask before we start
           </h2>
           <p className="mt-3 text-sm text-[var(--ink-700)] sm:text-base">
-            Straight answers so you can decide if we’re the right partner.
+            Straight answers so you can decide if we&apos;re the right partner.
           </p>
         </header>
 
@@ -151,7 +151,7 @@ export default function FaqSection() {
                       "border-[var(--border)] text-[var(--muted)]",
                       isGroupOpen
                         ? "rotate-45 bg-[var(--ink-900)] text-white"
-                        : "bg-[var(--bg-elevated)]"
+                        : "bg-[var(--bg-elevated)]",
                     )}
                   >
                     +
@@ -166,7 +166,7 @@ export default function FaqSection() {
                     "border-[var(--border)]",
                     isGroupOpen
                       ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
+                      : "grid-rows-[0fr] opacity-0",
                   )}
                 >
                   <div className="min-h-0">
@@ -192,7 +192,7 @@ export default function FaqSection() {
                                   "border-[var(--border)] text-[var(--muted)]",
                                   isOpen
                                     ? "rotate-45 bg-[var(--ink-900)] text-white"
-                                    : "bg-[var(--bg-elevated)]"
+                                    : "bg-[var(--bg-elevated)]",
                                 )}
                               >
                                 +
@@ -205,7 +205,7 @@ export default function FaqSection() {
                                 "grid overflow-hidden transition-all duration-300 ease-out",
                                 isOpen
                                   ? "grid-rows-[1fr] opacity-100"
-                                  : "grid-rows-[0fr] opacity-0"
+                                  : "grid-rows-[0fr] opacity-0",
                               )}
                             >
                               <div className="min-h-0 px-4 pb-4 text-sm leading-relaxed text-[var(--ink-700)] sm:px-6 sm:pb-4">
@@ -225,8 +225,8 @@ export default function FaqSection() {
 
         {/* Closing line */}
         <p className="mt-10 max-w-2xl text-sm text-[var(--ink-700)]">
-          Underneath every answer here is the same idea: we don’t treat your
-          site as artwork—we treat it as a{" "}
+          Underneath every answer here is the same idea: we don&apos;t treat
+          your site as artwork—we treat it as a{" "}
           <span className="font-semibold text-[var(--ink-900)]">
             revenue system
           </span>

@@ -9,7 +9,7 @@ type Props = {
 
 export default function ShopIntroBand({
   headline = "Buy systems.\nNot guesses.",
-  subhead = "Each system corresponds to a specific stage of business maturity. You’re not shopping—you're matching.",
+  subhead = "Each system corresponds to a specific stage of business maturity. You're not shopping—you're matching.",
   sockets = [
     "Visibility",
     "Proof",

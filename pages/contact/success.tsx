@@ -34,7 +34,7 @@ export default function ContactSuccessPage() {
     const p = safeParse<ContactPayload>(
       typeof window !== "undefined"
         ? sessionStorage.getItem("btl_contact_payload")
-        : null
+        : null,
     );
     setPayload(p);
 
@@ -99,7 +99,7 @@ export default function ContactSuccessPage() {
 
         {/* Headline */}
         <h1 className="font-head font-bold text-4xl leading-tight sm:text-5xl lg:text-6xl">
-          You’re in.
+          You&apos;re in.
           <span className="block font-normal mt-1 text-[var(--green-pine-800)]">
             If you want to move faster, book the routing call now.
           </span>
@@ -107,8 +107,8 @@ export default function ContactSuccessPage() {
 
         {/* Subhead */}
         <p className="text-[var(--ink-700)] max-w-xl mx-auto">
-          We’ve received your request. Scheduling is optional — it just helps us
-          confirm fit and next steps without back-and-forth.
+          We&apos;ve received your request. Scheduling is optional — it just
+          helps us confirm fit and next steps without back-and-forth.
         </p>
 
         {/* Calendly Card */}
@@ -178,7 +178,7 @@ export default function ContactSuccessPage() {
                 No sales script
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                We’ll confirm fit, urgency, and the cleanest next step.
+                We&apos;ll confirm fit, urgency, and the cleanest next step.
               </p>
             </div>
 
@@ -187,7 +187,7 @@ export default function ContactSuccessPage() {
                 15 minutes
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                Short, direct, and useful — even if we’re not a match.
+                Short, direct, and useful — even if we&apos;re not a match.
               </p>
             </div>
 
@@ -196,7 +196,8 @@ export default function ContactSuccessPage() {
                 Email still works
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                If you don’t schedule, we’ll reply within one business day.
+                If you don&apos;t schedule, we&apos;ll reply within one business
+                day.
               </p>
             </div>
           </div>

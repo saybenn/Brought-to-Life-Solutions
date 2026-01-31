@@ -62,7 +62,7 @@ export default function Navbar() {
 
   const isLightHeaderRoute = useMemo(() => {
     return LIGHT_HEADER_PREFIXES.some((p) =>
-      p === "/" ? path === "/" : path.startsWith(p)
+      p === "/" ? path === "/" : path.startsWith(p),
     );
   }, [path]);
 
@@ -87,21 +87,21 @@ export default function Navbar() {
     !isSolid &&
       topMode === "lightOnDark" &&
       "bg-[var(--bg-page)]/25 backdrop-blur-md",
-    isSolid && "bg-transparent"
+    isSolid && "bg-transparent",
   );
 
   const innerClass = cn(
     "mx-auto flex items-center justify-between px-4 md:px-6 lg:px-8 transition-base",
     isSolid
       ? "mt-3 max-w-6xl rounded-[var(--r-lg)] bg-[var(--bg-ivory)] py-2 shadow-[var(--shadow-card)]"
-      : "max-w-none py-4 md:py-5"
+      : "max-w-none py-4 md:py-5",
   );
 
   const brandTextClass = cn(
     "text-sm md:text-base font-semibold tracking-[0.14em] uppercase transition-base",
     isSolid && "text-[var(--ink-900)]",
     !isSolid && topMode === "darkOnLight" && "text-[var(--ink-900)]",
-    !isSolid && topMode === "lightOnDark" && "text-[var(--bg-elevated)]"
+    !isSolid && topMode === "lightOnDark" && "text-[var(--bg-elevated)]",
   );
 
   const linkBase =
@@ -109,7 +109,7 @@ export default function Navbar() {
   const linkColor = cn(
     isSolid && "text-[var(--ink-900)]/80",
     !isSolid && topMode === "darkOnLight" && "text-[var(--ink-900)]/80",
-    !isSolid && topMode === "lightOnDark" && "text-[var(--bg-page)]/80"
+    !isSolid && topMode === "lightOnDark" && "text-[var(--bg-page)]/80",
   );
 
   const activeUnderline = cn(
@@ -117,7 +117,7 @@ export default function Navbar() {
     // keep underline visible in both modes
     isSolid || topMode === "darkOnLight"
       ? "bg-[var(--green-forest-700)]"
-      : "bg-[var(--bg-page)]"
+      : "bg-[var(--bg-page)]",
   );
 
   return (
@@ -164,7 +164,8 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2">
             {/* Secondary CTA: “View systems” is calmer + matches your Shop intent */}
             {!isSolid && (
-              <button
+              <Link
+                href="/shop"
                 data-track="click cta"
                 data-location="navbar"
                 data-intent="View systems"
@@ -174,11 +175,11 @@ export default function Navbar() {
                   // ensure legibility on light hero when not solid
                   !isSolid &&
                     topMode === "darkOnLight" &&
-                    "border-[var(--border)]"
+                    "border-[var(--border)]",
                 )}
               >
                 View systems
-              </button>
+              </Link>
             )}
 
             {/* Primary CTA: unify across site */}
@@ -215,7 +216,7 @@ export default function Navbar() {
               // make icon visible in both modes
               isSolid || topMode === "darkOnLight"
                 ? "border-[var(--border)] text-[var(--ink-900)]"
-                : "border-[var(--bg-page)]/30 text-[var(--bg-elevated)]"
+                : "border-[var(--bg-page)]/30 text-[var(--bg-elevated)]",
             )}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Open menu"

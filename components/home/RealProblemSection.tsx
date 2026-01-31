@@ -35,7 +35,8 @@ export function RealProblemSection() {
             </ul>
 
             <p className="caption text-[var(--muted)] pt-1 text-xs sm:text-sm">
-              It&apos;s not a design problem. It&apos;s missing infrastructure.{" "}
+              It&apos;s not a design problem. It&apos;s missing
+              infrastructure.{" "}
             </p>
             {/* Translation block */}
             <div className="lg:mr-auto w-full sm:w-11/12  rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.35)] backdrop-blur-sm p-5 sm:p-6">
@@ -44,17 +45,17 @@ export function RealProblemSection() {
               </p>
 
               <ul className="grid gap-2 text-sm sm:text-base text-[var(--ink-700)]">
-                <li>• Lead capture that doesn’t leak</li>
+                <li>• Lead capture that doesn&apos;t leak</li>
                 <li>• Qualification that filters bad fits</li>
                 <li>• Follow-up that runs without chasing</li>
                 <li>• Proof that reduces hesitation</li>
                 <li>• Offers that feel obvious</li>
-                <li>• Analytics that show what’s working</li>
+                <li>• Analytics that show what&apos;s working</li>
               </ul>
 
               <p className="mt-4 text-xs sm:text-sm text-[var(--muted)]">
-                Each piece reinforces the others. That’s how revenue becomes
-                predictable.
+                Each piece reinforces the others. That&apos;s how revenue
+                becomes predictable.
               </p>
             </div>
           </div>
@@ -80,8 +81,8 @@ export function RealProblemSection() {
               </h2>
 
               <p className="subhead text-[var(--ink-700)] w-full sm:w-11/12 lg:w-3/4 lg:ml-auto">
-                A website is a tool. If it doesn’t help you get seen, trusted,
-                and booked, it’s dead weight.
+                A website is a tool. If it doesn&apos;t help you get seen,
+                trusted, and booked, it&apos;s dead weight.
               </p>
             </div>
           </div>

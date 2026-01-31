@@ -21,10 +21,10 @@ export default function WhoWeAre() {
 
         {/* Subhead */}
         <p className="text-[var(--ink-700)] max-w-xl mx-auto">
-          Many small businesses don’t struggle because of a lack of skill — they
-          struggle because everything depends on them. We design clear, reliable
-          systems that reduce friction, remove guesswork, and make growth feel
-          manageable again.
+          Many small businesses don&apos;t struggle because of a lack of skill —
+          they struggle because everything depends on them. We design clear,
+          reliable systems that reduce friction, remove guesswork, and make
+          growth feel manageable again.
         </p>
 
         {/* About link */}

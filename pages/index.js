@@ -1,17 +1,10 @@
 import Head from "next/head";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import WhoFor from "@/components/home/WhoFor";
 import WhoWeAre from "@/components/home/WhoWeAre";
 import { Hero } from "@/components/home/Hero";
-import {
-  TrustStripA,
-  TrustStripB,
-  TrustStripC,
-} from "@/components/home/TrustStrip";
-import { WhoWeBuildFor } from "@/components/home/WhoWeBuildFor";
-import { WhoWeBuildForShelf } from "@/components/home/WhoWeBuildForShelf";
-import { WhoWeBuildForBigType } from "@/components/home/WhoWeBuildForBigType";
+import { TrustStripB } from "@/components/home/TrustStrip";
+
 import { RealProblemSection } from "../components/home/RealProblemSection";
 import { SixSocketsIntro } from "@/components/home/SixSocketsIntro";
 import { ProductSection } from "@/components/home/ProductSection";

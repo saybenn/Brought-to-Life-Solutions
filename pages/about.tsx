@@ -72,7 +72,7 @@ function Card({
     <div
       className={cn(
         "rounded-[var(--r-lg)] border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-card)]",
-        className
+        className,
       )}
     >
       {children}
@@ -118,7 +118,7 @@ function P({
     <p
       className={cn(
         "text-[var(--size-base)] leading-[var(--leading-normal)] text-[var(--ink-700)]",
-        className
+        className,
       )}
     >
       {children}
@@ -167,8 +167,8 @@ function PhotoCard({
     aspect === "portrait"
       ? "aspect-[4/3] md:aspect-[5/4]"
       : aspect === "detail"
-      ? "aspect-[4/3] md:aspect-[16/10]"
-      : "aspect-[16/10] md:aspect-[16/9]";
+        ? "aspect-[4/3] md:aspect-[16/10]"
+        : "aspect-[16/10] md:aspect-[16/9]";
 
   return (
     <Card className="overflow-hidden">
@@ -223,8 +223,8 @@ export default function AboutPage() {
                   again.
                 </P>
                 <P className="max-w-2xl">
-                  This work isn’t rushed. It isn’t loud. And it isn’t
-                  improvised.
+                  This work isn&apos;t rushed. It isn&apos;t loud. And it
+                  isn&apos;t improvised.
                 </P>
               </div>
 
@@ -267,7 +267,9 @@ export default function AboutPage() {
               <H2>Why structure comes first</H2>
 
               <div className="mt-4 space-y-4">
-                <P>Life is chaotic enough. Business shouldn’t add to it.</P>
+                <P>
+                  Life is chaotic enough. Business shouldn&apos;t add to it.
+                </P>
                 <P>
                   The work we do is intentionally structured because clarity
                   protects momentum. When decisions are defined, scope is known,
@@ -301,7 +303,7 @@ export default function AboutPage() {
 
               <div className="mt-4 space-y-4">
                 <P>
-                  We don’t operate in vague engagements or open-ended
+                  We don&apos;t operate in vague engagements or open-ended
                   arrangements.
                 </P>
                 <P>
@@ -313,8 +315,8 @@ export default function AboutPage() {
                 <Card className="mt-2">
                   <div className="p-2 md:p-4  ">
                     <P className="text-base ">
-                      Like a labeled product: you know what’s inside, what it
-                      costs, and what to expect.
+                      Like a labeled product: you know what&apos;s inside, what
+                      it costs, and what to expect.
                     </P>
                   </div>
                 </Card>
@@ -325,8 +327,8 @@ export default function AboutPage() {
                   plainly—without tension, defensiveness, or reinterpretation.
                 </P>
                 <P>
-                  Productization isn’t about rigidity. It’s about removing
-                  ambiguity so real work can happen.
+                  Productization isn&apos;t about rigidity. It&apos;s about
+                  removing ambiguity so real work can happen.
                 </P>
               </div>
             </div>
@@ -357,16 +359,16 @@ export default function AboutPage() {
                 </P>
                 <P>
                   We work from constraints, from what can be tested, and from
-                  what holds up under scrutiny. Panic, hype, and urgency don’t
-                  improve outcomes—they distort them.
+                  what holds up under scrutiny. Panic, hype, and urgency
+                  don&apos;t improve outcomes—they distort them.
                 </P>
                 <P>
                   <strong>Results are engineered, not wished for.</strong>
                 </P>
                 <P>
                   That means measured pacing, clear decisions, and steady
-                  follow-through. It’s how we protect quality, preserve trust,
-                  and build systems that last beyond a launch.
+                  follow-through. It&apos;s how we protect quality, preserve
+                  trust, and build systems that last beyond a launch.
                 </P>
               </div>
             </div>
@@ -425,7 +427,7 @@ export default function AboutPage() {
                 />
 
                 <P className="mt-2">
-                  You don’t need to study this framework or memorize
+                  You don&apos;t need to study this framework or memorize
                   terminology. It exists to inform priorities, sequencing, and
                   tradeoffs as work is executed. This approach exists because
                   unclear websites consistently fail otherwise capable
@@ -440,12 +442,12 @@ export default function AboutPage() {
                   <Kicker>NEXT</Kicker>
                   <H2>An invitation</H2>
                   <P className="mt-3">
-                    If you’re looking for clarity without theater, structure
-                    without rigidity, and a partner who respects both your time
-                    and your work, we’re ready to talk.
+                    If you&apos;re looking for clarity without theater,
+                    structure without rigidity, and a partner who respects both
+                    your time and your work, we&apos;re ready to talk.
                   </P>
                   <P className="mt-4 text-sm text-[var(--muted)]">
-                    This is the next step if you’re ready.
+                    This is the next step if you&apos;re ready.
                   </P>
 
                   <div className="mt-8 flex flex-wrap gap-3">

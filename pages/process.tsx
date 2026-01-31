@@ -164,7 +164,7 @@ function Card({
     <div
       className={cn(
         "rounded-[var(--r-lg)] border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-card)]",
-        className
+        className,
       )}
     >
       {children}
@@ -214,7 +214,7 @@ function P({
     <p
       className={cn(
         "text-[var(--size-base)] leading-[var(--leading-normal)] text-[var(--ink-700)]",
-        className
+        className,
       )}
     >
       {children}
@@ -316,16 +316,16 @@ export default function ProcessPage() {
                 A clear path from first contact to a deployed revenue system.
               </H1>
               <P className="mt-4 max-w-xl">
-                No babysitting. No endless calls. No vague “let’s see where this
-                goes.” We operate as a <strong>steady partner</strong>—guiding
-                you through a clear, productized process that turns intent into
-                a system that holds weight.
+                No babysitting. No endless calls. No vague “let&apos;s see where
+                this goes.” We operate as a <strong>steady partner</strong>
+                —guiding you through a clear, productized process that turns
+                intent into a system that holds weight.
               </P>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 <Card className="p-4 shadow-[var(--shadow-soft)]">
                   <div className="text-sm font-semibold text-[var(--ink-900)]">
-                    You won’t be confused
+                    You won&apos;t be confused
                   </div>
                   <div className="mt-1 text-sm text-[var(--muted)]">
                     Clear steps and checkpoints.
@@ -333,7 +333,7 @@ export default function ProcessPage() {
                 </Card>
                 <Card className="p-4 shadow-[var(--shadow-soft)]">
                   <div className="text-sm font-semibold text-[var(--ink-900)]">
-                    You won’t babysit
+                    You won&apos;t babysit
                   </div>
                   <div className="mt-1 text-sm text-[var(--muted)]">
                     We drive. You approve.
@@ -341,7 +341,7 @@ export default function ProcessPage() {
                 </Card>
                 <Card className="p-4 shadow-[var(--shadow-soft)]">
                   <div className="text-sm font-semibold text-[var(--ink-900)]">
-                    You’ll know what’s next
+                    You&apos;ll know what&apos;s next
                   </div>
                   <div className="mt-1 text-sm text-[var(--muted)]">
                     Predictable delivery.
@@ -357,8 +357,8 @@ export default function ProcessPage() {
                     Calm authority, real structure.
                   </div>
                   <P className="mt-2 text-sm">
-                    You’ll always know where you are in the process, what we
-                    need, and what happens next. This is the work of a{" "}
+                    You&apos;ll always know where you are in the process, what
+                    we need, and what happens next. This is the work of a{" "}
                     <strong>competent craftsman</strong>.
                   </P>
                 </div>
@@ -476,9 +476,9 @@ export default function ProcessPage() {
                 <Kicker>NEXT STEP</Kicker>
                 <H2>Start with the Intake.</H2>
                 <P className="mt-3 max-w-2xl">
-                  If you’re ready to build, we’ll route you into the right
-                  product and move with clarity. If you need diagnosis and a
-                  written plan first, book the Revenue Roadmap.
+                  If you&apos;re ready to build, we&apos;ll route you into the
+                  right product and move with clarity. If you need diagnosis and
+                  a written plan first, book the Revenue Roadmap.
                 </P>
               </div>
               <div className="mt-6 flex flex-wrap gap-3 md:mt-0 md:flex-col md:items-stretch">

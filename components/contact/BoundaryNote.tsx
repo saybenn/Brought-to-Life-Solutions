@@ -13,7 +13,7 @@ export default function BoundaryNote() {
       </p>
 
       <p className={`${body} mt-3`}>
-        This keeps the process clear and respectful of everyone’s time.
+        This keeps the process clear and respectful of everyone&apos;s time.
       </p>
     </section>
   );
