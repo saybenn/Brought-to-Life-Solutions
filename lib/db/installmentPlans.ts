@@ -1,12 +1,11 @@
 // /lib/db/installmentPlans.ts
-import { supabaseAdmin } from "../supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 export async function upsertInstallmentPlan(input: {
   order_id: string;
   stripe_subscription_id: string;
   installments: number;
 }) {
-  // One plan per subscription id
   const { data, error } = await supabaseAdmin
     .from("installment_plans")
     .upsert(

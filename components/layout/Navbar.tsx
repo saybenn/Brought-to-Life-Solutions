@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 /**
  * MVP nav:
@@ -16,6 +17,7 @@ const NAV_LINKS = [
   { href: "/shop", label: "Shop" },
   { href: "/case-studies/bold-city-iaq", label: "Results" },
   { href: "/about", label: "About" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
@@ -33,7 +35,10 @@ const LIGHT_HEADER_PREFIXES = [
   "/contact",
   "/legal",
   "/case-studies",
-  "/shop", // your shop hero can be dark; keep this if you sometimes render light heroes
+  "/dashboard",
+  "/blog",
+  "/shop",
+  // your shop hero can be dark; keep this if you sometimes render light heroes
 ];
 
 export default function Navbar() {
@@ -166,10 +171,13 @@ export default function Navbar() {
             {!isSolid && (
               <Link
                 href="/shop"
-                data-track="click cta"
-                data-location="navbar"
-                data-intent="View systems"
-                data-label="View systems"
+                onClick={() =>
+                  track("click cta", {
+                    location: "navbar",
+                    intent: "View systems",
+                    label: "View systems",
+                  })
+                }
                 className={cn(
                   "btn btn-secondary px-4 py-1.5 text-sm",
                   // ensure legibility on light hero when not solid
@@ -184,10 +192,13 @@ export default function Navbar() {
 
             {/* Primary CTA: unify across site */}
             <Link
-              data-track="click cta"
-              data-location="navbar"
-              data-intent="Request a routing call"
-              data-label="Routing call"
+              onClick={() =>
+                track("click cta", {
+                  location: "navbar",
+                  intent: "Request a routing call",
+                  label: "Routing call",
+                })
+              }
               href="/contact"
               className="btn btn-primary px-4 py-1.5 text-sm"
             >
@@ -200,10 +211,13 @@ export default function Navbar() {
             <Link
               href="/contact"
               className="btn btn-primary px-3 py-1 text-sm"
-              data-track="click cta"
-              data-location="navbar"
-              data-intent="Request a routing call"
-              data-label="Routing call"
+              onClick={() =>
+                track("click cta", {
+                  location: "mobile navbar",
+                  intent: "Request a routing call",
+                  label: "Routing call",
+                })
+              }
             >
               Routing call
             </Link>
@@ -249,19 +263,25 @@ export default function Navbar() {
             <div className="pt-2 flex gap-2">
               <Link
                 href="/shop"
-                data-track="click cta"
-                data-location="mobile navbar"
-                data-intent="View systems"
-                data-label="View systems"
+                onClick={() =>
+                  track("click cta", {
+                    location: "mobile navbar",
+                    intent: "View systems",
+                    label: "View systems",
+                  })
+                }
                 className="btn btn-secondary flex-1"
               >
                 View systems
               </Link>
               <Link
-                data-track="click cta"
-                data-location="mobile navbar"
-                data-intent="Request a routing call"
-                data-label="Routing call"
+                onClick={() =>
+                  track("click cta", {
+                    location: "mobile navbar",
+                    intent: "Request a routing call",
+                    label: "Routing call",
+                  })
+                }
                 href="/contact"
                 className="btn btn-primary flex-1"
               >

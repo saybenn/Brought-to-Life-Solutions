@@ -1,12 +1,15 @@
+import { useState } from "react";
 import Head from "next/head";
 import ContactHero from "@/components/contact/ContactHero";
 import ContactPaths from "@/components/contact/ContactPaths";
-import BoundaryNote from "@/components/contact/BoundaryNote";
 import RoutingForm from "@/components/contact/RoutingForm";
 import WhatHappensNext from "@/components/contact/WhatHappensNext";
-import ContactFinalCTA from "@/components/contact/ContactFinalCTA";
+
+export type ContactPath = "routing" | "support" | "general";
 
 export default function ContactPage() {
+  const [path, setPath] = useState<ContactPath>("routing");
+
   return (
     <>
       <Head>
@@ -24,16 +27,14 @@ export default function ContactPage() {
               <div className="lg:col-span-5">
                 <div className="space-y-8">
                   <ContactHero />
-                  <ContactPaths />
-                  <BoundaryNote />
+                  <ContactPaths path={path} onChange={setPath} />
                 </div>
               </div>
 
               <div className="lg:col-span-7">
                 <div className="space-y-8 lg:sticky lg:top-24">
-                  <RoutingForm />
-                  <WhatHappensNext />
-                  <ContactFinalCTA />
+                  <RoutingForm path={path} />
+                  {path === "routing" ? <WhatHappensNext /> : null}
                 </div>
               </div>
             </div>

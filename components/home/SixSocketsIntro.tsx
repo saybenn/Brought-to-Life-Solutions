@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type SocketId =
   | "visibility"
@@ -117,15 +118,18 @@ export function SixSocketsIntro() {
             <p className="subhead on-dark-sub">{activeCopy}</p>
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
-                data-track="click cta"
-                data-location="six sockets"
-                data-intent="request a review"
-                data-label="Request a review of your system"
+                onClick={() =>
+                  track("click cta", {
+                    location: "home/six sockets",
+                    intent: "request review",
+                    label: "Request a review of your system",
+                  })
+                }
                 href="/contact?intent=system-review"
                 className={cn(
                   "inline-flex items-center justify-center rounded-full px-5 py-2.5",
                   "text-sm font-medium transition-colors",
-                  "bg-white text-[var(--ink-900)] hover:bg-white/90"
+                  "bg-white text-[var(--ink-900)] hover:bg-white/90",
                 )}
               >
                 Request a review of your system
@@ -162,7 +166,7 @@ export function SixSocketsIntro() {
                     onFocus={() => setActiveId(socket.id)}
                     className={cn(
                       "group absolute transform cursor-pointer",
-                      socket.pos
+                      socket.pos,
                     )}
                     aria-label={socket.label}
                   >
@@ -179,7 +183,7 @@ export function SixSocketsIntro() {
                           : "on-dark-muted border-transparent",
 
                         // ✅ SOFT HOVER STATE (doesn't fight with active, just boosts it)
-                        "group-hover:text-white group-hover:border-white/60 group-hover:bg-white/5"
+                        "group-hover:text-white group-hover:border-white/60 group-hover:bg-white/5",
                       )}
                       style={{
                         animationDelay: socket.delay,

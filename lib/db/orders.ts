@@ -1,6 +1,6 @@
 // /lib/db/orders.ts
 import type Stripe from "stripe";
-import { supabaseAdmin } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 type UTM = Record<string, string | undefined> | undefined;
 
 export async function createOrderRow(input: {

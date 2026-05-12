@@ -23,14 +23,18 @@
       ]
     },
     "incremental": true,
+    "ignoreDeprecations": "6.0",
     "allowJs": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/_app.js", "pages/book/[slug].jsx", "components/product/TierSelector.jsx"  ],
+, "pages/_app.ts", "pages/book/[slug].jsx", "components/product/TierSelector.jsx"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+      ".next",
+  "out",
+  "_archive"
   ]
 }

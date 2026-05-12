@@ -17,6 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 export function Hero() {
   const router = useRouter();
@@ -74,16 +75,29 @@ export function Hero() {
 
               <div className="hidden flex-wrap items-center gap-3 md:flex">
                 <Link
-                  data-track="click cta"
-                  data-location="hero"
-                  data-intent="start routing call"
-                  data-label="Start with a routing call"
+                  onClick={() =>
+                    track("click cta", {
+                      location: "hero",
+                      intent: "start routing call",
+                      label: "Start With a Routing Call",
+                    })
+                  }
                   href="/contact"
                   className="btn btn-primary py-1 px-4"
                 >
-                  Start with a routing call
+                  Start With a Routing Call
                 </Link>
-                <Link href="/shop" className="btn btn-free py-1 px-4">
+                <Link
+                  onClick={() =>
+                    track("click cta", {
+                      location: "hero",
+                      intent: "view systems",
+                      label: "View our Systems",
+                    })
+                  }
+                  href="/shop"
+                  className="btn btn-free py-1 px-4"
+                >
                   View Our Systems
                 </Link>
               </div>
@@ -92,17 +106,27 @@ export function Hero() {
             {/* Mobile CTAs */}
             <div className="mt-6 flex items-center gap-3 md:hidden">
               <Link
-                data-track="click cta"
-                data-location="hero"
-                data-intent="start routing call"
-                data-label="Start with a routing call"
+                onClick={() =>
+                  track("click cta", {
+                    location: "hero",
+                    intent: "start routing call",
+                    label: "Start With a Routing Call",
+                  })
+                }
                 href="/contact"
                 type="button"
                 className="btn btn-primary px-4 py-2 text-sm text-center leading-none"
               >
-                Start with a routing call
+                Start With a Routing Call
               </Link>
               <Link
+                onClick={() =>
+                  track("click cta", {
+                    location: "hero",
+                    intent: "view systems",
+                    label: "View our Systems",
+                  })
+                }
                 href="/shop"
                 type="button"
                 className="btn btn-free px-4 py-2 text-sm flex mx-auto text-center leading-none"

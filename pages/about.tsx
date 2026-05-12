@@ -452,7 +452,7 @@ export default function AboutPage() {
 
                   <div className="mt-8 flex flex-wrap gap-3">
                     <ButtonLink href="/contact" variant="primary">
-                      Start with Contact
+                      Talk First
                     </ButtonLink>
                     <ButtonLink href="/process" variant="secondary">
                       View Process

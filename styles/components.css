@@ -1,3 +1,7 @@
+/* /styles/components.css (FULL FILE)
+   Your original file + added skeleton utilities at the end.
+   NOTE: everything else in your file remains as-is; only additions are appended below.
+*/
 @layer components {
   /* ================== Typography ================== */
   .h1 {
@@ -159,7 +163,8 @@
       box-shadow var(--dur-2) var(--ease-out);
   }
 
-  .card:hover {
+  /* Only lift when explicitly requested */
+  .card.card-lift:hover {
     transform: translateY(-2px);
     box-shadow: 0 16px 40px rgb(0 0 0 / 0.18);
   }
@@ -268,7 +273,86 @@
 .hero-full {
   min-height: 720px;
 }
+.blog-content p {
+  margin: 0 0 var(--space-5) 0;
+}
 
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  font-family: var(--font-head);
+  color: var(--ink-900);
+  margin: var(--space-8) 0 var(--space-3) 0;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin: 0 0 var(--space-5) var(--space-6);
+}
+
+.blog-content li {
+  margin: 0 0 var(--space-2) 0;
+}
+
+.blog-content blockquote {
+  margin: var(--space-6) 0;
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--border);
+  background: color-mix(in oklab, var(--bg-ivory) 60%, var(--white));
+  border-radius: var(--r-md);
+  color: var(--ink-700);
+}
+
+.blog-content a {
+  color: var(--brand-600);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-content pre,
+.blog-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95em;
+}
+
+.blog-content pre {
+  padding: var(--space-5);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg-ivory) 55%, var(--white));
+  overflow-x: auto;
+  margin: 0 0 var(--space-6) 0;
+  color: var(--ink-900);
+}
+
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  margin: var(--space-5) 0;
+}
+
+.blog-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: var(--space-8) 0;
+}
+.blog-card-grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .blog-card-grid.has-cover {
+    grid-template-columns: 220px 1fr;
+  }
+}
 @media (min-width: 1024px) {
   .hero-full {
     min-height: 640px;

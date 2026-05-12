@@ -1,5 +1,6 @@
 // components/sections/WhoWeAre.tsx
 
+import { track } from "@/lib/analytics";
 import Link from "next/link";
 
 export default function WhoWeAre() {
@@ -32,10 +33,13 @@ export default function WhoWeAre() {
           <Link
             href="/about"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--green-pine-800)] hover:underline underline-offset-4"
-            data-track="click cta"
-            data-location="about"
-            data-intent="learn about us"
-            data-label="Learn how we think about structure and systems"
+            onClick={() =>
+              track("click cta", {
+                location: "about",
+                intent: "learn about us",
+                label: "Learn how we think about structure and systems",
+              })
+            }
           >
             Learn how we think about structure and systems
             <span aria-hidden>→</span>

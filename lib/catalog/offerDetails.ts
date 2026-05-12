@@ -9,6 +9,7 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
   starter_system: {
     offerId: "starter_system",
     slug: "starter-system",
+    id: "starter-system",
     title: "Starter System",
 
     hero: {
@@ -24,10 +25,14 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
       proofCue: "Best for owners putting a real foundation in place for the first time.",
       perspectiveLock:
         "Most starter sites don’t fail because they look bad. They fail because they stay vague. Clarity is what turns visits into calls.",
+        secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=starter_system",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
       primaryActionLabel: "View what’s included",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Talk first",
-      secondaryActionHref: "/contact?intent=talk&offerId=starter_system",
     },
 
     shift: {
@@ -146,6 +151,8 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
       secondaryCta: {
         label: "Talk first",
         href: "/contact?intent=talk&offerId=starter_system",
+        analyticsLabel: "primary_guided_cta",
+        intent: "Request a routing call",
       },
     },
 
@@ -159,6 +166,7 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
   revenue_engine: {
     offerId: "revenue_engine",
     slug: "revenue-engine",
+    id: "revenue-engine",
     title: "Revenue Engine",
 
     hero: {
@@ -173,10 +181,15 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
       proofCue: "Most chosen by owners whose income depends on consistent performance.",
       perspectiveLock:
         "Most service websites fail quietly. They look fine, get visits, and still leave owners unsure whether the site is actually helping. This is built to be measured, adjusted, and trusted—like a system, not a gamble.",
+        secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=revenue_engine",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
       primaryActionLabel: "View what’s included",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Talk first",
-      secondaryActionHref: "/contact?intent=talk&offerId=revenue_engine",
+     
     },
 
     shift: {
@@ -308,8 +321,10 @@ included: {
         href: "/checkout?offerId=revenue_engine&intent=buy",
       },
       secondaryCta: {
-        label: "Start with a routing call",
+        label: "Start With a Routing Call",
         href: "/contact?section=revenue_engine&intent=talk&offerId=revenue_engine",
+        analyticsLabel: "primary_guided_cta",
+        intent: "Request a routing call",
       },
     },
 
@@ -323,6 +338,7 @@ included: {
   growth_partner: {
     offerId: "growth_partner",
     slug: "growth-partner",
+    id: "growth-partner",
     title: "Growth Partner",
 
     hero: {
@@ -337,10 +353,15 @@ included: {
       proofCue: "Limited spots. Ongoing capacity-based partnership.",
       perspectiveLock:
         "Most growth work fails because it’s random. This is measured improvement, shipped consistently.",
+          secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=growth_partner",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
       primaryActionLabel: "View what’s included",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Talk first",
-      secondaryActionHref: "/contact?intent=talk&offerId=growth_partner",
+      
     },
 
     shift: {
@@ -458,6 +479,7 @@ included: {
   care_plan: {
     offerId: "care_plan",
     slug: "care-plan",
+    id: "care_plan",
     title: "Hosting & Care Plan",
 
     hero: {
@@ -474,8 +496,12 @@ included: {
         "Most small business sites don’t crash. They decay. This plan exists to prevent that slow bleed.",
       primaryActionLabel: "View what’s included",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Talk first",
-      secondaryActionHref: "/contact?intent=talk&offerId=care_plan",
+      secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=care_plan",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+      },
     },
 
     shift: {
@@ -582,6 +608,8 @@ included: {
       secondaryCta: {
         label: "Talk first",
         href: "/contact?intent=talk&offerId=care_plan",
+          analyticsLabel: "primary_guided_cta",
+  intent: "Request a routing call",
       },
     },
 
@@ -599,6 +627,7 @@ included: {
   seo_maintenance: {
     offerId: "seo_maintenance",
     slug: "local-seo-maintenance",
+    id: "seo_maintenance",
     title: "SEO Maintenance",
 
     hero: {
@@ -614,8 +643,12 @@ included: {
         "Most local SEO doesn’t fail because it was done wrong. It fails because it’s neglected. This is quiet upkeep so visibility doesn’t drift while you’re focused on running the business.",
       primaryActionLabel: "View what’s included",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Talk first",
-      secondaryActionHref: "/contact?intent=talk&offerId=seo_maintenance",
+        secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=seo_maintenance",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
     },
 
     shift: {
@@ -719,6 +752,8 @@ included: {
       secondaryCta: {
         label: "Talk first",
         href: "/contact?intent=talk&offerId=seo_maintenance",
+          analyticsLabel: "primary_guided_cta",
+  intent: "Request a routing call",
       },
     },
 
@@ -732,6 +767,7 @@ included: {
   seo_momentum: {
     offerId: "seo_momentum",
     slug: "seo-momentum",
+    id: "seo_momentum",
     title: "SEO Momentum",
 
     hero: {
@@ -748,8 +784,12 @@ included: {
         "Momentum comes from consistency. This is steady content + on-page improvement so visibility compounds.",
       primaryActionLabel: "View what’s included",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Talk first",
-      secondaryActionHref: "/contact?intent=talk&offerId=seo_momentum",
+        secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=seo_momentum",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
     },
 
     shift: {
@@ -851,6 +891,8 @@ included: {
       secondaryCta: {
         label: "Talk first",
         href: "/contact?intent=talk&offerId=seo_momentum",
+          analyticsLabel: "primary_guided_cta",
+  intent: "Request a routing call",
       },
     },
 
@@ -868,6 +910,7 @@ included: {
   copywriting: {
     offerId: "copywriting",
     slug: "copywriting",
+    id: "copywriting",
     title: "Copywriting & Content",
 
     hero: {
@@ -884,8 +927,12 @@ included: {
         "Most websites don’t convert because the message is unclear. Clarity removes friction.",
       primaryActionLabel: "View what’s included",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Talk first",
-      secondaryActionHref: "/contact?intent=talk&offerId=copywriting",
+        secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=copywriting",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
     },
 
     shift: {
@@ -989,6 +1036,8 @@ included: {
       secondaryCta: {
         label: "Talk first",
         href: "/contact?intent=talk&offerId=copywriting",
+          analyticsLabel: "primary_guided_cta",
+  intent: "Request a routing call",
       },
     },
 
@@ -1001,6 +1050,7 @@ included: {
 trust_asset_photography: {
   offerId: "trust_asset_photography",
   slug: "trust-asset-photography",
+  id: "trust_asset_photography",
   title: "Trust Asset Photography",
 
   hero: {
@@ -1018,8 +1068,12 @@ trust_asset_photography: {
       "Most buyers don’t need more personality. They need to see real work and feel safe calling.",
     primaryActionLabel: "View what’s included",
     primaryActionTargetId: "included",
-    secondaryActionLabel: "Talk first",
-    secondaryActionHref: "/contact?intent=talk&offerId=trust_asset_photography",
+      secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=trust_asset_photography",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
   },
 
   shift: {
@@ -1124,8 +1178,8 @@ included: {
     scarcityLine:
       "Sessions are limited to protect quality and turnaround.",
     primaryCta: {
-      label: "Start with a routing call",
-      href: "/contact?intent=talk&offerId=trust_asset_photography",
+      label: "Start Trust Asset Photography",
+      href: "/checkout?offerId=trust_asset_photography&intent=buy",
     },
     // no secondaryCta (keep singular)
   },
@@ -1139,6 +1193,7 @@ included: {
   revenue_roadmap: {
     offerId: "revenue_roadmap",
     slug: "revenue-roadmap",
+    id: "revenue_roadmap",
     title: "Revenue Roadmap Session",
 
     hero: {
@@ -1155,8 +1210,12 @@ included: {
         "Most businesses aren’t missing effort. They’re missing sequence. This gives you the order of operations before more money is spent.",
       primaryActionLabel: "See what you get",
       primaryActionTargetId: "included",
-      secondaryActionLabel: "Book the session",
-      secondaryActionHref: "/contact?intent=talk&offerId=revenue_roadmap",
+        secondaryCta: {
+          label: "Talk First",
+          href: "/contact?intent=talk&offerId=revenue_roadmap",
+          analyticsLabel: "primary_guided_cta",
+          intent: "Request a Routing Call"
+        },
     },
 
     shift: {
@@ -1255,12 +1314,14 @@ included: {
         "Plain-English priorities you can act on.",
       ],
       primaryCta: {
-        label: "Book the session",
-        href: "/contact?intent=talk&offerId=revenue_roadmap",
+        label: "Start Revenue Roadmap Session",
+        href: "/checkout?offerId=trust_asset_revenue_roadmap&intent=buy",
       },
       secondaryCta: {
-        label: "View Revenue Engine",
-        href: "/products/revenue-engine?intent=buy&offerId=revenue_engine",
+        label: "Book the session",
+        href: "/contact?intent=talk&offerId=revenue_roadmap",
+        analyticsLabel: "primary_guided_cta",
+        intent: "Request a routing call",
       },
     },
 

@@ -1,14 +1,23 @@
-// /lib/supabase/server.ts
-import { createClient } from "@supabase/supabase-js";
+import { createServerClient } from "@supabase/ssr";
+import { serialize } from "cookie";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-function requireEnv(name: string) {
-  const v = process.env[name];
-  if (!v) throw new Error(`Missing env: ${name}`);
-  return v;
+export function supabaseServer(req: NextApiRequest, res: NextApiResponse) {
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return req.cookies[name];
+        },
+        set(name: string, value: string, options: any) {
+          res.setHeader("Set-Cookie", serialize(name, value, options));
+        },
+        remove(name: string, options: any) {
+          res.setHeader("Set-Cookie", serialize(name, "", { ...options, maxAge: 0 }));
+        },
+      },
+    }
+  );
 }
-
-export const supabaseAdmin = createClient(
-  requireEnv("NEXT_PUBLIC_SUPABASE_URL"),
-  requireEnv("SUPABASE_SERVICE_ROLE_KEY"),
-  { auth: { persistSession: false } }
-);

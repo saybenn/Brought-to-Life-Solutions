@@ -52,7 +52,7 @@ export const OFFERS: Offer[] = [
     subpromise:
       "Clean, fast, and built so customers trust you and know how to reach you.",
     bestFor:
-      "Owners starting out or fixing a bad site who want something solid, not fancy.",
+      "Owners starting out or fixing a bad site who want something solid.",
     startingAtCents: 200000,
     cadence: "one_time",
     cta: "Buy",

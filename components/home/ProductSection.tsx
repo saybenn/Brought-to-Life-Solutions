@@ -17,7 +17,7 @@ export function ProductSection() {
   ];
 
   const systems = SYSTEM_IDS.map((id) =>
-    OFFERS.find((o) => o.id === id)
+    OFFERS.find((o) => o.id === id),
   ).filter(Boolean) as Offer[];
 
   return (
@@ -80,7 +80,7 @@ export function ProductSection() {
 
         {/* Safety / reassurance line */}
         <p className="mt-8 sm:mt-10 text-center text-[0.78rem] text-[rgba(255,255,255,0.65)] max-w-xl mx-auto">
-          Not sure which system fits? Start with a routing call—no pressure,
+          Not sure which system fits? Start With a Routing Call—no pressure,
           just clear answers and a recommendation based on where your revenue is
           stuck today.
         </p>

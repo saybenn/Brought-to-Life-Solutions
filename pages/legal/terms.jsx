@@ -1,5 +1,6 @@
 import { Meta } from "@/lib/seo";
 import SiteContainer from "@/components/layout/SiteContainer";
+import Link from "next/link";
 
 export default function Terms() {
   const updated = "2026-01-04";
@@ -147,9 +148,9 @@ export default function Terms() {
               <h2 className="h2">Privacy</h2>
               <p className="mt-2 text-ink-muted">
                 See our{" "}
-                <a className="underline" href="/legal/privacy">
+                <Link className="underline" href="/legal/privacy">
                   Privacy Policy
-                </a>{" "}
+                </Link>{" "}
                 for data practices.
               </p>
             </section>

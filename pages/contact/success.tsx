@@ -1,12 +1,14 @@
 // pages/contact/success.tsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { InlineWidget, useCalendlyEventListener } from "react-calendly";
 import { track } from "@/lib/analytics";
 
 type ContactPath = "routing" | "support" | "general";
 
 type ContactPayload = {
+  customer_id?: string;
   fullName?: string;
   email?: string;
   contactPath?: ContactPath;
@@ -28,30 +30,34 @@ function safeParse<T>(raw: string | null): T | null {
 }
 
 export default function ContactSuccessPage() {
+  const router = useRouter();
   const [payload, setPayload] = useState<ContactPayload | null>(null);
+  const [checked, setChecked] = useState(false);
 
+  const viewedRef = useRef(false);
+
+  // Pattern A guard: require a routing form submission
   useEffect(() => {
     const p = safeParse<ContactPayload>(
       typeof window !== "undefined"
         ? sessionStorage.getItem("btl_contact_payload")
         : null,
     );
-    setPayload(p);
 
-    track("View | ContactSuccess | MessageSent", {
-      location: "/contact/success",
-      intent: p?.intent || "contact",
-      service: p?.service || undefined,
-      contact_path: p?.contactPath || "routing",
-      utm: p?.utm || undefined,
-    });
-  }, []);
+    const isValidRouting =
+      Boolean(p) && (p?.contactPath ?? "routing") === "routing";
+
+    if (!isValidRouting) {
+      router.replace("/contact");
+      return;
+    }
+
+    setPayload(p);
+    setChecked(true);
+  }, [router]);
 
   const calendlyUrl = useMemo(() => {
-    // Keep this simple for MVP: always use routing event type.
-    // If you later split support/general, branch by payload?.contactPath here.
-    const url = process.env.NEXT_PUBLIC_CALENDLY_ROUTING_URL;
-    return url || "";
+    return process.env.NEXT_PUBLIC_CALENDLY_URL || "";
   }, []);
 
   const prefill = useMemo(() => {
@@ -62,56 +68,58 @@ export default function ContactSuccessPage() {
     return {
       name,
       email,
-      customAnswers: {
-        // Requires your Calendly event type to have invitee question #1 as “Notes”
-        a1: notes,
-      },
+      customAnswers: { a1: notes },
+      a2: (payload as any)?.customerId || "", // requires Calendly question #2
     };
   }, [payload]);
 
-  // Calendly embed events → analytics
   useCalendlyEventListener({
     onProfilePageViewed: () => {
-      track("View | BookingEmbed | RoutingCall", {
+      if (viewedRef.current) return;
+      viewedRef.current = true;
+
+      track("view booking", {
         location: "/contact/success",
         intent: "schedule routing call",
-        utm: payload?.utm || undefined,
+        service: "routing call",
+        contact_path: "routing",
+        customer_id: payload?.customer_id,
       });
     },
     onEventScheduled: (e) => {
-      track("Complete | Booking | RoutingCall", {
+      track("complete booking", {
         location: "/contact/success",
         intent: "schedule routing call",
-        utm: payload?.utm || undefined,
+        service: "routing call",
+        contact_path: "routing",
+        customer_id: payload?.customer_id,
         calendly_event_uri: e?.data?.payload?.event?.uri,
         calendly_invitee_uri: e?.data?.payload?.invitee?.uri,
       });
     },
   });
 
+  if (!checked) return null;
+
   return (
     <section className="bg-[var(--bg-ivory)] text-[var(--ink-900)] py-20 sm:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center space-y-6">
-        {/* Eyebrow */}
         <p className="eyebrow text-[var(--muted)] text-sm md:border-b md:border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
           MESSAGE RECEIVED
         </p>
 
-        {/* Headline */}
         <h1 className="font-head font-bold text-4xl leading-tight sm:text-5xl lg:text-6xl">
-          You&apos;re in.
+          Thank you.
           <span className="block font-normal mt-1 text-[var(--green-pine-800)]">
             If you want to move faster, book the routing call now.
           </span>
         </h1>
 
-        {/* Subhead */}
         <p className="text-[var(--ink-700)] max-w-xl mx-auto">
-          We&apos;ve received your request. Scheduling is optional — it just
-          helps us confirm fit and next steps without back-and-forth.
+          We&apos;ve received your request. Scheduling is optional — it simply
+          helps us confirm fit and outline next steps without back-and-forth.
         </p>
 
-        {/* Calendly Card */}
         <div
           className="mt-8 rounded-[var(--r-lg)] border border-[var(--border)] p-5 sm:p-6 text-left"
           style={{
@@ -130,19 +138,14 @@ export default function ContactSuccessPage() {
               </p>
             </div>
 
-            {/* Optional: “skip” link */}
             <Link
               href="/"
               className="shrink-0 text-sm font-semibold text-[var(--green-pine-800)] hover:underline underline-offset-4"
-              data-track="click cta"
-              data-location="contact success"
-              data-intent="skip scheduling"
-              data-label="Skip scheduling and return home"
               onClick={() =>
-                track("Click | ContactSuccess | SkipScheduling", {
-                  location: "/contact/success",
+                track("click cta", {
+                  location: "contact success",
                   intent: "skip scheduling",
-                  utm: payload?.utm || undefined,
+                  label: "Skip scheduling and return home",
                 })
               }
             >
@@ -151,7 +154,6 @@ export default function ContactSuccessPage() {
           </div>
 
           <div className="mt-5 overflow-hidden rounded-[var(--r-md)] border border-[var(--border)] bg-[var(--bg-elevated)]">
-            {/* Inline Calendly Embed */}
             <div style={{ height: 820 }}>
               {calendlyUrl ? (
                 <InlineWidget
@@ -163,7 +165,7 @@ export default function ContactSuccessPage() {
                 <div className="p-4 text-sm text-[var(--ink-700)]">
                   Calendly link missing. Set{" "}
                   <code className="rounded bg-[var(--bg-ivory)] px-1 py-0.5">
-                    NEXT_PUBLIC_CALENDLY_ROUTING_URL
+                    NEXT_PUBLIC_CALENDLY_URL
                   </code>
                   .
                 </div>
@@ -171,14 +173,13 @@ export default function ContactSuccessPage() {
             </div>
           </div>
 
-          {/* Posture + expectations */}
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             <div className="rounded-[var(--r-md)] border border-[var(--border)] bg-[var(--bg-elevated)] p-4">
               <p className="text-sm font-semibold text-[var(--ink-900)]">
                 No sales script
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                We&apos;ll confirm fit, urgency, and the cleanest next step.
+                We&apos;ll confirm fit and the cleanest next step.
               </p>
             </div>
 
@@ -187,7 +188,7 @@ export default function ContactSuccessPage() {
                 15 minutes
               </p>
               <p className="mt-1 text-sm text-[var(--muted)]">
-                Short, direct, and useful — even if we&apos;re not a match.
+                Short, direct, useful — even if we&apos;re not a match.
               </p>
             </div>
 
@@ -203,24 +204,19 @@ export default function ContactSuccessPage() {
           </div>
         </div>
 
-        {/* Optional: About link in the same style as WhoWeAre */}
         <div className="pt-4">
           <Link
             href="/about"
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--green-pine-800)] hover:underline underline-offset-4"
-            data-track="click cta"
-            data-location="contact success"
-            data-intent="learn about us"
-            data-label="Learn how we think about structure and systems"
             onClick={() =>
-              track("Click | ContactSuccess | About", {
-                location: "/contact/success",
+              track("click cta", {
+                location: "contact success",
                 intent: "learn about us",
-                utm: payload?.utm || undefined,
+                label: "Learn how we think about structure and systems",
               })
             }
           >
-            Learn how we think about structure and systems
+            Learn how we think about structure and systems{" "}
             <span aria-hidden>→</span>
           </Link>
         </div>

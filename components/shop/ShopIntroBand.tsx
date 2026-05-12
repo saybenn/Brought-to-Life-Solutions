@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type Props = {
   headline?: string;
@@ -96,17 +97,27 @@ export default function ShopIntroBand({
 
             <div className="mt-(--space-6) grid gap-(--space-3)">
               <Link
-                href="/products/revenue-engine?intent=buy&offerId=revenue_engine"
+                onClick={() =>
+                  track("click cta", {
+                    location: "shop intro band",
+                    intent: "See most picked product",
+                    label: "View Most Chosen",
+                  })
+                }
+                href="/shop/revenue-engine?intent=buy&offerId=revenue_engine"
                 className="btn btn-primary w-full justify-center"
               >
                 View the Most Chosen
               </Link>
 
               <Link
-                data-track="click cta"
-                data-location="shop intro band"
-                data-intent="Request a routing call"
-                data-label="Talk first"
+                onClick={() =>
+                  track("click cta", {
+                    location: "shop intro band",
+                    intent: "Request a routing call",
+                    label: "Talk first",
+                  })
+                }
                 href="/contact"
                 className="btn btn-secondary w-full justify-center"
               >

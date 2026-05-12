@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   cardBase,
   cardSoft,
@@ -83,33 +82,37 @@ function Card({
   );
 }
 
-export default function ContactPaths() {
-  const [active, setActive] = useState<Path>("routing");
-
+export default function ContactPaths({
+  path,
+  onChange,
+}: {
+  path: Path;
+  onChange: (p: Path) => void;
+}) {
   return (
     <section>
       <h2 className={`${heading} text-xl`}>Choose Your Path</h2>
 
       <div className="mt-4 flex flex-wrap gap-2">
         <Pill
-          active={active === "routing"}
+          active={path === "routing"}
           label="Routing Call"
-          onClick={() => setActive("routing")}
+          onClick={() => onChange("routing")}
         />
         <Pill
-          active={active === "support"}
+          active={path === "support"}
           label="Client Support"
-          onClick={() => setActive("support")}
+          onClick={() => onChange("support")}
         />
         <Pill
-          active={active === "general"}
+          active={path === "general"}
           label="General Inquiry"
-          onClick={() => setActive("general")}
+          onClick={() => onChange("general")}
         />
       </div>
 
       <div className="mt-5 space-y-4">
-        {active === "routing" ? (
+        {path === "routing" ? (
           <Card
             recommended
             title="Routing Call"
@@ -128,50 +131,30 @@ export default function ContactPaths() {
           />
         ) : null}
 
-        {active === "support" ? (
+        {path === "support" ? (
           <Card
             title="Existing Client / Support"
             subtitle="For active projects, ongoing support, or operational questions."
             cta={
-              <a
-                href="#routing-form"
-                onClick={() => {
-                  const el = document.getElementById(
-                    "contact-path"
-                  ) as HTMLInputElement | null;
-                  if (el) el.value = "support";
-                }}
-                className={btnOutline}
-              >
+              <a href="#routing-form" className={btnOutline}>
                 Client Support
               </a>
             }
           />
         ) : null}
 
-        {active === "general" ? (
+        {path === "general" ? (
           <Card
             title="General / Partnerships"
             subtitle="For referrals, collaborations, or media inquiries."
             cta={
-              <a
-                href="#routing-form"
-                onClick={() => {
-                  const el = document.getElementById(
-                    "contact-path"
-                  ) as HTMLInputElement | null;
-                  if (el) el.value = "general";
-                }}
-                className={btnOutline}
-              >
+              <a href="#routing-form" className={btnOutline}>
                 General Inquiry
               </a>
             }
           />
         ) : null}
       </div>
-
-      <input type="hidden" id="contact-path" value={active} readOnly />
     </section>
   );
 }

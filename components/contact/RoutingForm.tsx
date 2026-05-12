@@ -1,17 +1,11 @@
-import { FormEvent, useMemo, useState } from "react";
+// components/contact/RoutingForm.tsx
+import { FormEvent, useState } from "react";
 import { useRouter } from "next/router";
 import { cardBase, heading, body, muted, btnPrimary } from "./ui";
 import { track } from "@/lib/analytics";
+import type { ContactPath } from "@/pages/contact";
 
-type ContactPath = "routing" | "support" | "general";
 type Status = "idle" | "submitting" | "success" | "error";
-
-function getInitialPath(): ContactPath {
-  if (typeof window === "undefined") return "routing";
-  const el = document.getElementById("contact-path") as HTMLInputElement | null;
-  const v = (el?.value || "routing") as ContactPath;
-  return v === "support" || v === "general" || v === "routing" ? v : "routing";
-}
 
 function Field({
   label,
@@ -30,12 +24,45 @@ function Field({
     </label>
   );
 }
+
 const inputBase =
   "w-full rounded-[var(--r-md)] border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-3 text-sm text-[var(--ink-700)] placeholder:text-[var(--muted-400)] transition-base focus:outline-none";
 
-export default function RoutingForm() {
+function getUtmBundle() {
+  if (typeof window === "undefined") return null;
+
+  const fromUrl = new URLSearchParams(window.location.search);
+  const get = (k: string) => fromUrl.get(k) || "";
+
+  const urlUtm = {
+    utm_source: get("utm_source"),
+    utm_medium: get("utm_medium"),
+    utm_campaign: get("utm_campaign"),
+    utm_term: get("utm_term"),
+    utm_content: get("utm_content"),
+    gclid: get("gclid"),
+    fbclid: get("fbclid"),
+  };
+
+  const stored = (() => {
+    try {
+      const raw = sessionStorage.getItem("btl_utms");
+      return raw ? (JSON.parse(raw) as Record<string, string>) : {};
+    } catch {
+      return {};
+    }
+  })();
+
+  const merged = { ...urlUtm, ...stored };
+  const cleaned = Object.fromEntries(
+    Object.entries(merged).filter(([, v]) => Boolean(v)),
+  );
+
+  return Object.keys(cleaned).length ? cleaned : null;
+}
+
+export default function RoutingForm({ path }: { path: ContactPath }) {
   const router = useRouter();
-  const [path, setPath] = useState<ContactPath>("routing");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -43,27 +70,17 @@ export default function RoutingForm() {
     fullName: "",
     email: "",
     businessName: "",
-    role: "",
     website: "",
     goal: "",
-    revenueRange: "",
-    urgency: "",
-    referral: "",
     message: "",
   });
 
-  // Sync path from the pills above on first client render
-  useMemo(() => {
-    if (typeof window === "undefined") return;
-    const p = getInitialPath();
-    setPath(p);
-  }, []);
-
   const isRouting = path === "routing";
+  const needsBusiness = path === "routing" || path === "support";
 
   function update<K extends keyof typeof form>(
     key: K,
-    value: (typeof form)[K]
+    value: (typeof form)[K],
   ) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
@@ -73,11 +90,11 @@ export default function RoutingForm() {
     if (!form.email.trim()) return "Please enter your email.";
     if (!/^\S+@\S+\.\S+$/.test(form.email.trim()))
       return "Please enter a valid email.";
-    if (!form.businessName.trim()) return "Please enter your business name.";
-    if (isRouting) {
-      if (!form.goal) return "Please select a primary goal.";
-      if (!form.urgency) return "Please select an urgency level.";
-    }
+    if (needsBusiness && !form.businessName.trim())
+      return "Please enter your business name.";
+    if (isRouting && !form.goal) return "Please select a primary goal.";
+    if (!form.message.trim())
+      return "Please add a short note about what prompted you to reach out.";
     return null;
   }
 
@@ -86,7 +103,6 @@ export default function RoutingForm() {
     if (status === "submitting") return;
 
     setError(null);
-
     const v = validate();
     if (v) {
       setStatus("error");
@@ -97,127 +113,72 @@ export default function RoutingForm() {
     setStatus("submitting");
 
     try {
+      const utm = getUtmBundle();
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ path, ...form }),
+        body: JSON.stringify({
+          path,
+          fullName: form.fullName,
+          email: form.email,
+          businessName: form.businessName,
+          website: form.website,
+          goal: form.goal,
+          message: form.message,
+          utm,
+        }),
       });
 
       if (!res.ok) throw new Error("Request failed");
 
-      setStatus("success");
+      const json = await res.json().catch(() => null);
+      const customer_id = json?.customer_id as string | undefined;
 
-      function getUtmBundle() {
-        if (typeof window === "undefined") return null;
-
-        const fromUrl = new URLSearchParams(window.location.search);
-        const get = (k: string) => fromUrl.get(k) || "";
-
-        const urlUtm = {
-          utm_source: get("utm_source"),
-          utm_medium: get("utm_medium"),
-          utm_campaign: get("utm_campaign"),
-          utm_term: get("utm_term"),
-          utm_content: get("utm_content"),
-          gclid: get("gclid"),
-          fbclid: get("fbclid"),
-        };
-
-        // If you store UTMs on landing in sessionStorage, merge here
-        const stored = (() => {
-          try {
-            const raw = sessionStorage.getItem("btl_utms");
-            return raw ? (JSON.parse(raw) as Record<string, string>) : {};
-          } catch {
-            return {};
-          }
-        })();
-
-        // Prefer stored values, then URL values (URL values usually exist only on first land)
-        const merged = { ...urlUtm, ...stored };
-
-        // Strip empties
-        const cleaned = Object.fromEntries(
-          Object.entries(merged).filter(([, v]) => Boolean(v))
-        );
-
-        return Object.keys(cleaned).length ? cleaned : null;
-      }
-
-      const utm = getUtmBundle();
-
-      // 2) Build the “carry-over” payload for /contact/success -> Calendly prefill
       const bookingNotesLines = [
         `Inquiry type: ${path}`,
+        needsBusiness ? `Business: ${form.businessName || "—"}` : null,
         isRouting ? `Primary goal: ${form.goal || "—"}` : null,
-        isRouting ? `Urgency: ${form.urgency || "—"}` : null,
-        form.revenueRange ? `Revenue range: ${form.revenueRange}` : null,
-        form.businessName ? `Business: ${form.businessName}` : null,
-        form.role ? `Role: ${form.role}` : null,
         form.website ? `Website: ${form.website}` : null,
-        form.referral ? `Referral: ${form.referral}` : null,
         form.message ? `Message: ${form.message}` : null,
       ].filter(Boolean) as string[];
 
       const contactPayload = {
-        // calendly prefill keys
+        customer_id,
         fullName: form.fullName.trim(),
         email: form.email.trim(),
-
-        // routing context
         contactPath: path,
-        intent: path === "routing" ? "request routing call" : "contact",
+        intent: isRouting ? "request routing call" : "contact",
         service:
           path === "routing"
             ? "routing call"
             : path === "support"
-            ? "client support"
-            : "general inquiry",
-
-        // carry-over “notes” (Calendly customAnswers.a1 on success page)
+              ? "client support"
+              : "general inquiry",
         notes: bookingNotesLines.join("\n"),
-
-        // attribution
         utm,
-
-        // metadata
         submittedAt: new Date().toISOString(),
         page: "/contact",
       };
 
       sessionStorage.setItem(
         "btl_contact_payload",
-        JSON.stringify(contactPayload)
+        JSON.stringify(contactPayload),
       );
 
-      // 3) Analytics (use your existing track() helper; it should push to dataLayer/GA4)
-      // Keep names consistent with your event philosophy: Verb + Location + Intent
       track("submit form", {
-        location: "routing form",
-        intent: path === "routing" ? "request routing call" : "contact",
-        service:
-          path === "routing"
-            ? "routing call"
-            : path === "support"
-            ? "client support"
-            : "general inquiry",
+        location: "/contact",
+        intent: contactPayload.intent,
+        service: contactPayload.service,
+        contact_path: contactPayload.contactPath,
+        customer_id,
       });
 
-      // Optional: explicitly track that you are about to show the booking step (only for routing)
-      if (path === "routing") {
-        track("Route | ContactSuccess | ScheduleNext", {
-          location: "/contact",
-          next_location: "/contact/success",
-          intent: "schedule routing call",
-          utm: utm || undefined,
-        });
-
-        router.push("/contact/success");
-      }
-    } catch (err) {
+      router.push(path === "routing" ? "/contact/success" : "/contact/thanks");
+    } catch {
       setStatus("error");
       setError(
-        "We couldn’t submit your request. Please refresh and try again."
+        "We couldn’t submit your request. Please refresh and try again.",
       );
     }
   }
@@ -229,13 +190,13 @@ export default function RoutingForm() {
           {path === "routing"
             ? "Request Routing Call"
             : path === "support"
-            ? "Client Support"
-            : "General Inquiry"}
+              ? "Client Support"
+              : "General Inquiry"}
         </h2>
 
         <p className={`${body} mt-3`}>
           Please complete the form below. Your responses help us prepare and
-          determine alignment before scheduling.
+          route your request correctly.
         </p>
 
         <p className={`${muted} mt-2 text-sm`}>
@@ -243,21 +204,6 @@ export default function RoutingForm() {
         </p>
 
         <form onSubmit={onSubmit} className="mt-6 space-y-5">
-          <Field
-            label="Inquiry type"
-            hint="Choose the conversation you need. Routing Calls are scheduled after submission."
-          >
-            <select
-              className={inputBase}
-              value={path}
-              onChange={(e) => setPath(e.target.value as ContactPath)}
-            >
-              <option value="routing">Routing Call</option>
-              <option value="support">Existing Client / Support</option>
-              <option value="general">General / Partnerships</option>
-            </select>
-          </Field>
-
           <div className="grid gap-5 sm:grid-cols-2">
             <Field label="Full name">
               <input
@@ -279,101 +225,65 @@ export default function RoutingForm() {
             </Field>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="Business name">
-              <input
-                className={inputBase}
-                value={form.businessName}
-                onChange={(e) => update("businessName", e.target.value)}
-              />
-            </Field>
-
-            <Field label="Your role (optional)">
-              <input
-                className={inputBase}
-                value={form.role}
-                onChange={(e) => update("role", e.target.value)}
-                placeholder="Owner, operator, marketing, etc."
-              />
-            </Field>
-          </div>
-
-          <Field
-            label="Website (optional)"
-            hint="If you don’t have one, leave blank."
-          >
-            <input
-              className={inputBase}
-              value={form.website}
-              onChange={(e) => update("website", e.target.value)}
-              placeholder="https://"
-              inputMode="url"
-            />
-          </Field>
-
-          {isRouting ? (
-            <>
-              <Field label="Primary goal">
-                <select
+          {needsBusiness ? (
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Business name">
+                <input
                   className={inputBase}
-                  value={form.goal}
-                  onChange={(e) => update("goal", e.target.value)}
-                >
-                  <option value="">Select one</option>
-                  <option value="visibility">Visibility</option>
-                  <option value="proof">Proof</option>
-                  <option value="conversion">Conversion</option>
-                  <option value="offer-strength">Offer Strength</option>
-                  <option value="operations">Operations</option>
-                  <option value="analytics">Analytics</option>
-                  <option value="unknown">Not sure yet</option>
-                </select>
+                  value={form.businessName}
+                  onChange={(e) => update("businessName", e.target.value)}
+                />
               </Field>
 
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="Monthly revenue range (optional)">
-                  <select
-                    className={inputBase}
-                    value={form.revenueRange}
-                    onChange={(e) => update("revenueRange", e.target.value)}
-                  >
-                    <option value="">Prefer not to say</option>
-                    <option value="pre-revenue">Pre-revenue</option>
-                    <option value="0-5k">$0–$5k</option>
-                    <option value="5-20k">$5k–$20k</option>
-                    <option value="20-50k">$20k–$50k</option>
-                    <option value="50-100k">$50k–$100k</option>
-                    <option value="100k+">$100k+</option>
-                  </select>
-                </Field>
+              <Field
+                label="Website (optional)"
+                hint="If you don’t have one, leave blank."
+              >
+                <input
+                  className={inputBase}
+                  value={form.website}
+                  onChange={(e) => update("website", e.target.value)}
+                  placeholder="https://"
+                  inputMode="url"
+                />
+              </Field>
+            </div>
+          ) : (
+            <Field
+              label="Website (optional)"
+              hint="If you don’t have one, leave blank."
+            >
+              <input
+                className={inputBase}
+                value={form.website}
+                onChange={(e) => update("website", e.target.value)}
+                placeholder="https://"
+                inputMode="url"
+              />
+            </Field>
+          )}
 
-                <Field label="Urgency">
-                  <select
-                    className={inputBase}
-                    value={form.urgency}
-                    onChange={(e) => update("urgency", e.target.value)}
-                  >
-                    <option value="">Select one</option>
-                    <option value="soon">Soon (2–4 weeks)</option>
-                    <option value="near">Near-term (1–3 months)</option>
-                    <option value="later">Later (3+ months)</option>
-                  </select>
-                </Field>
-              </div>
-            </>
+          {isRouting ? (
+            <Field label="Primary goal">
+              <select
+                className={inputBase}
+                value={form.goal}
+                onChange={(e) => update("goal", e.target.value)}
+              >
+                <option value="">Select one</option>
+                <option value="visibility">Visibility</option>
+                <option value="proof">Proof</option>
+                <option value="conversion">Conversion</option>
+                <option value="offer-strength">Offer Strength</option>
+                <option value="operations">Operations</option>
+                <option value="analytics">Analytics</option>
+                <option value="unknown">Not sure yet</option>
+              </select>
+            </Field>
           ) : null}
 
-          <Field label="How did you hear about us? (optional)">
-            <input
-              className={inputBase}
-              value={form.referral}
-              onChange={(e) => update("referral", e.target.value)}
-              placeholder="Referral, Google, social, etc."
-            />
-          </Field>
-
           <Field
-            label="Briefly describe what prompted you to reach out"
+            label="What prompted you to reach out?"
             hint="One or two short paragraphs is enough."
           >
             <textarea
@@ -392,15 +302,13 @@ export default function RoutingForm() {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className={`${btnPrimary} ${
-              status === "submitting" ? "opacity-80" : ""
-            }`}
+            className={`${btnPrimary} ${status === "submitting" ? "opacity-80" : ""}`}
           >
             {status === "submitting"
               ? "Submitting…"
               : path === "routing"
-              ? "Submit & Schedule Routing Call"
-              : "Submit"}
+                ? "Submit & Schedule Routing Call"
+                : "Submit"}
           </button>
 
           <p className="text-xs text-[var(--muted)]">

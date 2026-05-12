@@ -106,7 +106,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       success_url: successUrl,
       cancel_url: cancelUrl,
       metadata,
-      ...(mode === "subscription" ? { subscription_data: { metadata } } : {}),
+      ...(mode === "subscription" ? { subscription_data: { metadata,    },
+        payment_method_collection: "always", 
+     } 
+        : {}),
     });
 
     return res.status(200).json({ url: session.url });

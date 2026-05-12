@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { CaseCard } from "./CaseCard";
 import { TestimonialStrip } from "./TestimonialStrip";
+import { track } from "@/lib/analytics";
 
 const CASES = [
   {
@@ -147,10 +148,13 @@ export function ResultsSection() {
             <Link
               href="/contact?intent=system-review"
               className="inline-flex items-center justify-center rounded-full  px-5 py-2.5 text-sm font-medium btn btn-primary"
-              data-track="click cta"
-              data-location="results section"
-              data-intent="Request a review"
-              data-label="Request a system review"
+              onClick={() =>
+                track("click cta", {
+                  location: "home/results section",
+                  intent: "Request Review",
+                  label: "Request a system review",
+                })
+              }
             >
               Request a system review
             </Link>
@@ -158,10 +162,13 @@ export function ResultsSection() {
             <Link
               href="/process"
               className="inline-flex items-center justify-center rounded-full border border-(--border-soft) bg-(--surface-muted) px-5 py-2.5 text-sm font-medium text-(--ink-900) hover:bg-(--surface-elevated) transition-colors"
-              data-track="click cta"
-              data-location="results section"
-              data-intent="See how it works"
-              data-label="See how it works"
+              onClick={() =>
+                track("click cta", {
+                  location: "home/results section",
+                  intent: "See Process",
+                  label: "See how it works",
+                })
+              }
             >
               See how it works
             </Link>

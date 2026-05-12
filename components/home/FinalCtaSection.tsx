@@ -1,6 +1,7 @@
 // components/FinalCtaSection.tsx
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { track } from "@/lib/analytics";
 
 export default function FinalCtaSection() {
   return (
@@ -43,25 +44,31 @@ export default function FinalCtaSection() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
-              data-track="click cta"
-              data-location="final cta"
-              data-intent="Book a routing call"
-              data-label="Start With a Routing"
+              onClick={() =>
+                track("click cta", {
+                  location: "final cta",
+                  intent: "Book a routing call",
+                  label: "Start With a Routing Call",
+                })
+              }
               href="/contact?intent=system-review"
               className={cn(
                 "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold",
                 "bg-white text-[var(--ink-900)] shadow-[var(--shadow-soft)] transition hover:bg-white/90",
               )}
             >
-              Start with a routing call
+              Start With a Routing Call
             </Link>
 
             <Link
               href="/shop"
-              data-track="click cta"
-              data-location="final cta"
-              data-intent="View systems"
-              data-label="View systems"
+              onClick={() =>
+                track("click cta", {
+                  location: "final cta",
+                  intent: "View systems",
+                  label: "View systems",
+                })
+              }
               type="button"
               className={cn(
                 "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition",

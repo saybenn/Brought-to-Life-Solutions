@@ -1,13 +1,18 @@
-// /components/products/sections/OfferHeroSection.tsx
 import React from "react";
-import type { Offer, OfferDetail } from "@/lib/catalog/types";
+import type { Offer, OfferCta, OfferDetail } from "@/lib/catalog/types";
 import SectionContainer from "@/components/ui/SectionContainer";
 import Link from "next/link";
+import { track } from "@/lib/analytics";
 
 type Props = { offer: Offer; detail: OfferDetail };
 
+function getHeroSecondaryCta(detail: OfferDetail): OfferCta | null {
+  return detail.hero.secondaryCta ?? null;
+}
+
 export default function OfferHeroSection({ offer, detail }: Props) {
   const { hero } = detail;
+  const heroCta = getHeroSecondaryCta(detail);
 
   const featured =
     offer.id === "revenue_engine" ||
@@ -15,22 +20,12 @@ export default function OfferHeroSection({ offer, detail }: Props) {
     offer.badge === "Most Chosen" ||
     offer.stage === "MostChosen";
 
-  const eyebrow = (offer.category ?? offer.stage).toUpperCase();
-
-  // Prefer routing call as the primary action when present
-  const routingHref =
-    detail.purchase?.secondaryCta?.href || hero.secondaryActionHref;
-  const routingLabel =
-    detail.purchase?.secondaryCta?.label ||
-    hero.secondaryActionLabel ||
-    "Start with a routing call";
+  const eyebrow = (offer.category ?? offer.stage ?? "").toUpperCase();
 
   return (
     <section aria-label="Product outcome" className="scroll-mt-24">
       <SectionContainer className="p-(--space-9) sm:p-(--space-10)">
-        {/* Split layout: stack on mobile, 2-col on desktop */}
         <div className="grid gap-(--space-8) lg:grid-cols-[1.35fr,0.65fr] lg:items-start">
-          {/* LEFT: Meaning / orientation */}
           <div className="min-w-0">
             <p className="text-[12px] tracking-[0.26em] text-[rgba(247,243,235,0.62)]">
               {eyebrow}
@@ -40,7 +35,6 @@ export default function OfferHeroSection({ offer, detail }: Props) {
               {hero.headline}
             </h1>
 
-            {/* Why it exists (new attribute) */}
             {hero.whyItExists ? (
               <p className="mt-4 text-[rgba(247,243,235,0.80)] text-[15px] leading-[1.6] max-w-[68ch]">
                 <span className="font-semibold text-[rgba(247,243,235,0.88)]">
@@ -60,7 +54,6 @@ export default function OfferHeroSection({ offer, detail }: Props) {
               </p>
             ) : null}
 
-            {/* Perspective lock */}
             {hero.perspectiveLock ? (
               <p className="mt-5 text-[rgba(247,243,235,0.62)] text-[13px] leading-[1.6] max-w-[72ch]">
                 {hero.perspectiveLock}
@@ -68,7 +61,6 @@ export default function OfferHeroSection({ offer, detail }: Props) {
             ) : null}
           </div>
 
-          {/* RIGHT: Validation + routing */}
           <div className="rounded-[var(--r-lg)] border border-white/12 bg-white/5 p-(--space-7)">
             <div className="flex items-start justify-between gap-4">
               <p className="text-[12px] tracking-[0.22em] uppercase text-[rgba(247,243,235,0.62)]">
@@ -88,33 +80,28 @@ export default function OfferHeroSection({ offer, detail }: Props) {
               </p>
             ) : null}
 
-            <div className="mt-(--space-6) flex flex-col gap-(--space-3)">
-              {routingHref ? (
+            {heroCta ? (
+              <div className="mt-(--space-6) flex flex-col gap-(--space-3)">
                 <Link
-                  data-track="click cta"
-                  data-location={`product hero ${offer.title}`}
-                  data-intent="Request a routing call"
-                  data-label="Start with a routing call"
+                  onClick={() =>
+                    track("click cta", {
+                      location: `product hero ${offer.title}`,
+                      intent: heroCta.intent || "Request a routing call",
+                      label: heroCta.analyticsLabel || "primary_guided_cta",
+                      label_display: heroCta.label,
+                    })
+                  }
                   className="btn btn-primary w-full"
-                  href="/contact"
+                  href={heroCta.href}
                 >
-                  {routingLabel}
+                  {heroCta.label}
                 </Link>
-              ) : (
-                <Link
-                  href="/contact"
-                  className="btn btn-primary w-full"
-                  type="button"
-                >
-                  {routingLabel}
-                </Link>
-              )}
 
-              {/* Micro reassurance (no pressure, risk control) */}
-              <p className="text-[12px] text-[rgba(247,243,235,0.64)] leading-[1.55]">
-                We&apos;ll confirm fit before any work or payment begins.
-              </p>
-            </div>
+                <p className="text-[12px] text-[rgba(247,243,235,0.64)] leading-[1.55]">
+                  We&apos;ll confirm fit before any work or payment begins.
+                </p>
+              </div>
+            ) : null}
           </div>
         </div>
       </SectionContainer>

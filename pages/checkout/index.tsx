@@ -32,7 +32,6 @@ export default function CheckoutPage() {
     const v = router.query.offerId;
     return typeof v === "string" ? v : "";
   }, [router.query.offerId]);
-
   const intent = useMemo(() => {
     const v = router.query.intent;
     return typeof v === "string" ? v : "";
@@ -122,7 +121,7 @@ export default function CheckoutPage() {
             </h1>
 
             <p className="subhead mt-4 text-[var(--ink-700)] animate-fadeUp">
-              We normally start with a routing call to confirm fit and scope.
+              We normally Start With a Routing Call to confirm fit and scope.
               This page exists for cases where you&apos;ve already been
               prescribed a next step.
             </p>
@@ -146,7 +145,7 @@ export default function CheckoutPage() {
               ) : !canBuy ? (
                 <>
                   <p className="eyebrow text-[var(--muted)]">NEXT STEP</p>
-                  <h2 className="h3 mt-3">Start with a routing call.</h2>
+                  <h2 className="h3 mt-3">Start With a Routing Call.</h2>
                   <p className="subhead mt-3 text-[var(--ink-700)]">
                     We&apos;ll confirm fit and route you into the right product.
                   </p>
@@ -207,7 +206,8 @@ export default function CheckoutPage() {
 
                   <div className="mt-8">
                     <p className="caption text-[var(--muted)]">
-                      If you haven’t had a routing call yet, start with intake.
+                      If you haven&apos;t had a routing call yet, start with
+                      intake.
                     </p>
                     <div className="mt-3">
                       <Link className="btn btn-secondary" href="/contact">

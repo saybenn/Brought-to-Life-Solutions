@@ -1,9 +1,10 @@
 // components/Footer.tsx
+import { track } from "@/lib/analytics";
 import Link from "next/link";
 
 const SERVICES = [
-  { href: "/products/revenue-engine", label: "Lead-Machine Websites" },
-  { href: "/products/local-seo-maintenance", label: "Local SEO Kickstart" },
+  { href: "/shop/revenue-engine", label: "Revenue Engine" },
+  { href: "/shop/local-seo-maintenance", label: "Local SEO Kickstart" },
 ] as const;
 
 const COMPANY = [
@@ -103,10 +104,13 @@ export default function Footer() {
 
             <div>
               <Link
-                data-track="click cta"
-                data-location="footer"
-                data-intent="Request a routing call"
-                data-label="Request a routing call"
+                onClick={() =>
+                  track("click cta", {
+                    location: "footer",
+                    intent: "Request a routing call",
+                    label: "Request a routing call",
+                  })
+                }
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-full bg-emerald-900 px-5 py-2.5 text-xs font-semibold text-slate-50 shadow-sm transition hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-900 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-50"
               >

@@ -1,8 +1,10 @@
 // /components/case-study/CaseStudyPage.tsx
+
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import type { CaseStudy } from "@/lib/catalog/types";
+import type { CaseStudy } from "@/lib/casestudy/types";
 
 function Section({
   label,
@@ -13,7 +15,7 @@ function Section({
 }: {
   label?: string;
   title?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   band?: boolean;
 }) {
@@ -22,7 +24,7 @@ function Section({
       className={cn(
         band ? "bg-[var(--bg-alt)]" : "bg-[var(--bg-page)]",
         "py-12 sm:py-16 lg:py-20",
-        className
+        className,
       )}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -31,12 +33,14 @@ function Section({
             {label}
           </p>
         ) : null}
+
         {title ? (
           <h2 className="mt-3 font-[var(--font-head)] text-[28px] leading-[var(--leading-tight)] text-[var(--ink-900)] sm:text-[34px] lg:text-[40px]">
             {title}
           </h2>
         ) : null}
-        <div className={cn(title || label ? "mt-6" : "", "")}>{children}</div>
+
+        <div className={cn(title || label ? "mt-6" : "")}>{children}</div>
       </div>
     </section>
   );
@@ -46,14 +50,14 @@ function Card({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   return (
     <div
       className={cn(
         "rounded-[var(--r-lg)] border border-[var(--border)] bg-[var(--bg-elevated)] shadow-[var(--shadow-soft)]",
-        className
+        className,
       )}
     >
       {children}
@@ -64,12 +68,12 @@ function Card({
 function SocketChips({ sockets }: { sockets: string[] }) {
   return (
     <div className="flex flex-wrap gap-2">
-      {sockets.map((s) => (
+      {sockets.map((socket) => (
         <span
-          key={s}
+          key={socket}
           className="rounded-full border border-[var(--border)] bg-[var(--bg-elevated)] px-3 py-1 text-[13px] text-[var(--ink-700)]"
         >
-          {s}
+          {socket}
         </span>
       ))}
     </div>
@@ -81,29 +85,30 @@ function DesktopEvidenceGrid({
 }: {
   items: CaseStudy["assets"]["evidence"];
 }) {
-  const desktops = items.filter((i) => i.kind === "desktop");
+  const desktops = items.filter((item) => item.kind === "desktop");
 
   if (!desktops.length) return null;
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 items-stretch">
-      {desktops.map((a) => (
-        <Card key={a.src} className="overflow-hidden">
+    <div className="grid items-stretch gap-6 md:grid-cols-2">
+      {desktops.map((asset) => (
+        <Card key={asset.src} className="overflow-hidden">
           <div className="relative aspect-[16/9] bg-[var(--bg-page)]">
             <Image
-              src={a.src}
-              alt={a.alt}
+              src={asset.src}
+              alt={asset.alt}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-          <div className="p-4 sm:p-5 flex-1 flex flex-col">
+
+          <div className="flex flex-1 flex-col p-4 sm:p-5">
             <p className="text-[12px] tracking-[0.12em] text-[var(--muted)]">
               DESKTOP SYSTEM
             </p>
-            <p className="mt-2 text-[14px] leading-[var(--leading-normal)] text-[var(--ink-700)] line-clamp-2">
-              {a.alt}
+            <p className="mt-2 line-clamp-2 text-[14px] leading-[var(--leading-normal)] text-[var(--ink-700)]">
+              {asset.alt}
             </p>
           </div>
         </Card>
@@ -121,7 +126,7 @@ function MobileEvidenceRail({
   eyebrow: string;
   description: string;
 }) {
-  const mobiles = items.filter((i) => i.kind === "mobile");
+  const mobiles = items.filter((item) => item.kind === "mobile");
 
   if (!mobiles.length) return null;
 
@@ -135,24 +140,28 @@ function MobileEvidenceRail({
         {description}
       </p>
 
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 items-stretch lg:grid-cols-3">
-        {mobiles.map((a) => (
-          <Card key={a.src} className="overflow-hidden mx-auto max-w-[320px]">
+      <div className="mt-6 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {mobiles.map((asset) => (
+          <Card
+            key={asset.src}
+            className="mx-auto max-w-[320px] overflow-hidden"
+          >
             <div className="relative aspect-[9/16] bg-[var(--bg-page)]">
               <Image
-                src={a.src}
-                alt={a.alt}
+                src={asset.src}
+                alt={asset.alt}
                 fill
                 className="object-cover"
                 sizes="320px"
               />
             </div>
-            <div className="p-4 sm:p-5 flex-1 flex flex-col">
+
+            <div className="flex flex-1 flex-col p-4 sm:p-5">
               <p className="text-[12px] tracking-[0.12em] text-[var(--muted)]">
                 MOBILE
               </p>
-              <p className="mt-2 text-[14px] leading-[var(--leading-normal)] text-[var(--ink-700)] line-clamp-2">
-                {a.alt}
+              <p className="mt-2 line-clamp-2 text-[14px] leading-[var(--leading-normal)] text-[var(--ink-700)]">
+                {asset.alt}
               </p>
             </div>
           </Card>
@@ -200,6 +209,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
               >
                 {study.cta.primaryLabel}
               </Link>
+
               <Link
                 href={study.cta.secondaryHref}
                 className="inline-flex items-center justify-center rounded-[999px] border border-[var(--border)] bg-[var(--bg-elevated)] px-6 py-3 text-[14px] font-semibold text-[var(--ink-900)] transition-base hover-raise"
@@ -235,12 +245,12 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
           <div className="lg:col-span-7">
             <div className="space-y-4">
-              {study.contextBody.map((p, idx) => (
+              {study.contextBody.map((paragraph, index) => (
                 <p
-                  key={idx}
+                  key={`${paragraph}-${index}`}
                   className="max-w-prose text-[16px] leading-[var(--leading-relaxed)] text-[var(--ink-700)] sm:text-[18px]"
                 >
-                  {p}
+                  {paragraph}
                 </p>
               ))}
             </div>
@@ -264,15 +274,16 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
       <Section title={study.problemTitle}>
         <Card className="p-6 sm:p-8">
           <ul className="grid gap-3 sm:grid-cols-2">
-            {study.problemBullets.map((b) => (
-              <li key={b} className="flex gap-3">
+            {study.problemBullets.map((bullet) => (
+              <li key={bullet} className="flex gap-3">
                 <span className="mt-2 h-2 w-2 flex-none rounded-full bg-[var(--brand-600)]" />
                 <p className="text-[15px] leading-[var(--leading-normal)] text-[var(--ink-700)] sm:text-[16px]">
-                  {b}
+                  {bullet}
                 </p>
               </li>
             ))}
           </ul>
+
           {study.problemCloser ? (
             <p className="mt-6 text-[14px] leading-[var(--leading-normal)] text-[var(--muted)]">
               {study.problemCloser}
@@ -294,12 +305,13 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
                 <div className="relative aspect-[16/10] bg-[var(--bg-page)]">
                   <Image
                     src={study.assets.supportingHero.src}
-                    alt={study.assets.hero.alt}
+                    alt={study.assets.supportingHero.alt}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 40vw"
                   />
                 </div>
+
                 <div className="p-4 sm:p-5">
                   <p className="text-[12px] tracking-[0.12em] text-[var(--muted)]">
                     PROOF
@@ -315,17 +327,18 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
 
           <div className="lg:col-span-7">
             <div className="grid gap-5">
-              {study.pillars.map((p) => (
-                <Card key={p.title} className="p-6 sm:p-8">
+              {study.pillars.map((pillar) => (
+                <Card key={pillar.title} className="p-6 sm:p-8">
                   <h3 className="font-[var(--font-head)] text-[22px] leading-[1.2] text-[var(--ink-900)] sm:text-[24px]">
-                    {p.title}
+                    {pillar.title}
                   </h3>
+
                   <ul className="mt-4 space-y-3">
-                    {p.bullets.map((b) => (
-                      <li key={b} className="flex gap-3">
+                    {pillar.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-3">
                         <span className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--focus)]" />
                         <p className="text-[15px] leading-[var(--leading-normal)] text-[var(--ink-700)] sm:text-[16px]">
-                          {b}
+                          {bullet}
                         </p>
                       </li>
                     ))}
@@ -349,6 +362,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
                 {study.socketsLine}
               </p>
             </div>
+
             <div className="lg:col-span-5">
               <SocketChips sockets={study.sockets} />
             </div>
@@ -356,7 +370,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         </Card>
       </Section>
 
-      {/* RESULTING SYSTEM (EVIDENCE) */}
+      {/* RESULTING SYSTEM / EVIDENCE */}
       <Section title={study.resultingTitle}>
         <p className="max-w-prose text-[16px] leading-[var(--leading-relaxed)] text-[var(--ink-700)] sm:text-[18px]">
           {study.resultingCaption}
@@ -367,13 +381,13 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
 
           <div className="my-10 h-px w-full bg-[var(--border)]" />
 
-          {study.mobileEvidence && (
+          {study.mobileEvidence ? (
             <MobileEvidenceRail
               items={study.assets.evidence}
               eyebrow={study.mobileEvidence.eyebrow}
               description={study.mobileEvidence.description}
             />
-          )}
+          ) : null}
         </div>
       </Section>
 
@@ -382,17 +396,19 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <div className="grid gap-4 sm:grid-cols-2">
-              {study.outcomes.map((o) => (
-                <Card key={o.label} className="p-6">
+              {study.outcomes.map((outcome) => (
+                <Card key={outcome.label} className="p-6">
                   <p className="text-[12px] tracking-[0.14em] text-[var(--muted)]">
-                    {o.label.toUpperCase()}
+                    {outcome.label.toUpperCase()}
                   </p>
+
                   <p className="mt-2 font-[var(--font-head)] text-[26px] leading-[1.1] text-[var(--ink-900)]">
-                    {o.value}
+                    {outcome.value}
                   </p>
-                  {o.note ? (
+
+                  {outcome.note ? (
                     <p className="mt-3 text-[13px] leading-[var(--leading-normal)] text-[var(--muted)]">
-                      {o.note}
+                      {outcome.note}
                     </p>
                   ) : null}
                 </Card>
@@ -411,9 +427,11 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
               <p className="text-[12px] tracking-[0.18em] text-[var(--muted)]">
                 CLIENT WORDS
               </p>
+
               <p className="mt-4 font-[var(--font-head)] text-[22px] leading-[1.25] text-[var(--ink-900)] sm:text-[24px]">
                 {study.testimonial.quote}
               </p>
+
               <p className="mt-5 text-[14px] text-[var(--ink-700)]">
                 <span className="font-semibold">{study.testimonial.name}</span>
                 <span className="text-[var(--muted)]">
@@ -433,12 +451,13 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
             <p className="text-[12px] tracking-[0.18em] text-[var(--muted)]">
               FOR
             </p>
+
             <ul className="mt-4 space-y-3">
-              {study.qualifyFor.map((x) => (
-                <li key={x} className="flex gap-3">
+              {study.qualifyFor.map((item) => (
+                <li key={item} className="flex gap-3">
                   <span className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--brand-600)]" />
                   <p className="text-[15px] leading-[var(--leading-normal)] text-[var(--ink-700)]">
-                    {x}
+                    {item}
                   </p>
                 </li>
               ))}
@@ -449,12 +468,13 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
             <p className="text-[12px] tracking-[0.18em] text-[var(--muted)]">
               NOT FOR
             </p>
+
             <ul className="mt-4 space-y-3">
-              {study.qualifyNotFor.map((x) => (
-                <li key={x} className="flex gap-3">
+              {study.qualifyNotFor.map((item) => (
+                <li key={item} className="flex gap-3">
                   <span className="mt-[10px] h-1.5 w-1.5 flex-none rounded-full bg-[var(--error)]" />
                   <p className="text-[15px] leading-[var(--leading-normal)] text-[var(--ink-700)]">
-                    {x}
+                    {item}
                   </p>
                 </li>
               ))}
@@ -471,10 +491,12 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
               <h2 className="font-[var(--font-head)] text-[30px] leading-[1.1] text-[var(--ink-900)] sm:text-[36px]">
                 {study.cta.heading}
               </h2>
+
               <p className="mt-4 max-w-prose text-[16px] leading-[var(--leading-relaxed)] text-[var(--ink-700)]">
                 {study.cta.body}
               </p>
             </div>
+
             <div className="lg:col-span-5 lg:flex lg:justify-end">
               <div className="flex flex-wrap gap-3">
                 <Link
@@ -483,6 +505,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
                 >
                   {study.cta.primaryLabel}
                 </Link>
+
                 <Link
                   href={study.cta.secondaryHref}
                   className="inline-flex items-center justify-center rounded-[999px] border border-[var(--border)] bg-[var(--bg-elevated)] px-6 py-3 text-[14px] font-semibold text-[var(--ink-900)] transition-base hover-raise"

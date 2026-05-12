@@ -1,42 +1,84 @@
 // /pages/api/intake/submit.ts
+
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getOrder, setIntakeSubmitted } from "@/lib/ordersTemp";
-import { PRODUCTS } from "@/lib/catalog/data";
+import { OFFER_DETAILS } from "@/lib/catalog/offerDetails";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") return res.status(405).end();
+type IntakeSubmitResponse =
+  | {
+      next: string;
+    }
+  | {
+      error: string;
+    };
+
+function getString(value: unknown): string {
+  return typeof value === "string" ? value : String(value ?? "");
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<IntakeSubmitResponse>,
+) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
   try {
     const body = req.body || {};
     const { orderId, slug, name, email, company } = body;
 
-    if (!orderId || !slug) return res.status(400).json({ error: "Missing orderId or slug" });
+    if (!orderId || !slug) {
+      return res.status(400).json({ error: "Missing orderId or slug" });
+    }
 
     const order = getOrder(String(orderId));
-    const product = PRODUCTS.find(p => p.slug === String(slug));
-    if (!product) return res.status(400).json({ error: "Unknown product" });
-    if (!order) return res.status(400).json({ error: "Order not found; make sure you paid first." });
+
+    const offer = Object.values(OFFER_DETAILS).find(
+      (offerDetail) => offerDetail.slug === String(slug),
+    );
+
+    if (!offer) {
+      return res.status(400).json({ error: "Unknown offer" });
+    }
+
+    if (!order) {
+      return res
+        .status(400)
+        .json({ error: "Order not found; make sure you paid first." });
+    }
 
     setIntakeSubmitted(order.id, {
-      name, email: email || order.email, company, ...body,
+      name,
+      email: email || order.email,
+      company,
+      ...body,
     });
 
-    const needsBooking = Boolean(product.calendlySlug && !order.meetingCompleted);
+    const needsBooking = Boolean(
+      offer.calendlySlug && !order.meetingCompleted,
+    );
+
     if (needsBooking) {
       const qs = new URLSearchParams({
-        name: String(name || ""),
-        email: String(email || order.email || ""),
-        company: String(company || ""),
-        utm_slug: product.slug,
-        utm_sku: product.id,
-        utm_tier: String(order.tier || ""),
+        name: getString(name),
+        email: getString(email || order.email),
+        company: getString(company),
+        utm_slug: getString(offer.slug),
+        utm_sku: getString(offer.id),
+        utm_tier: getString(order.tier),
       });
-      return res.status(200).json({ next: `/book/${product.slug}?${qs.toString()}` });
+
+      return res
+        .status(200)
+        .json({ next: `/book/${offer.slug}?${qs.toString()}` });
     }
 
     return res.status(200).json({ next: `/thanks?order=${order.id}` });
-  } catch (e: any) {
-    console.error(e);
-    return res.status(500).json({ error: e.message });
+  } catch (error: any) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ error: error?.message ?? "Intake submission failed." });
   }
 }

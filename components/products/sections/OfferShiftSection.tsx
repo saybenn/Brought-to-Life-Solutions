@@ -7,7 +7,9 @@ type Props = { offer: Offer; detail: OfferDetail };
 
 export default function OfferShiftSection({ detail }: Props) {
   const { shift } = detail;
-
+  if (!shift) {
+    return null;
+  }
   return (
     <section aria-label="Before and after shift" className="scroll-mt-24">
       <SectionContainer
