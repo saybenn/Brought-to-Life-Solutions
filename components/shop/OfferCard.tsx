@@ -106,7 +106,7 @@ export default function OfferCard({ offer, sectionKey, index }: Props) {
         </div>
 
         {featured && shopOffer.badge ? (
-          <span className="inline-flex shrink-0 items-center rounded-full border border-white/35 bg-white/10 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[rgba(247,243,235,0.9)]">
+          <span className="xl:inline-flex shrink-0 items-center rounded-full border border-white/35 bg-white/10 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[rgba(247,243,235,0.9)] sm:hidden ">
             {shopOffer.badge}
           </span>
         ) : null}

@@ -1,5 +1,5 @@
 import DashboardControlBar from "@/components/dashboard/layout/DashboardControlBar";
-import DashboardInsightBanner from "@/components/dashboard/layout/DashboardInsightBanner";
+// import DashboardInsightBanner from "@/components/dashboard/layout/DashboardInsightBanner";
 import DashboardKpiStrip from "@/components/dashboard/layout/DashboardKpiStrip";
 import Badge from "@/components/ui/Badge";
 import { DASHBOARD_COPY } from "@/lib/dashboard/copy";
@@ -103,11 +103,11 @@ export default function DashboardHero({
         activeGoalKey={goalValue}
       />
 
-      {notes?.length ? (
+      {/* {notes?.length ? (
         <div className="dash-hero__notes">
           <DashboardInsightBanner lines={notes} />
         </div>
-      ) : null}
+      ) : null} */}
     </section>
   );
 }
