@@ -18,6 +18,7 @@ export default function OfferGrid({ offers }: Props) {
 
   // Stage ladder — Revenue Engine first (your request)
   const ladder = byIds(offers, [
+    "single_page_application",
     "starter_system",
     "revenue_engine",
     "growth_partner",

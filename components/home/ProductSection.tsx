@@ -50,12 +50,12 @@ export function ProductSection() {
 
       <div className="relative z-10 mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 lg:mb-16">
-          <p className="eyebrow text-[var(--muted)] text-sm md:border-b md:border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 lg:mb-16 space-y-6">
+          <p className="eyebrow mx-auto w-fit border-b border-[var(--border)] text-sm text-[var(--muted)] lg:mx-0">
             04. Your System options
           </p>
 
-          <h2 className="h2 on-dark text-3xl sm:text-4xl lg:text-5xl leading-tight">
+          <h2 className="h2 on-dark text-3xl leading-tight sm:text-4xl lg:text-5xl">
             Choose the system that makes earning feel predictable.
           </h2>
 

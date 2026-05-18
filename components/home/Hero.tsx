@@ -1,26 +1,17 @@
 import Image from "next/image";
 import {
-  CheckCircle,
   LineChart,
-  FileCog,
-  Timer,
-  Brain,
-  Workflow,
   LucideEye,
   Handshake,
-  DollarSign,
-  Package,
-  Package2,
+  Workflow,
   DollarSignIcon,
   Wrench,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { track } from "@/lib/analytics";
 
 export function Hero() {
-  const router = useRouter();
   const ITEMS = [
     { icon: LucideEye, label: "Visibility" },
     { icon: Handshake, label: "Credibility" },
@@ -29,42 +20,35 @@ export function Hero() {
     { icon: Wrench, label: "Operations" },
     { icon: LineChart, label: "Analytics" },
   ];
-  const handleStartProject = () => {
-    router.push("/start"); // intake → checkout
-  };
-
-  const handleBookCall = () => {
-    router.push("/call"); // strategy call / Calendly wrapper
-  };
 
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--ink-900)] text-white min-h-[70vh] sm:min-h-[75vh] md:min-h-[70vh] lg:min-h-[90vh]">
+    <section className="relative isolate min-h-[70vh] overflow-hidden bg-[var(--ink-900)] text-white sm:min-h-[75vh] md:min-h-[78vh] lg:min-h-[90vh]">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero2.webp" // replace with your final photo
+          src="/images/hero2.webp"
           alt="Founder working in a calm, focused studio space"
           fill
           priority
           className="object-cover md:object-[60%_center] lg:object-right"
         />
-        {/* Dark gradient overlay for legibility */}
+
         <div className="absolute inset-0 bg-gradient-to-br from-black/55 via-black/60 to-black/20" />
       </div>
 
       {/* Content */}
-      <div className="relative flex h-full w-full flex-col justify-between">
-        <div className="mx-auto flex h-full w-full max-w-10/12 flex-col items-start justify-center px-4 pt-20 pb-8 sm:px-6 sm:pt-24 md:pt-24 lg:px-8 lg:pt-32">
-          <div className="max-w-3/4 leading-relaxed">
+      <div className="relative z-10 mx-auto flex min-h-[70vh] w-11/12 max-w-[88rem] flex-col px-4 pt-20 sm:min-h-[75vh] sm:px-6 sm:pt-24 md:min-h-[78vh] md:pt-24 lg:min-h-[90vh] lg:px-8 lg:pt-32">
+        {/* Main hero copy */}
+        <div className="flex flex-1 items-center">
+          <div className="w-full max-w-3xl leading-relaxed">
             <div className="space-y-6 sm:space-y-7 lg:space-y-8">
               <div className="space-y-3">
-                <p className="eyebrow on-dark-muted">
-                  Refined and Designed around how service businesses actually
-                  operate.{" "}
+                <p className="eyebrow on-dark-muted pt-4">
+                  Refined and designed around how businesses actually operate.
                 </p>
-                <h1 className="h1 on-dark text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-snug">
-                  Revenue-engineered web systems that generate predictable
-                  income.
+
+                <h1 className="h1 on-dark max-w-4xl text-3xl leading-snug sm:text-4xl md:text-5xl lg:text-6xl">
+                  Web systems that create predictable income.
                 </h1>
               </div>
 
@@ -83,10 +67,11 @@ export function Hero() {
                     })
                   }
                   href="/contact"
-                  className="btn btn-primary py-1 px-4"
+                  className="btn btn-primary px-4 py-1"
                 >
                   Start With a Routing Call
                 </Link>
+
                 <Link
                   onClick={() =>
                     track("click cta", {
@@ -96,7 +81,7 @@ export function Hero() {
                     })
                   }
                   href="/shop"
-                  className="btn btn-free py-1 px-4"
+                  className="btn btn-free px-4 py-1"
                 >
                   View Our Systems
                 </Link>
@@ -114,11 +99,11 @@ export function Hero() {
                   })
                 }
                 href="/contact"
-                type="button"
-                className="btn btn-primary px-4 py-2 text-sm text-center leading-none"
+                className="btn btn-primary px-4 py-2 text-center text-sm leading-none"
               >
                 Start With a Routing Call
               </Link>
+
               <Link
                 onClick={() =>
                   track("click cta", {
@@ -128,8 +113,7 @@ export function Hero() {
                   })
                 }
                 href="/shop"
-                type="button"
-                className="btn btn-free px-4 py-2 text-sm flex mx-auto text-center leading-none"
+                className="btn btn-free mx-auto flex px-4 py-2 text-center text-sm leading-none"
               >
                 View Systems
               </Link>
@@ -138,19 +122,20 @@ export function Hero() {
         </div>
 
         {/* Sockets strip */}
-        <div className="w-full py-3 sm:py-4">
-          <div className="mx-auto grid w-11/12 max-w-5xl grid-cols-3 items-center gap-x-6 gap-y-3 text-xs text-[var(--ink-700)] sm:text-sm md:grid-cols-6">
+        <div className="w-11/12 pb-8 pt-6 sm:pb-9 md:pb-10 lg:pb-12">
+          <div className=" grid w-full max-w-5xl grid-cols-3 items-center gap-x-6 gap-y-4 text-xs text-[var(--ink-700)] sm:text-sm md:grid-cols-6">
             {ITEMS.map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="relative flex flex-1 items-center gap-2 whitespace-nowrap"
+                className="relative flex min-w-0 items-center gap-2 whitespace-nowrap"
               >
-                <div className="flex w-full items-center gap-x-2">
+                <div className="flex w-full items-center justify-center gap-x-2 md:justify-start">
                   <Icon
                     size={18}
-                    className="hidden text-[var(--bg-page)]/80 lg:block"
+                    className="hidden shrink-0 text-[var(--bg-page)]/80 lg:block"
                   />
-                  <span className="eyebrow text-[0.7rem] uppercase tracking-[0.18em] text-white/80 sm:text-[0.72rem]">
+
+                  <span className="eyebrow truncate text-[0.62rem] uppercase tracking-[0.18em] text-white/80 sm:text-[0.68rem] lg:text-[0.7rem]">
                     {label}
                   </span>
                 </div>

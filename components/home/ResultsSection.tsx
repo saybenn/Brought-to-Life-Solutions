@@ -81,19 +81,14 @@ export function ResultsSection() {
     >
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="max-w-4xl">
-          <p className="eyebrow text-[var(--muted)] text-sm  w-fit">
-            05. Results & Proof
+        <header className="max-w-4xl space-y-6">
+          <p className="eyebrow w-fit border-b border-[var(--border)] text-sm text-[var(--muted)] lg:mx-0">
+            06. Results & Proof
           </p>
 
           <h2 className="h2 mt-3 text-3xl sm:text-4xl lg:text-5xl leading-tight">
             Not redesigns. System installations that fixed problems.
           </h2>
-
-          <p className="mt-3 text-sm sm:text-base text-(--ink-700)">
-            No “pretty pages.” We wire visibility, proof, conversion, offers,
-            operations, and analytics so revenue stops feeling random.
-          </p>
         </header>
 
         {/* Scan row (new) */}

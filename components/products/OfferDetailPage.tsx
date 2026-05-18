@@ -31,8 +31,9 @@ export default function OfferDetailPage({ offer, detail }: Props) {
         />
 
         <div className="mt-(--space-10) space-y-(--space-10)">
-          <OfferShiftSection offer={offer} detail={detail} />
           <OfferIncludedSection offer={offer} detail={detail} />
+          <OfferShiftSection offer={offer} detail={detail} />
+
           <OfferDifferenceSection offer={offer} detail={detail} />
           <OfferFitSection offer={offer} detail={detail} />
           <OfferPurchaseSection offer={offer} detail={detail} />

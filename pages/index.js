@@ -11,6 +11,7 @@ import { ProductSection } from "@/components/home/ProductSection";
 import { ResultsSection } from "@/components/home/ResultsSection";
 import FaqSection from "../components/home/FAQSection";
 import FinalCtaSection from "@/components/home/FinalCtaSection";
+import SystemVisibilityShowcase from "@/components/home/showcase/SystemVisibilityShowcase";
 
 export default function Home() {
   return (
@@ -31,6 +32,7 @@ export default function Home() {
         <WhoWeAre />
         <SixSocketsIntro />
         <ProductSection />
+        <SystemVisibilityShowcase />
         <ResultsSection />
         <FaqSection />
         <FinalCtaSection />

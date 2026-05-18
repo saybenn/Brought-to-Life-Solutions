@@ -8,7 +8,7 @@ export default function WhoWeAre() {
     <section className="bg-[var(--bg-ivory)] text-[var(--ink-900)] py-20 sm:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center space-y-6">
         {/* Eyebrow */}
-        <p className="eyebrow text-[var(--muted)] text-sm md:border-b md:border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
+        <p className="eyebrow text-[var(--muted)] text-sm border-b border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
           02. WHO WE ARE
         </p>
 

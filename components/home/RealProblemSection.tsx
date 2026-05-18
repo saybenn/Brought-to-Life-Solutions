@@ -3,14 +3,14 @@
 export function RealProblemSection() {
   return (
     <section className="bg-[var(--bg-ivory)] text-[var(--ink-900)]">
-      <div className="mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-        <p className="eyebrow text-[var(--muted)] text-xs sm:text-sm md:border-b md:border-[var(--border)] text-right pb-2 w-fit font-semibold ml-auto">
+      <div className="mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24">
+        <p className="eyebrow text-[var(--muted)] text-xs sm:text-sm border-b border-[var(--border)] text-right pb-2 w-fit font-semibold ml-auto">
           01. WHO WE BUILD FOR
         </p>
 
-        <div className="grid gap-10 sm:gap-12 lg:grid-cols-5 lg:gap-16 pt-10 sm:pt-12">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-5 lg:gap-16 lg:pt-10">
           {/* Left: Pain + root cause */}
-          <div className="lg:order-1 order-2 space-y-7 md:pr-10 md:border-r md:border-[var(--border)] lg:col-span-2">
+          <div className="lg:order-1 order-2 space-y-5 md:pr-10 border-r border-[var(--border)] lg:col-span-2">
             <div className="space-y-2">
               <p className="eyebrow text-[var(--muted)]">THE ISSUE</p>
             </div>

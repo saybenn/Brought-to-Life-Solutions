@@ -26,6 +26,7 @@ type ShopOffer = Offer & {
 
 function getIntentFromCadence(offer: ShopOffer) {
   if (offer.cadence === "application") return "apply";
+
   if (offer.cadence === "monthly" || offer.cadence === "subscription") {
     return "subscribe";
   }
@@ -42,9 +43,9 @@ function buildPrimaryHref(offer: ShopOffer) {
 }
 
 function getTopLabel(offer: ShopOffer) {
-  if (offer.badge) return offer.badge.toUpperCase();
   if (offer.stage) return offer.stage.toUpperCase();
   if (offer.category) return offer.category.toUpperCase();
+  if (offer.badge) return offer.badge.toUpperCase();
 
   return "SYSTEM";
 }
@@ -83,6 +84,7 @@ export default function OfferCard({ offer, sectionKey, index }: Props) {
   const priceSignal = getPriceSignal(shopOffer);
   const featured = shopOffer.id === "revenue_engine" || shopOffer.isFeatured;
 
+  const topLabel = getTopLabel(shopOffer);
   const headline = getFallbackHeadline(shopOffer);
   const narrative = getFallbackNarrative(shopOffer);
   const deliverables = shopOffer.deliverables ?? [];
@@ -92,21 +94,21 @@ export default function OfferCard({ offer, sectionKey, index }: Props) {
   return (
     <ShopGlassCard
       featured={featured}
-      className="min-h-[360px] transition-all hover:scale-103"
+      className="min-h-[360px] transition-all hover:scale-[1.03]"
     >
-      <div className="mb-4 flex items-start justify-between gap-4">
-        <div className="flex min-w-0 flex-col items-start gap-1">
-          <p className="text-[12px] tracking-[0.26em] text-[rgba(247,243,235,0.62)]">
-            {getTopLabel(shopOffer)}
+      <div className="mb-4 flex min-w-0 items-start justify-between gap-3">
+        <div className="flex min-w-0 flex-1 flex-col items-start gap-1">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[rgba(247,243,235,0.62)] sm:text-[12px]">
+            {topLabel}
           </p>
 
-          <h3 className="truncate font-[var(--font-head)] text-lg leading-[1.05] text-[rgba(247,243,235,0.92)] sm:text-xl">
+          <h3 className="max-w-full font-[var(--font-head)] text-lg leading-[1.08] text-[rgba(247,243,235,0.92)] sm:text-xl">
             {shopOffer.title}
           </h3>
         </div>
 
         {featured && shopOffer.badge ? (
-          <span className="xl:inline-flex shrink-0 items-center rounded-full border border-white/35 bg-white/10 px-3 py-1 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[rgba(247,243,235,0.9)] sm:hidden ">
+          <span className="hidden shrink-0 items-center rounded-full border border-white/30 bg-white/8 px-2.5 py-1 text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[rgba(247,243,235,0.86)] lg:inline-flex xl:px-3 xl:text-[0.62rem]">
             {shopOffer.badge}
           </span>
         ) : null}
@@ -119,11 +121,13 @@ export default function OfferCard({ offer, sectionKey, index }: Props) {
       </div>
 
       <div className="mb-5 space-y-4 sm:mb-6">
-        <p className="text-md font-bold text-[rgba(247,243,235,0.94)]">
+        <p className="text-base font-bold leading-snug text-[rgba(247,243,235,0.94)]">
           {headline}
         </p>
 
-        <p className="text-sm text-[rgba(247,243,235,0.78)]">{narrative}</p>
+        <p className="text-sm leading-relaxed text-[rgba(247,243,235,0.78)]">
+          {narrative}
+        </p>
 
         {deliverables.length > 0 ? (
           <div className="pt-1">

@@ -73,7 +73,7 @@ export function TrustStripB() {
           <span className="mx-3 text-[var(--muted-400)]">•</span>
           48-hour onboarding
           <span className="mx-3 text-[var(--muted-400)]">•</span>
-          Revenue-first wireframes
+          Income-first frameworks
           <span className="mx-3 text-[var(--muted-400)]">•</span>
           Clear, predictable timelines
         </div>

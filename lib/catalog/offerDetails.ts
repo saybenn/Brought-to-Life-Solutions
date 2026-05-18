@@ -5,7 +5,168 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
   // =========================
   // BUILD
   // =========================
+single_page_application: {
+  offerId: "single_page_application",
+  slug: "single-page-application",
+  id: "single-page-application",
+  title: "Single Page Application",
 
+  hero: {
+    eyebrow: "FOUNDATION",
+    headline:
+      "A focused one-page web app that makes your business look legitimate and gives visitors a clear way to contact you.",
+    subhead:
+      "Built for owners who do not need a full website yet, but still need a clean, mobile-friendly page they can confidently send people to.",
+    whyItExists:
+      "Some businesses are not ready for a full website build. But they still need more than a social profile, link page, or unfinished landing page. This gives you one clear online home: what you do, who it helps, why it matters, and how to reach you.",
+    proofLine:
+      "Includes a contact form, mobile-first layout, clear call-to-action sections, and basic page setup.",
+    proofCue:
+      "Best for simple offers, early-stage businesses, personal brands, and service providers who need a clean first step.",
+    perspectiveLock:
+      "A one-page site should not try to do everything. It should make the offer clear, remove doubt, and make contact easy.",
+    secondaryCta: {
+      label: "Talk First",
+      href: "/contact?intent=talk&offerId=single_page_application",
+      analyticsLabel: "primary_guided_cta",
+      intent: "Request a Routing Call",
+    },
+    primaryActionLabel: "View what’s included",
+    primaryActionTargetId: "included",
+  },
+
+  shift: {
+    title: "Before → After",
+    before: [
+      "You have nowhere polished to send people",
+      "Your business depends on social profiles, word of mouth, or scattered links",
+      "Visitors cannot quickly understand what you offer",
+      "People interested in working with you do not have a simple contact path",
+    ],
+    after: [
+      "One clean page you can confidently share",
+      "A clear explanation of your offer and next step",
+      "A mobile-friendly layout that feels legitimate",
+      "A contact form wired so inquiries can reach you",
+    ],
+  },
+
+  included: {
+    title: "What you actually get",
+    intro:
+      "A focused one-page build with the essentials included. Clear scope, simple structure, and a contact path that works.",
+    groups: [
+      {
+        title: "One-page web app",
+        items: [
+          "Custom single-page application",
+          "Mobile-friendly layout",
+          "Clear page flow built around your offer",
+        ],
+      },
+      {
+        title: "Core page sections",
+        items: [
+          "Hero section with clear headline and call-to-action",
+          "Offer or service explanation section",
+          "Trust, credibility, or simple proof section",
+          "Final call-to-action section",
+        ],
+      },
+      {
+        title: "Contact wiring",
+        items: [
+          "Contact form included",
+          "Form fields matched to your basic inquiry needs",
+          "Form submission path connected so leads can reach you",
+        ],
+      },
+      {
+        title: "Basic launch foundation",
+        items: [
+          "Basic on-page SEO setup",
+          "Responsive QA across common screen sizes",
+          "Deployment-ready structure",
+        ],
+      },
+    ],
+    effortLine:
+      "We keep the scope focused. You provide the basics; we shape it into a clean one-page presence.",
+    note:
+      "This is a one-page build. It does not include multi-page site architecture, dashboard analytics, CMS/blog setup, or ongoing SEO.",
+  },
+
+  difference: {
+    title: "How this is different from a full website",
+    notThis: [
+      "This is not a full business website with multiple pages.",
+      "This is not a dashboard-backed revenue engine.",
+      "This is not a cheap placeholder page with no real structure.",
+    ],
+    thisIs: [
+      "A clean single-page web app built to give your business a legitimate online home.",
+      "A focused page that explains the offer and makes contact easy.",
+      "A practical foundation you can expand later if the business needs more.",
+    ],
+  },
+
+  fit: {
+    title: "Who it’s for (and who it’s not)",
+    goodFor: [
+      "New businesses that need a clean first web presence",
+      "Simple service offers that do not need several pages yet",
+      "Personal brands or operators who need one polished page",
+      "Owners who need something better than a social profile or link page",
+    ],
+    notFor: [
+      "Businesses that need a full multi-page website",
+      "Companies needing advanced analytics, CMS, booking, or payment logic",
+      "People expecting a full brand strategy or copywriting package at this price",
+      "Offers that are too complex to explain clearly on one page",
+    ],
+  },
+
+  purchase: {
+    title: "Ready when you are",
+    price: {
+      display: "$569",
+      cadence: "one_time",
+      startingAtCents: 56900,
+    },
+    stepsTitle: "After purchase:",
+    steps: [
+      "We collect your basics: business name, offer, contact details, and any existing brand assets",
+      "We shape the one-page structure so the offer is clear",
+      "We design and build the page for mobile and desktop",
+      "We wire the contact form so inquiries can reach you",
+      "You review — we tighten anything unclear",
+      "We prepare the page for launch and verify the essentials",
+    ],
+    riskRemoval: [
+      "Clear scope up front — one focused page with a contact form.",
+      "No full website commitment required.",
+      "Built so it can be expanded later instead of thrown away.",
+    ],
+    scarcityLine:
+      "Best for owners who need a clean online home now without overbuilding the first version.",
+    primaryCta: {
+      label: "Start Single Page Application",
+      href: "/checkout?offerId=single_page_application&intent=buy",
+    },
+    secondaryCta: {
+      label: "Talk first",
+      href: "/contact?intent=talk&offerId=single_page_application",
+      analyticsLabel: "primary_guided_cta",
+      intent: "Request a routing call",
+    },
+  },
+
+  meta: {
+    title: "Single Page Application | Brought to Life Solutions",
+    description:
+      "A focused one-page web app with a contact form, mobile-friendly layout, and clear offer structure — built for businesses that need a clean online presence without a full website.",
+  },
+},
   starter_system: {
     offerId: "starter_system",
     slug: "starter-system",
@@ -125,9 +286,9 @@ export const OFFER_DETAILS: Record<string, OfferDetail> = {
     purchase: {
       title: "Ready when you are",
       price: {
-        display: "From $2,000",
+        display: "From $1,850",
         cadence: "one_time",
-        startingAtCents: 200000,
+        startingAtCents: 185000,
       },
       stepsTitle: "After routing:",
       steps: [
@@ -242,7 +403,6 @@ included: {
       title: "Call tracking options",
       items: [
         "Included: click-to-call tracking (measures call intent from the site)",
-        "Optional add-on: tracked call numbers (measures actual calls + sources; monthly pass-through cost)",
       ],
     },
     {
@@ -297,9 +457,9 @@ included: {
     purchase: {
       title: "Ready when you are",
       price: {
-        display: "From $4,800",
+        display: "From $4,500",
         cadence: "one_time",
-        startingAtCents: 480000,
+        startingAtCents: 450000,
       },
       stepsTitle: "After routing:",
       steps: [
@@ -586,9 +746,9 @@ included: {
     purchase: {
       title: "Ready when you are",
       price: {
-        display: "From $199/mo",
+        display: "From $150/mo",
         cadence: "monthly",
-        startingAtCents: 19900,
+        startingAtCents: 15000,
       },
       stepsTitle: "After routing:",
       steps: [
@@ -729,9 +889,9 @@ included: {
     purchase: {
       title: "Ready when you are",
       price: {
-        display: "From $300/mo",
+        display: "From $250/mo",
         cadence: "monthly",
-        startingAtCents: 30000,
+        startingAtCents: 25000,
       },
       stepsTitle: "After routing:",
       steps: [
@@ -1013,9 +1173,9 @@ included: {
     purchase: {
       title: "Ready when you are",
       price: {
-        display: "From $690",
+        display: "From $350",
         cadence: "one_time",
-        startingAtCents: 69000,
+        startingAtCents: 35000,
       },
       stepsTitle: "After routing:",
       steps: [
@@ -1158,9 +1318,9 @@ included: {
   purchase: {
     title: "Ready when you are",
     price: {
-      display: "From $1,500",
+      display: "From $900",
       cadence: "one_time",
-      startingAtCents: 150000,
+      startingAtCents: 90000,
     },
     stepsTitle: "After routing:",
     steps: [
@@ -1297,9 +1457,9 @@ included: {
     purchase: {
       title: "Ready when you are",
       price: {
-        display: "From $250",
+        display: "From $150",
         cadence: "one_time",
-        startingAtCents: 25000,
+        startingAtCents: 15000,
       },
       stepsTitle: "After routing:",
       steps: [

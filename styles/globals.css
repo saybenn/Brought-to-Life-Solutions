@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./components.css";
+@import "./showcase.css";
 
 :root {
   /* Data visualization (separate from brand green) */
@@ -56,4 +57,3 @@ li {
     Arial,
     sans-serif;
 }
-

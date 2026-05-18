@@ -41,6 +41,47 @@ export function trackShopEvent(event: string, payload: Record<string, any>) {
 
 export const OFFERS: Offer[] = [
   {
+  id: "single_page_application",
+  slug: "single-page-application",
+  title: "Single Page Application",
+  category: "Build",
+  stage: "Foundation",
+
+  promise:
+    "A focused one-page web app that makes your business look legitimate and gives visitors a clear way to contact you.",
+
+  subpromise:
+    "Clean, mobile-friendly, and built around one clear offer with a contact form included.",
+
+  bestFor:
+    "Owners who need a polished online presence without committing to a full website yet.",
+
+  startingAtCents: 56900,
+  cadence: "one_time",
+  cta: "Buy",
+  badge: "Foundation",
+  isFeatured: false,
+
+  outcomeHeadline:
+    "A clean one-page web app that gives your business a real online home.",
+
+  outcomeNarrative:
+    "We build a focused single-page application so visitors can quickly understand what you offer, trust that you are legitimate, and contact you through a simple form.",
+
+  deliverablesIntro: "You get:",
+
+  deliverables: [
+    "Custom single-page application",
+    "Mobile-friendly responsive layout",
+    "Clear hero section that explains what you do",
+    "Offer or service section that gives visitors the essentials",
+    "Trust or credibility section to reduce doubt",
+    "Contact form included and wired for inquiries",
+    "Basic on-page SEO setup",
+    "Launch-ready foundation that can be expanded later",
+  ],
+},
+  {
     id: "starter_system",
     slug: "starter-system",
     title: "Starter System",

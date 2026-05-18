@@ -77,8 +77,8 @@ const SOCKETS: {
 export function SixSocketsIntro() {
   const [activeId, setActiveId] = useState<SocketId | null>(null);
 
-  const activeCopy =
-    SOCKETS.find((s) => s.id === activeId)?.copy ?? DEFAULT_COPY;
+  const activeSocket = SOCKETS.find((socket) => socket.id === activeId);
+  const activeCopy = activeSocket?.copy ?? DEFAULT_COPY;
 
   return (
     <section className="relative isolate overflow-hidden bg-[var(--ink-900)] text-white">
@@ -91,7 +91,7 @@ export function SixSocketsIntro() {
           priority={false}
           className="object-cover"
         />
-        {/* Dark pine overlay – mixed green + black */}
+
         <div
           className="absolute inset-0"
           style={{
@@ -102,21 +102,30 @@ export function SixSocketsIntro() {
       </div>
 
       {/* Content */}
-      <div className="relative mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-12 lg:gap-16 text-center">
+      <div className="relative mx-auto max-w-10/12 px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div className="flex flex-col gap-12 text-center lg:flex-row lg:items-center lg:justify-between lg:gap-16">
           {/* Copy block */}
-          <div className="max-w-xl space-y-5 animate-fadeUp">
-            <p className="eyebrow mx-auto text-[var(--muted)] text-sm  w-fit">
+          <div className="mx-auto max-w-xl space-y-5 animate-fadeUp lg:mx-0">
+            <p className="eyebrow mx-auto w-fit border-b border-[var(--border)] text-sm text-[var(--muted)] lg:mx-0">
               03. THE SIX SOCKETS
             </p>
 
-            <h2 className="h2 on-dark text-3xl sm:text-4xl lg:text-5xl leading-tight">
+            <h2 className="h2 on-dark text-3xl leading-tight sm:text-4xl lg:text-5xl">
               When a website is built as a complete system, it becomes an
               asset—not an expense.
             </h2>
 
-            <p className="subhead on-dark-sub">{activeCopy}</p>
-            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+            {/* Stable copy well prevents layout jump */}
+            <div className="mx-auto flex min-h-[132px] max-w-xl items-center justify-center lg:mx-0 lg:min-h-[120px] lg:justify-start">
+              <p
+                key={activeId ?? "default"}
+                className="subhead on-dark-sub animate-fadeUp"
+              >
+                {activeCopy}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row lg:justify-start">
               <Link
                 onClick={() =>
                   track("click cta", {
@@ -138,17 +147,26 @@ export function SixSocketsIntro() {
           </div>
 
           {/* Circular sockets visual */}
-          <div className="w-full max-w-xs sm:max-w-sm mx-auto lg:mx-0">
-            <div className="relative aspect-square">
+          <div className="mx-auto w-full max-w-xs sm:max-w-sm lg:mx-0">
+            <div
+              className="relative aspect-square"
+              onMouseLeave={() => setActiveId(null)}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) {
+                  setActiveId(null);
+                }
+              }}
+            >
               {/* Outer ring */}
               <div className="absolute inset-4 rounded-full border border-white/25" />
+
               {/* Inner ring */}
               <div className="absolute inset-16 rounded-full border border-white/15" />
 
               {/* Center label */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+              <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
                 <p className="eyebrow on-dark-muted mb-1">REVENUE FRAMEWORK</p>
-                <p className="font-body text-xs sm:text-sm leading-snug on-dark-sub">
+                <p className="font-body text-xs leading-snug on-dark-sub sm:text-sm">
                   The six sockets your website must plug into for predictable
                   income.
                 </p>
@@ -164,26 +182,24 @@ export function SixSocketsIntro() {
                     type="button"
                     onMouseEnter={() => setActiveId(socket.id)}
                     onFocus={() => setActiveId(socket.id)}
+                    onClick={() => setActiveId(socket.id)}
                     className={cn(
                       "group absolute transform cursor-pointer",
                       socket.pos,
                     )}
                     aria-label={socket.label}
+                    aria-pressed={isActive}
                   >
                     <span
                       className={cn(
                         "socket-float inline-flex items-center justify-center rounded-full px-3 py-1",
                         "backdrop-blur-3xl",
-                        "text-[0.6rem] sm:text-[0.7rem] font-medium tracking-[0.22em] uppercase whitespace-nowrap",
-                        "transition-all duration-300 border",
-
-                        // ✅ PERSISTENT ACTIVE STATE
+                        "whitespace-nowrap text-[0.6rem] font-medium uppercase tracking-[0.22em] sm:text-[0.7rem]",
+                        "border transition-all duration-300",
                         isActive
-                          ? "text-white border-white/80 bg-white/5 shadow-[0_0_0_1px_rgba(255,255,255,0.25)]"
-                          : "on-dark-muted border-transparent",
-
-                        // ✅ SOFT HOVER STATE (doesn't fight with active, just boosts it)
-                        "group-hover:text-white group-hover:border-white/60 group-hover:bg-white/5",
+                          ? "border-white/80 bg-white/5 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.25)]"
+                          : "border-transparent on-dark-muted",
+                        "group-hover:border-white/60 group-hover:bg-white/5 group-hover:text-white",
                       )}
                       style={{
                         animationDelay: socket.delay,
