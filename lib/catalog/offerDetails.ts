@@ -1062,7 +1062,189 @@ included: {
         "Ongoing content + on-page optimization to build steady Google visibility and more calls over time.",
     },
   },
+btls_dashboard: {
+  offerId: "btls_dashboard",
+  slug: "btls-dashboard",
+  id: "btls-dashboard",
+  title: "BTLS Dashboard",
 
+  hero: {
+    eyebrow: "VISIBILITY",
+    headline:
+      "A clear dashboard that shows what your website is doing after launch.",
+    subhead:
+      "Built for BTLS-built sites that need ongoing visibility into traffic, calls, forms, CTA clicks, sources, pages, funnel movement, and next actions.",
+    whyItExists:
+      "A website should not go quiet after it launches. Most owners either guess from surface-level activity or get buried in tools like GA4. This gives you a cleaner operating view of what your BTLS-built site is actually producing.",
+    proofLine:
+      "We install and configure the dashboard around your existing BTLS-built site so the numbers reflect the actions that matter.",
+    proofCue:
+      "Available for BTLS-built websites only.",
+    perspectiveLock:
+      "This is not a generic analytics product or an open reporting portal for any website. It is a visibility layer for BTLS systems with known tracking, known structure, and clear business goals.",
+    secondaryCta: {
+      label: "Talk First",
+      href: "/contact?intent=talk&offerId=btls_dashboard",
+      analyticsLabel: "primary_guided_cta",
+      intent: "Request a Routing Call",
+    },
+    primaryActionLabel: "View what’s included",
+    primaryActionTargetId: "included",
+  },
+
+  shift: {
+    title: "Before → After",
+    before: [
+      "You launched the site, but you cannot easily tell what it is doing",
+      "You do not know which pages, sources, or CTAs are creating real activity",
+      "Calls, forms, and clicks feel disconnected from the bigger picture",
+      "GA4 has data, but it is too noisy for everyday business decisions",
+      "You are unsure what to improve next",
+    ],
+    after: [
+      "A clear dashboard tied to your BTLS-built website",
+      "Visibility into traffic, calls, forms, CTA clicks, and source quality",
+      "Funnel and conversion views that show where people move or drop off",
+      "Simple next-action signals instead of raw analytics noise",
+      "A better way to decide what to fix, improve, or test next",
+    ],
+  },
+
+  included: {
+    title: "What you actually get",
+    intro:
+      "If you add the dashboard, here’s what’s included—clearly scoped around visibility, tracking, and practical decision-making.",
+    groups: [
+      {
+        title: "Dashboard install",
+        items: [
+          "Dashboard installed for your BTLS-built website",
+          "$500 one-time install and configuration",
+          "Dashboard mapped around your primary website goal",
+        ],
+      },
+      {
+        title: "Website activity visibility",
+        items: [
+          "Traffic overview and recent performance signals",
+          "CTA click visibility",
+          "Phone call click visibility",
+          "Form submission visibility",
+          "Booking or primary goal tracking when available",
+        ],
+      },
+      {
+        title: "Funnel + conversion insight",
+        items: [
+          "Funnel progression view",
+          "Conversion trend visibility",
+          "Goal health panel",
+          "Executive snapshot for quick decision-making",
+          "Biggest leak or weak-point signal when available",
+        ],
+      },
+      {
+        title: "Source + page insight",
+        items: [
+          "Lead source conversion breakdown",
+          "Page-level activity summaries",
+          "CTA outcome performance",
+          "Traffic context by source or medium",
+        ],
+      },
+      {
+        title: "Ongoing visibility layer",
+        items: [
+          "$149/month dashboard access",
+          "Simple next-action recommendations",
+          "Tracking caveats noted where attribution is limited",
+          "Built around business actions, not vanity metrics",
+        ],
+      },
+    ],
+    effortLine:
+      "We handle the dashboard install, configuration, goal mapping, and verification. You use it to see what the site is doing.",
+    note:
+      "Available for BTLS-built websites only. This keeps the dashboard connected to a known site structure and controlled tracking setup.",
+  },
+
+  difference: {
+    title: "How this is different from normal analytics",
+    notThis: [
+      "This is not a replacement for GA4.",
+      "This is not an open SaaS analytics product for any website.",
+      "This is not a bloated reporting portal full of vanity metrics.",
+      "This is not a one-time PDF report that goes stale.",
+    ],
+    thisIs: [
+      "A visibility layer for BTLS-built websites.",
+      "A clearer way to see whether your website is creating business movement.",
+      "A dashboard focused on calls, forms, CTAs, sources, pages, and funnel behavior.",
+      "A practical decision tool that helps you know what to improve next.",
+    ],
+  },
+
+  fit: {
+    title: "Who it’s for (and who it’s not)",
+    goodFor: [
+      "BTLS clients who want clearer website visibility after launch",
+      "Service businesses that depend on calls, forms, bookings, or quote requests",
+      "Owners who want practical signals without learning GA4",
+      "Businesses running ads, SEO, content, or local campaigns",
+      "Operators who want to improve the website instead of guessing",
+    ],
+    notFor: [
+      "Websites not built by BTLS",
+      "Businesses with no meaningful conversion path yet",
+      "Owners who want raw analytics complexity instead of simplified signals",
+      "Teams needing enterprise BI, custom warehousing, or deep attribution modeling",
+      "People expecting perfect attribution from imperfect tracking environments",
+    ],
+  },
+
+  purchase: {
+    title: "Ready when you are",
+    price: {
+      display: "$149/mo + $500 install",
+      cadence: "monthly",
+      startingAtCents: 14900,
+      installFeeCents: 50000,
+    },
+    stepsTitle: "After subscription:",
+    steps: [
+      "We confirm your BTLS-built site and the conversion paths that matter",
+      "We review the existing tracking for calls, forms, CTAs, and primary goals",
+      "We install and configure the dashboard connection",
+      "We map the dashboard around your primary website goal",
+      "We verify key activity is reading correctly",
+      "You get a clean visibility layer for ongoing website decisions",
+    ],
+    riskRemoval: [
+      "Only available for BTLS-built sites so the tracking structure stays controlled.",
+      "Clear install fee and monthly cost up front.",
+      "Built around business actions, not vanity metrics.",
+      "If something cannot be tracked cleanly, we tell you instead of pretending attribution is perfect.",
+    ],
+    scarcityLine:
+      "Dashboard installs are limited because each one needs clean tracking, goal mapping, and verification.",
+    primaryCta: {
+      label: "Start BTLS Dashboard",
+      href: "/checkout?offerId=btls_dashboard&intent=subscribe",
+    },
+    secondaryCta: {
+      label: "Talk first",
+      href: "/contact?intent=talk&offerId=btls_dashboard",
+      analyticsLabel: "primary_guided_cta",
+      intent: "Request a routing call",
+    },
+  },
+
+  meta: {
+    title: "BTLS Dashboard | Brought to Life Solutions",
+    description:
+      "A visibility dashboard for BTLS-built websites that shows traffic, calls, forms, CTA clicks, source quality, funnel movement, and next actions.",
+  },
+},
   // =========================
   // ASSETS
   // =========================

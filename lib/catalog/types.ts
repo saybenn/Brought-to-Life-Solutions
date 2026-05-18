@@ -83,6 +83,7 @@ export type Offer = {
   subpromise?: string;
   bestFor?: string;
   startingAtCents?: number;
+  installFeeCents?: number;
   cadence?: OfferCadence;
   cta?: OfferCardCta;
   outcomeHeadline?: string;
@@ -156,6 +157,7 @@ export type OfferPrice = {
   display: string;
   cadence: OfferCadence;
   startingAtCents?: number;
+  installFeeCents?: number;
 };
 
 export type OfferPurchase = {

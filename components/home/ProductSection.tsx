@@ -11,9 +11,9 @@ export function ProductSection() {
   // Home section is "Your System options" → this is the 3-lane ladder:
   // Starter System (Foundation) → Revenue Engine (Most Chosen) → Growth Partner (Ongoing)
   const SYSTEM_IDS: Offer["id"][] = [
-    "starter_system",
+    "seo_maintenance",
     "revenue_engine",
-    "growth_partner",
+    "btls_dashboard",
   ];
 
   const systems = SYSTEM_IDS.map((id) =>
@@ -51,7 +51,7 @@ export function ProductSection() {
       <div className="relative z-10 mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 lg:mb-16 space-y-6">
-          <p className="eyebrow mx-auto w-fit border-b border-[var(--border)] text-sm text-[var(--muted)] lg:mx-0">
+          <p className="eyebrow text-[var(--muted)] text-sm border-b border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
             04. Your System options
           </p>
 

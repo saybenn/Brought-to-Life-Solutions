@@ -10,11 +10,10 @@ type Props = {
 
 /**
  * Faint slab container primitive.
+ * - Mobile-safe width containment
  * - Tint + hairline border
  * - Minimal shadow
- * - No blur (keep performance predictable)
- *
- * Variants allow alternating rhythm across sections.
+ * - No blur for predictable performance
  */
 export default function SectionContainer({
   children,
@@ -22,7 +21,8 @@ export default function SectionContainer({
   variant = "default",
 }: Props) {
   const base =
-    "rounded-[var(--r-lg)] border shadow-[0_18px_60px_rgba(0,0,0,0.35)]";
+    "min-w-0 max-w-full overflow-hidden rounded-[var(--r-lg)] border shadow-[0_18px_60px_rgba(0,0,0,0.35)]";
+
   const surface =
     variant === "alt"
       ? "border-white/14 bg-white/[0.06]"

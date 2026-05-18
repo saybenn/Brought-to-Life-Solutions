@@ -94,7 +94,7 @@ export const OFFERS: Offer[] = [
       "Clean, fast, and built so customers trust you and know how to reach you.",
     bestFor:
       "Owners starting out or fixing a bad site who want something solid.",
-    startingAtCents: 200000,
+    startingAtCents: 185000,
     cadence: "one_time",
     cta: "Buy",
     badge: "Foundation",
@@ -128,7 +128,7 @@ export const OFFERS: Offer[] = [
       "We wire your site so the right people find you, trust you, and contact you — without guessing what’s working.",
     bestFor:
       "Owners who depend on their business income and want predictable leads.",
-    startingAtCents: 480000,
+    startingAtCents: 450000,
     cadence: "one_time",
     cta: "Buy",
     badge: "Most Chosen",
@@ -148,6 +148,47 @@ export const OFFERS: Offer[] = [
       "A system you can improve instead of replacing",
     ],
   },
+
+{
+  id: "btls_dashboard",
+  slug: "btls-dashboard",
+  title: "BTLS Dashboard",
+  category: "Growth",
+  stage: "Operations",
+
+  promise:
+    "A simple dashboard that shows what is working, what is leaking, and what to improve next.",
+
+  subpromise:
+    "Built for BTLS-built sites so owners can see traffic, calls, forms, CTAs, sources, pages, and conversion movement without digging through GA4.",
+
+  bestFor:
+    "BTLS clients who want clearer website visibility after launch.",
+
+  startingAtCents: 14900,
+  installFeeCents: 50000,
+  cadence: "monthly",
+  cta: "Subscribe",
+  badge: "Visibility",
+  isFeatured: false,
+
+  outcomeHeadline:
+    "See what your BTLS-built website is doing before you spend more money guessing.",
+
+  outcomeNarrative:
+    "We connect your BTLS-built website activity into a simple dashboard so you can understand how visitors move, which sources create leads, which CTAs get used, and where the system needs attention.",
+
+  deliverablesIntro: "You get:",
+
+  deliverables: [
+    "Dashboard installed for your BTLS-built site",
+    "CTA click, call, form, and booking visibility",
+    "Lead source and page-level insight",
+    "Funnel progression and conversion trend views",
+    "Goal health and executive snapshot panels",
+    "Simple next-action recommendations",
+  ],
+},
 
   {
     id: "growth_partner",
@@ -194,7 +235,7 @@ export const OFFERS: Offer[] = [
     subpromise:
       "We handle updates, monitoring, and backups so nothing quietly breaks.",
     bestFor: "Owners who want zero headaches and zero downtime.",
-    startingAtCents: 19900,
+    startingAtCents: 15000,
     cadence: "monthly",
     cta: "Subscribe",
 
@@ -225,7 +266,7 @@ export const OFFERS: Offer[] = [
       "We keep your local presence accurate, active, and improving over time.",
     bestFor:
       "Local service businesses that want steady visibility without guessing.",
-    startingAtCents: 30000,
+    startingAtCents: 25000,
     cadence: "monthly",
     cta: "Subscribe",
 
@@ -283,7 +324,7 @@ export const OFFERS: Offer[] = [
       "We write service messaging that explains what you do and why you’re the right choice.",
     bestFor:
       "Owners who know they’re good — but their website doesn’t explain it.",
-    startingAtCents: 69000,
+    startingAtCents: 35000,
     cadence: "one_time",
     cta: "Buy",
 
@@ -309,7 +350,7 @@ export const OFFERS: Offer[] = [
       "We capture the exact images your site needs to build trust fast—work, process, proof, and people—without a brand-shoot vibe.",
     bestFor:
       "Service businesses whose website is structurally sound but visually unconvincing (stock, phone pics, or nothing).",
-    startingAtCents: 150000,
+    startingAtCents: 90000,
     cadence: "one_time",
     cta: "BookCall",
 
@@ -338,7 +379,7 @@ export const OFFERS: Offer[] = [
     subpromise:
       "A working session that shows where money is leaking and what actually matters.",
     bestFor: "Owners who want answers before spending more money.",
-    startingAtCents: 25000,
+    startingAtCents: 15000,
     cadence: "one_time",
     cta: "BookCall",
 
