@@ -1,5 +1,7 @@
+// components/home/showcase/SystemVisibilityShowcase.tsx
+
 import Link from "next/link";
-import { BarChart3, FileText, LineChart, UsersRound } from "lucide-react";
+import { FileText, LineChart, UsersRound } from "lucide-react";
 
 import { track } from "@/lib/analytics";
 import ShowcaseDeviceFrame from "./ShowcaseDeviceFrame";
@@ -51,10 +53,10 @@ export default function SystemVisibilityShowcase() {
       className="system-showcase"
       aria-labelledby="system-showcase-title"
     >
-      <div className="system-showcase__inner">
+      <div className="system-showcase__inner mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8">
         <div className="system-showcase__grid">
           <div className="system-showcase__copy space-y-6">
-            <p className="eyebrow text-[var(--muted)] text-sm border-b border-[var(--border)] pb-2 w-fit font-semibold ">
+            <p className="eyebrow w-fit border-b border-[var(--border)] pb-2 text-sm font-semibold text-[var(--muted)]">
               05. System Visibility
             </p>
 
@@ -63,9 +65,10 @@ export default function SystemVisibilityShowcase() {
             </h2>
 
             <p className="system-showcase__body">
-              BTLS dashboards connect traffic, lead capture, customer records,
-              and content activity into one operating view — so owners can make
-              better decisions without guessing.
+              The BTLS dashboard connects traffic, lead capture, customer
+              records, and content activity into one operating view. It gives
+              visibility, so updates are not blind guessing games and comes
+              complimentary with our Revenue Engine.
             </p>
 
             <div

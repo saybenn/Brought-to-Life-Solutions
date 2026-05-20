@@ -14,7 +14,7 @@ type SocketId =
   | "analytics";
 
 const DEFAULT_COPY =
-  "Most owners don't need more hustle or hacks—they need a calm system that quietly handles visibility, proof, conversion, offers, operations, and analytics. When those six sockets are wired together, income stops feeling random and starts feeling repeatable.";
+  "Most owners don't need more hustle or hacks—they need a well-crafted shape that naturally keeps them afloat. That's what we believe the six sockets acheive.";
 
 const SOCKETS: {
   id: SocketId;
@@ -111,7 +111,7 @@ export function SixSocketsIntro() {
             </p>
 
             <h2 className="h2 on-dark text-3xl leading-tight sm:text-4xl lg:text-5xl">
-              When a website is built as a complete system, it becomes an
+              When web presence is approached as a science, a website becomes an
               asset—not an expense.
             </h2>
 
@@ -123,26 +123,6 @@ export function SixSocketsIntro() {
               >
                 {activeCopy}
               </p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row lg:justify-start">
-              <Link
-                onClick={() =>
-                  track("click cta", {
-                    location: "home/six sockets",
-                    intent: "request review",
-                    label: "Request a review of your system",
-                  })
-                }
-                href="/contact?intent=system-review"
-                className={cn(
-                  "inline-flex items-center justify-center rounded-full px-5 py-2.5",
-                  "text-sm font-medium transition-colors",
-                  "bg-white text-[var(--ink-900)] hover:bg-white/90",
-                )}
-              >
-                Request a review of your system
-              </Link>
             </div>
           </div>
 
@@ -213,6 +193,25 @@ export function SixSocketsIntro() {
               })}
             </div>
           </div>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-3 pt-12 sm:flex-row lg:justify-start ">
+          <Link
+            onClick={() =>
+              track("click cta", {
+                location: "home/six sockets",
+                intent: "request review",
+                label: "Request a review of your system",
+              })
+            }
+            href="/contact?intent=system-review"
+            className={cn(
+              "inline-flex items-center justify-center rounded-full px-5 py-2.5 mx-auto",
+              "text-sm font-medium transition-colors",
+              "bg-white text-[var(--ink-900)] hover:bg-white/90",
+            )}
+          >
+            Request a review of your system
+          </Link>
         </div>
       </div>
     </section>

@@ -5,37 +5,39 @@ import Link from "next/link";
 
 export default function WhoWeAre() {
   return (
-    <section className="bg-[var(--bg-ivory)] text-[var(--ink-900)] py-20 sm:py-24">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 text-center space-y-6">
-        {/* Eyebrow */}
-        <p className="eyebrow text-[var(--muted)] text-sm border-b border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
+    <section className="bg-[var(--bg-ivory)] py-20 text-[var(--ink-900)] sm:py-24">
+      <div className="mx-auto max-w-3xl space-y-6 px-4 text-center sm:px-6">
+        <p className="eyebrow mx-auto w-fit border-b border-[var(--border)] pb-2 text-sm font-semibold text-[var(--muted)]">
           02. WHO WE ARE
         </p>
 
-        {/* Headline */}
-        <h2 className="font-head font-bold text-4xl leading-tight sm:text-5xl lg:text-6xl">
-          Systems take the stress out of operating,
-          <span className="block font-normal mt-1 text-[var(--green-pine-800)]">
-            so you can enjoy your craft again.
+        <h2 className="font-head text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
+          A steady partner for integrating systems
+          <span className="mt-1 block font-normal text-[var(--green-pine-800)]">
+            that make business feel manageable again.
           </span>
         </h2>
 
-        {/* Subhead */}
-        <p className="text-[var(--ink-700)] max-w-xl mx-auto">
-          Many small businesses don&apos;t struggle because of a lack of skill —
-          they struggle because everything depends on them. We design clear,
-          reliable systems that reduce friction, remove guesswork, and make
-          growth feel manageable again.
-        </p>
+        <div className="mx-auto max-w-xl space-y-4 text-[var(--ink-700)]">
+          <p>
+            Brought to Life Solutions works with owners who are skilled at what
+            they do, but tired of everything depending on them.
+          </p>
 
-        {/* About link */}
+          <p>
+            We design and build clear, reliable solutions that maximize a
+            business's ability to leverage the internet to increase revenue and
+            reduce operational friction.
+          </p>
+        </div>
+
         <div className="pt-4">
           <Link
             href="/about"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--green-pine-800)] hover:underline underline-offset-4"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--green-pine-800)] underline-offset-4 hover:underline"
             onClick={() =>
               track("click cta", {
-                location: "about",
+                location: "who we are",
                 intent: "learn about us",
                 label: "Learn how we think about structure and systems",
               })

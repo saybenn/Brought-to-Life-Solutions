@@ -3,13 +3,14 @@
 // Uses the same OfferCard used on /shop so content stays consistent.
 
 import React from "react";
+import Link from "next/link";
 import type { Offer } from "@/lib/catalog/types";
 import { OFFERS } from "@/lib/catalog/offers";
 import OfferCard from "@/components/shop/OfferCard";
+import { track } from "@/lib/analytics";
 
 export function ProductSection() {
-  // Home section is "Your System options" → this is the 3-lane ladder:
-  // Starter System (Foundation) → Revenue Engine (Most Chosen) → Growth Partner (Ongoing)
+  // Home section is a curated preview, not the full shop.
   const SYSTEM_IDS: Offer["id"][] = [
     "seo_maintenance",
     "revenue_engine",
@@ -45,29 +46,24 @@ export function ProductSection() {
         }}
       />
 
-      {/* Ambient glow behind featured card (Revenue Engine) */}
-      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 w-[420px] h-[420px] rounded-full blur-3xl opacity-30 bg-[var(--olive-mist)]" />
+      {/* Ambient glow behind featured card */}
+      <div className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[var(--olive-mist)] opacity-30 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14 lg:mb-16 space-y-6">
-          <p className="eyebrow text-[var(--muted)] text-sm border-b border-[var(--border)] pb-2 w-fit font-semibold mx-auto">
-            04. Your System options
+        <div className="mx-auto mb-12 max-w-2xl space-y-6 text-center sm:mb-14 lg:mb-16">
+          <p className="eyebrow mx-auto w-fit border-b border-[var(--border)] pb-2 text-sm font-semibold text-[var(--muted)]">
+            04. Your System Options
           </p>
 
           <h2 className="h2 on-dark text-3xl leading-tight sm:text-4xl lg:text-5xl">
-            Choose the system that makes earning feel predictable.
+            Install a system for your business that does more than just exist
+            online.
           </h2>
-
-          <p className="subhead on-dark-sub mt-4">
-            Each option installs a calm, revenue-first system around your
-            website—so it stops acting like a brochure and starts behaving like
-            an engine.
-          </p>
         </div>
 
         {/* Cards */}
-        <div className="grid gap-6 lg:gap-8 lg:grid-cols-3 items-stretch">
+        <div className="grid items-stretch gap-6 lg:grid-cols-3 lg:gap-8">
           {systems.map((offer, index) => (
             <OfferCard
               key={offer.id}
@@ -78,12 +74,42 @@ export function ProductSection() {
           ))}
         </div>
 
-        {/* Safety / reassurance line */}
-        <p className="mt-8 sm:mt-10 text-center text-[0.78rem] text-[rgba(255,255,255,0.65)] max-w-xl mx-auto">
-          Not sure which system fits? Start With a Routing Call—no pressure,
-          just clear answers and a recommendation based on where your revenue is
-          stuck today.
-        </p>
+        {/* Bottom CTAs */}
+        <div className="mx-auto mt-10 max-w-2xl text-center sm:mt-12">
+          <p className="text-sm leading-relaxed text-[rgba(255,255,255,0.68)] sm:text-base">
+            Not sure which system fits? Start with a Routing Call, or browse the
+            full shop if you do not see what you need here.
+          </p>
+          <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/contact?intent=routing-call"
+              onClick={() =>
+                track("click cta", {
+                  location: "home system options",
+                  intent: "Request a routing call",
+                  label: "Start with a Routing Call",
+                })
+              }
+              className="btn btn-primary w-full justify-center sm:w-auto"
+            >
+              Start With a Routing Call
+            </Link>
+
+            <Link
+              href="/shop"
+              onClick={() =>
+                track("click cta", {
+                  location: "home system options",
+                  intent: "View all systems",
+                  label: "See the Rest of Our Systems",
+                })
+              }
+              className="btn btn-free w-full justify-center sm:w-auto"
+            >
+              See the Rest of Our Systems
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

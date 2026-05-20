@@ -3,86 +3,106 @@
 export function RealProblemSection() {
   return (
     <section className="bg-[var(--bg-ivory)] text-[var(--ink-900)]">
-      <div className="mx-auto max-w-10/12 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-24">
-        <p className="eyebrow text-[var(--muted)] text-xs sm:text-sm border-b border-[var(--border)] text-right pb-2 w-fit font-semibold ml-auto">
-          01. WHO WE BUILD FOR
-        </p>
-
-        <div className="grid gap-10 sm:gap-12 lg:grid-cols-5 lg:gap-16 lg:pt-10">
-          {/* Left: Pain + root cause */}
-          <div className="lg:order-1 order-2 space-y-5 md:pr-10 border-r border-[var(--border)] lg:col-span-2">
+      <div className="mx-auto max-w-10/12 px-4 pt-16 sm:px-6 sm:pt-20 lg:px-8 lg:pt-24">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-5 lg:gap-16">
+          {/* Left: Who + pain + root cause */}
+          <div className="order-2 space-y-5 border-[var(--border)] lg:order-1 lg:col-span-2 lg:border-r lg:pr-10">
             <div className="space-y-2">
-              <p className="eyebrow text-[var(--muted)]">THE ISSUE</p>
+              <h2 className="font-head text-2xl font-semibold leading-tight tracking-tight text-[var(--ink-900)] sm:text-3xl">
+                We build for businesses that know the internet should be doing
+                more for them.
+              </h2>
+
+              <p className="subhead leading-relaxed text-[var(--ink-700)] sm:text-sm">
+                Whether you&apos;re establishing your first real web presence,
+                fixing a site that doesn&apos;t convert, or trying to capture
+                more of the opportunity already available online — the problem
+                is usually the same.
+              </p>
             </div>
 
-            <ul className="space-y-2 text-sm sm:text-base leading-relaxed text-[var(--ink-700)]">
-              <li className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
-                <span>Leads feel random — feast or famine.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
-                <span>Your site looks fine, but it doesn&apos;t book.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
-                <span>Follow-up relies on memory and manual effort.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--muted)]" />
-                <span>You can&apos;t see what&apos;s working.</span>
-              </li>
-            </ul>
-
-            <p className="caption text-[var(--muted)] pt-1 text-xs sm:text-sm">
-              It&apos;s not a design problem. It&apos;s missing
-              infrastructure.{" "}
-            </p>
-            {/* Translation block */}
-            <div className="lg:mr-auto w-full sm:w-11/12  rounded-2xl border border-[var(--border)] bg-[rgba(255,255,255,0.35)] backdrop-blur-sm p-5 sm:p-6">
-              <p className="font-bold eyebrow text-[var(--ink-900)] mb-3">
-                WHEN WE SAY “SYSTEMS,” WE MEAN:
+            <div className="pt-2">
+              <p className="eyebrow mb-3 text-[var(--ink-700)] font-bold border-b border-[var(--border)]">
+                IF THIS IS YOUR ISSUE
               </p>
 
-              <ul className="grid gap-2 text-sm sm:text-base text-[var(--ink-700)]">
-                <li>• Lead capture that doesn&apos;t leak</li>
-                <li>• Qualification that filters bad fits</li>
-                <li>• Follow-up that runs without chasing</li>
-                <li>• Proof that reduces hesitation</li>
-                <li>• Offers that feel obvious</li>
-                <li>• Analytics that show what&apos;s working</li>
+              <ul className="space-y-2 text-sm leading-relaxed text-[var(--ink-700)] sm:text-base">
+                <li className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--muted)]" />
+                  <span>Leads feel random — feast or famine.</span>
+                </li>
+
+                <li className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--muted)]" />
+                  <span>Your site looks fine, but it doesn&apos;t book.</span>
+                </li>
+
+                <li className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--muted)]" />
+                  <span>Follow-up relies on memory and manual effort.</span>
+                </li>
+
+                <li className="flex gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--muted)]" />
+                  <span>You can&apos;t see what&apos;s working.</span>
+                </li>
               </ul>
-
-              <p className="mt-4 text-xs sm:text-sm text-[var(--muted)]">
-                Each piece reinforces the others. That&apos;s how revenue
-                becomes predictable.
-              </p>
             </div>
+            <div className="pt-2">
+              <p className="eyebrow mb-3 text-[var(--ink-700)] font-bold border-b border-[var(--border)]">
+                THIS IS YOUR SOLUTION
+              </p>
+              <ul className="mt-4 grid gap-2 text-sm text-[var(--ink-700)] sm:text-base">
+                <li>• Capture leads without leaking interest</li>
+                <li>• Qualify visitors before they waste your time</li>
+                <li>• Follow up without relying on memory</li>
+                <li>• Use proof to reduce hesitation</li>
+                <li>• Make the offer obvious and easy to act on</li>
+                <li>• Track what is working so improvement is not guesswork</li>
+              </ul>
+            </div>
+
+            <h2 className="font-head text-2xl font-semibold leading-tight tracking-tight text-[var(--ink-900)] sm:text-3xl">
+              Systems are the difference between a handsome site that simply
+              exists and{" "}
+              <span className="font-bold text-[var(--green-pine-800)]">
+                infrastructure that moves the needle.
+              </span>
+            </h2>
           </div>
 
-          {/* Right: Diagnosis + explicit systems translation */}
-          <div className="space-y-7 order-1 lg:order-2 text-left lg:text-right lg:ml-auto mt-6 sm:mt-0 lg:mt-0 lg:col-span-3">
+          {/* Right: Diagnosis + philosophy */}
+          <div className="order-1 mt-6 space-y-7 text-left sm:mt-0 lg:order-2 lg:col-span-3 lg:ml-auto lg:mt-0 lg:text-right">
+            <div className="ml-auto w-fit">
+              <p className="eyebrow border-b border-[var(--border)] pb-2 text-xs font-semibold text-[var(--muted)] sm:text-sm">
+                01. THE REAL PROBLEM
+              </p>
+            </div>
+
             <div className="space-y-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-semibold leading-tight tracking-tight text-[var(--ink-900)] animate-fadeUp">
-                <span className="block mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-body">
-                  Don&apos;t believe{" "}
+              <h2 className="text-3xl font-semibold leading-tight tracking-tight text-[var(--ink-900)] animate-fadeUp sm:text-4xl md:text-5xl lg:text-7xl">
+                <span className="mb-3 block text-2xl font-body sm:mb-4 sm:text-3xl md:text-4xl">
+                  Many have bought {""}
                   <span className="text-[var(--green-pine-800)]">the lie.</span>
                 </span>
 
                 <span className="font-head text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-                  <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                    Websites aren&apos;t digital brochures.
+                  <span className="block text-5xl sm:text-5xl md:text-6xl lg:text-7xl">
+                    Websites are not{" "}
+                    <span className="text-[var(--green-pine-800)]">
+                      digital brochures.
+                    </span>
                   </span>
-                  They&apos;re mechanisms that bring owners{" "}
+                  They are supposed to be mechanisms that bring owners{" "}
                   <span className="font-semibold text-[var(--pine-tree)]">
                     predictable income.
                   </span>
                 </span>
               </h2>
 
-              <p className="subhead text-[var(--ink-700)] w-full sm:w-11/12 lg:w-3/4 lg:ml-auto">
-                A website is a tool. If it doesn&apos;t help you get seen,
-                trusted, and booked, it&apos;s dead weight.
+              <p className="subhead w-full text-[var(--ink-700)] sm:w-11/12 lg:ml-auto lg:w-3/4">
+                If it doesn&apos;t help you get seen, trusted, followed up with,
+                and booked, it&apos;s dead weight.
               </p>
             </div>
           </div>

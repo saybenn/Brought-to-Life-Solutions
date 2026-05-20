@@ -44,8 +44,6 @@
 .system-showcase__inner {
   position: relative;
   z-index: 1;
-  width: min(100% - 32px, 1180px);
-  margin-inline: auto;
   padding-block: clamp(72px, 8vw, 120px);
 }
 
