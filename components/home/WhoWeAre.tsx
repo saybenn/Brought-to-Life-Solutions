@@ -26,8 +26,8 @@ export default function WhoWeAre() {
 
           <p>
             We design and build clear, reliable solutions that maximize a
-            business's ability to leverage the internet to increase revenue and
-            reduce operational friction.
+            business&apos;s ability to leverage the internet to increase revenue
+            and reduce operational friction.
           </p>
         </div>
 
