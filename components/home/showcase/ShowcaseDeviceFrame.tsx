@@ -34,7 +34,6 @@ export default function ShowcaseDeviceFrame({
             <span className="showcase-device__toolbar-title">
               Revenue intelligence
             </span>
-            <span className="showcase-device__live">Live view</span>
           </div>
         ) : null}
 
