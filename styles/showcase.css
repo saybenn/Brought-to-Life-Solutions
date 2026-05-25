@@ -44,7 +44,15 @@
 .system-showcase__inner {
   position: relative;
   z-index: 1;
+  width: min(calc(100% - 32px), 1200px);
+  margin-inline: auto;
   padding-block: clamp(72px, 8vw, 120px);
+}
+
+.system-showcase__header {
+  max-width: 1040px;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .system-showcase__grid {
@@ -72,32 +80,41 @@
 }
 
 .system-showcase__title {
-  max-width: 520px;
-  margin: 0;
+  width: min(100%, 980px);
+  margin: clamp(20px, 2.4vw, 26px) auto 0;
   color: rgb(247 243 235 / 0.96);
   font-family: var(--font-head);
-  font-size: clamp(42px, 6.4vw, 76px);
+  font-size: clamp(42px, 5.9vw, 74px);
   font-weight: 800;
-  line-height: 0.98;
+  line-height: 1.04;
   letter-spacing: -0.045em;
+  text-wrap: balance;
 }
 
 .system-showcase__body {
-  max-width: 52ch;
-  margin: 26px 0 0;
+  max-width: 66ch;
+  margin: clamp(20px, 2.4vw, 28px) auto 0;
   color: rgb(247 243 235 / 0.72);
   font-family: var(--font-body);
   font-size: clamp(15px, 1.25vw, 17px);
   line-height: 1.7;
 }
 
+.system-showcase__support {
+  display: grid;
+  gap: clamp(26px, 3.2vw, 38px);
+  margin-top: clamp(32px, 4vw, 52px);
+}
+
 .system-showcase__features {
   display: grid;
   gap: 14px;
-  margin-top: 34px;
+  margin-top: 0;
 }
 
 .showcase-feature-card {
+  position: relative;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr);
   gap: 14px;
@@ -112,6 +129,16 @@
   );
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06);
   backdrop-filter: blur(10px);
+}
+
+.showcase-feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 20px;
+  width: 54px;
+  height: 1px;
+  background: var(--thread-gold);
+  opacity: 0.7;
 }
 
 .showcase-feature-card__icon {
@@ -147,9 +174,34 @@
 }
 
 .system-showcase__cta-row {
-  display: grid;
+  width: min(100%, 640px);
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  margin-top: 34px;
+  align-items: center;
+  margin-top: 0;
+  padding: clamp(25px, 3vw, 32px) clamp(22px, 5vw, 48px);
+  border: 1px solid rgb(214 185 138 / 0.2);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 0%, rgb(214 185 138 / 0.12), transparent 48%),
+    rgb(255 255 255 / 0.035);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.07),
+    0 20px 52px rgb(0 0 0 / 0.15);
+  text-align: center;
+}
+
+.system-showcase__cta-kicker {
+  margin: 0 0 2px;
+  color: var(--thread-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 .system-showcase__cta {
@@ -157,9 +209,9 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
-  min-width: 222px;
-  min-height: 58px;
-  padding: 0 28px;
+  min-width: 250px;
+  min-height: 60px;
+  padding: 0 34px;
   border: 1px solid rgb(214 185 138 / 0.62);
   border-radius: 999px;
   background: linear-gradient(180deg, #e2c894 0%, #d6b98a 100%);
@@ -170,7 +222,7 @@
   line-height: 1;
   text-decoration: none;
   box-shadow:
-    0 16px 34px rgb(0 0 0 / 0.22),
+    0 18px 40px rgb(0 0 0 / 0.28),
     inset 0 1px 0 rgb(255 255 255 / 0.36);
   transition:
     transform var(--dur-2) var(--ease-out),
@@ -188,7 +240,7 @@
 }
 
 .system-showcase__cta-note {
-  max-width: 38ch;
+  max-width: 48ch;
   margin: 0;
   color: rgb(247 243 235 / 0.54);
   font-family: var(--font-body);
@@ -201,6 +253,7 @@
 .system-showcase__visual {
   min-width: 0;
   position: relative;
+  margin-top: clamp(40px, 5.5vw, 64px);
 }
 
 .system-showcase__visual-header {
@@ -220,8 +273,8 @@
   z-index: -1;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 48% 38%, rgb(214 185 138 / 0.1), transparent 34%),
-    radial-gradient(circle at 56% 54%, rgb(35 67 46 / 0.36), transparent 48%);
+    radial-gradient(circle at 48% 38%, rgb(214 185 138 / 0.18), transparent 34%),
+    radial-gradient(circle at 56% 54%, rgb(35 67 46 / 0.44), transparent 50%);
   filter: blur(18px);
 }
 
@@ -240,6 +293,58 @@
   box-shadow:
     0 28px 70px rgb(0 0 0 / 0.42),
     inset 0 1px 0 rgb(255 255 255 / 0.18);
+}
+
+.showcase-device__toolbar {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  min-height: 42px;
+  padding-inline: 4px 8px;
+  color: rgb(247 243 235 / 0.56);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.showcase-device__controls {
+  display: flex;
+  gap: 6px;
+}
+
+.showcase-device__controls span {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgb(247 243 235 / 0.2);
+}
+
+.showcase-device__controls span:first-child {
+  background: rgb(214 185 138 / 0.8);
+}
+
+.showcase-device__toolbar-title {
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.showcase-device__live {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  margin-left: auto;
+  color: rgb(247 243 235 / 0.78);
+}
+
+.showcase-device__live::before {
+  content: "";
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #64bc7b;
+  box-shadow: 0 0 0 4px rgb(100 188 123 / 0.12);
 }
 
 .showcase-device__screen {
@@ -296,19 +401,40 @@
   z-index: 3;
 }
 
+.showcase-device--laptop::after {
+  content: "";
+  position: absolute;
+  right: -3%;
+  bottom: -13px;
+  left: -3%;
+  height: 14px;
+  border-radius: 0 0 26px 26px;
+  background: linear-gradient(
+    180deg,
+    rgb(214 185 138 / 0.34),
+    rgb(255 255 255 / 0.08)
+  );
+  box-shadow: 0 18px 28px rgb(0 0 0 / 0.3);
+}
+
 .showcase-device--laptop .showcase-device__bezel {
-  padding: 13px;
-  border-radius: 28px;
+  padding: 0 13px 13px;
+  border-color: rgb(214 185 138 / 0.38);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgb(214 185 138 / 0.2), rgb(255 255 255 / 0.06)),
+    rgb(13 18 15 / 0.94);
 }
 
 .showcase-device--laptop .showcase-device__screen {
   aspect-ratio: 16 / 10;
   border-radius: 17px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.08);
 }
 
 .showcase-device--laptop .showcase-device__label {
-  left: 22px;
-  top: 22px;
+  left: 25px;
+  top: 57px;
   bottom: auto;
 }
 
@@ -320,6 +446,7 @@
 
 .showcase-device--tablet .showcase-device__bezel {
   padding: 8px;
+  border-color: rgb(214 185 138 / 0.32);
   border-radius: 22px;
 }
 
@@ -335,6 +462,7 @@
 
 .showcase-device--phone .showcase-device__bezel {
   padding: 7px;
+  border-color: rgb(214 185 138 / 0.34);
   border-radius: 25px;
 }
 
@@ -345,14 +473,16 @@
 
 .showcase-device--support-tablet {
   position: absolute;
-  left: -2%;
+  left: 1%;
   bottom: 18px;
+  transform: rotate(-3deg);
 }
 
 .showcase-device--support-phone {
   position: absolute;
-  right: 1%;
+  right: 3%;
   bottom: 56px;
+  transform: rotate(3deg);
 }
 
 .showcase-device--tablet .showcase-device__label,
@@ -369,12 +499,12 @@
 .system-showcase__metric-strip {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  margin-top: clamp(36px, 5vw, 64px);
+  gap: 14px;
+  margin-top: clamp(40px, 5vw, 62px);
 }
 
 .system-showcase__metric {
-  padding: 16px 18px;
+  padding: 19px 20px 20px;
   border: 1px solid rgb(247 243 235 / 0.12);
   border-radius: 16px;
   background: rgb(255 255 255 / 0.045);
@@ -422,17 +552,20 @@
 /* ================== Responsive ================== */
 
 @media (min-width: 700px) {
-  .system-showcase__metric-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .system-showcase__inner {
+    width: min(calc(100% - 48px), 1200px);
   }
 
-  .system-showcase__cta-row {
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
+  .system-showcase__metric-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 1024px) {
+  .system-showcase__inner {
+    width: min(calc(100% - 64px), 1200px);
+  }
+
   .system-showcase__grid {
     grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1.38fr);
     gap: clamp(44px, 5vw, 72px);
@@ -447,7 +580,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    max-width: 680px;
+    max-width: 780px;
     margin-inline: auto;
     margin-bottom: 18px;
     padding: 14px 16px;
@@ -478,21 +611,52 @@
     line-height: 1.3;
   }
 
-  .system-showcase__visual-dot {
-    width: 10px;
-    height: 10px;
+  .system-showcase__visual-badge {
+    display: inline-flex;
+    gap: 9px;
+    align-items: center;
     flex: 0 0 auto;
+    margin: 0;
+    padding: 10px 13px;
+    border: 1px solid rgb(214 185 138 / 0.22);
+    border-radius: 999px;
+    background: rgb(214 185 138 / 0.08);
+    color: rgb(247 243 235 / 0.78);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .system-showcase__visual-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
     border-radius: 999px;
     background: var(--thread-gold);
-    box-shadow: 0 0 0 6px rgb(214 185 138 / 0.1);
+    box-shadow: 0 0 0 5px rgb(214 185 138 / 0.1);
   }
 
   .system-showcase__device-stage {
-    min-height: 540px;
+    min-height: 580px;
+  }
+
+  .system-showcase__features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .showcase-feature-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    height: 100%;
+    padding: 23px 22px 24px;
   }
 
   .system-showcase__metric-strip {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
   }
 }
 
@@ -502,7 +666,7 @@
   }
 
   .system-showcase__device-stage {
-    min-height: 545px;
+    min-height: 584px;
   }
 
   .showcase-device--laptop {
@@ -511,12 +675,12 @@
   }
 
   .showcase-device--support-tablet {
-    left: -4%;
+    left: 0;
     bottom: 20px;
   }
 
   .showcase-device--support-phone {
-    right: -2%;
+    right: 2%;
     bottom: 76px;
   }
 }
@@ -530,6 +694,7 @@
     min-height: auto;
     display: grid;
     gap: 18px;
+    padding-bottom: 16px;
   }
 
   .showcase-device--laptop,
@@ -555,7 +720,7 @@
 
   .showcase-device--laptop .showcase-device__label {
     left: 18px;
-    top: 18px;
+    top: 57px;
     bottom: auto;
   }
 }
@@ -576,7 +741,7 @@
   }
 
   .system-showcase__features {
-    margin-top: 28px;
+    gap: 12px;
   }
 
   .showcase-feature-card {
@@ -602,7 +767,7 @@
   }
 
   .showcase-device--laptop .showcase-device__bezel {
-    padding: 8px;
+    padding: 0 8px 8px;
     border-radius: 20px;
   }
 

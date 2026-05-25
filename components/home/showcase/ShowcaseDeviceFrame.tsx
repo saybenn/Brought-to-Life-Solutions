@@ -24,6 +24,20 @@ export default function ShowcaseDeviceFrame({
       className={`showcase-device showcase-device--${variant} ${className}`}
     >
       <div className="showcase-device__bezel">
+        {variant === "laptop" ? (
+          <div className="showcase-device__toolbar" aria-hidden="true">
+            <span className="showcase-device__controls">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span className="showcase-device__toolbar-title">
+              Revenue intelligence
+            </span>
+            <span className="showcase-device__live">Live view</span>
+          </div>
+        ) : null}
+
         {label ? (
           <figcaption className="showcase-device__label">{label}</figcaption>
         ) : null}

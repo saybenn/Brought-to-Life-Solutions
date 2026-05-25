@@ -1,43 +1,42 @@
 import Head from "next/head";
-import { Button } from "@/components/ui/Button";
-import Link from "next/link";
-import WhoWeAre from "@/components/home/WhoWeAre";
+
 import { Hero } from "@/components/home/Hero";
 import { TrustStripB } from "@/components/home/TrustStrip";
-
-import { RealProblemSection } from "../components/home/RealProblemSection";
-import { SixSocketsIntro } from "@/components/home/SixSocketsIntro";
 import { ProductSection } from "@/components/home/ProductSection";
 import { ResultsSection } from "@/components/home/ResultsSection";
-import FaqSection from "../components/home/FAQSection";
-import FinalCtaSection from "@/components/home/FinalCtaSection";
+import { WhySystemsSection } from "@/components/home/WhySystemsSection";
 import SystemVisibilityShowcase from "@/components/home/showcase/SystemVisibilityShowcase";
+import { SixSocketsIntro } from "@/components/home/SixSocketsIntro";
+import FaqSection from "@/components/home/FAQSection";
+import FinalCtaSection from "@/components/home/FinalCtaSection";
+import { RealProblemSection } from "@/components/home/RealProblemSection";
+import WhoWeAre from "@/components/home/WhoWeAre";
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Brought to Life Solutions — Outcomes Over Hype</title>
+        <title>
+          Brought to Life Solutions — Web Systems for Service Businesses
+        </title>
         <meta
           name="description"
-          content="Web, SEO, Coaching, Photography. Get backed, seen, heard, and paid."
+          content="Brought to Life Solutions builds websites, dashboards, and growth systems for service businesses that need clearer paths from attention to inquiry."
         />
       </Head>
 
       <main>
         <Hero />
         <TrustStripB />
-        {/* <WhoWeBuildForBigType /> */}
-        <RealProblemSection />
+        <RealProblemSection /> <ProductSection />
         <WhoWeAre />
         <SixSocketsIntro />
-        <ProductSection />
-        <SystemVisibilityShowcase />
         <ResultsSection />
+        <SystemVisibilityShowcase />
         <FaqSection />
         <FinalCtaSection />
       </main>
-      {/* Inline keyframes to avoid extra file; place this in globals.css later if you like */}
+
       <style jsx global>{`
         @keyframes fadeUp {
           from {
@@ -49,16 +48,20 @@ export default function Home() {
             transform: translateY(0);
           }
         }
+
         .animate-fadeUp {
           animation: fadeUp 0.6s var(--ease-out) forwards;
           opacity: 0;
         }
+
         [animation-delay\\: 150ms] {
           animation-delay: 150ms;
         }
+
         [animation-delay\\: 300ms] {
           animation-delay: 300ms;
         }
+
         [animation-delay\\: 450ms] {
           animation-delay: 450ms;
         }

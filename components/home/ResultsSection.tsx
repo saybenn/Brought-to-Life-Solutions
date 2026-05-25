@@ -45,32 +45,6 @@ const CASES = [
     imageSrc: "/images/ces.webp",
     highlight: false,
   },
-  {
-    title: "Aloyo Money Management — Elevating a DIY Wix site",
-    clientType: "FINANCIAL SERVICES · RHODE ISLAND",
-    sockets: ["Offer Strength", "Proof", "Conversion"],
-    before:
-      "Their Wix site was cramped, inconsistent in color, and visually amateur—undercutting the credibility you need when handling people’s money.",
-    system:
-      "We overhauled the spacing, hierarchy, and color system, using typography and layout to create breathing room and a calmer, more confident environment.",
-    after:
-      "The final site feels cohesive and professional. The owner loved the result and finally has a presence that matches the seriousness of her work.",
-    imageSrc: "/images/aloyo.webp",
-    highlight: false,
-  },
-  {
-    title: "The Swade Group — Simplifying a broad service offering",
-    clientType: "WATER RESTORATION · MULTI-SERVICE",
-    sockets: ["Conversion", "Operations", "Visibility"],
-    before:
-      "A broad list of services with no clear structure made it hard for visitors to quickly understand what they offered and what to do next.",
-    system:
-      "We designed a lightweight, low-friction experience with predictable navigation and an intentional path from scanning services to getting in touch.",
-    after:
-      "The owner loves the site and even tried to bring us back in for another project—it’s now a clear, easy-to-use tool that supports his sales conversations.",
-    imageSrc: "/images/swade.webp",
-    highlight: false,
-  },
 ];
 
 export function ResultsSection() {
@@ -83,11 +57,11 @@ export function ResultsSection() {
         {/* Header */}
         <header className="max-w-4xl space-y-6">
           <p className="eyebrow w-fit border-b border-[var(--border)] text-sm text-[var(--muted)] lg:mx-0">
-            06. Results & Proof
+            05. Results & Proof
           </p>
 
           <h2 className="h2 mt-3 text-3xl sm:text-4xl lg:text-5xl leading-tight">
-            Not redesigns. System installations that fixed problems.
+            System installations tied to real business problems.
           </h2>
         </header>
 
@@ -131,7 +105,7 @@ export function ResultsSection() {
         <div className="mt-12 flex flex-col gap-3 border-t border-(--border-subtle) pt-8 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h3 className="text-base sm:text-lg font-semibold text-(--ink-900)">
-              Want to know where revenue is leaking?
+              See where your system needs attention.
             </h3>
             <p className="mt-1 text-sm text-(--ink-700)">
               We&apos;ll review your current site and point out which socket(s)

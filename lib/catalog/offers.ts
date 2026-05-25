@@ -140,13 +140,13 @@ export const OFFERS: Offer[] = [
     outcomeNarrative:
       "We wire your site so the right people find you, trust you, and contact you — without guessing what’s working.",
     deliverablesIntro: "You get:",
-    deliverables: [
-      "Everything in the Starter System",
-      "Conversion-focused pages built to get leads",
-      "Call and form tracking so results aren’t a mystery",
-      "A simple dashboard showing what produces revenue",
-      "A system you can improve instead of replacing",
-    ],
+   deliverables: [
+  "Everything in the Starter System",
+  "Conversion-focused pages built to get leads",
+  "Call and form tracking so results are easier to read",
+  "Dashboard installation and initial tracking setup",
+  "A system you can improve instead of replacing",
+],
   },
 
 {
@@ -163,7 +163,7 @@ export const OFFERS: Offer[] = [
     "Built for BTLS-built sites so owners can see traffic, calls, forms, CTAs, sources, pages, and conversion movement without digging through GA4.",
 
   bestFor:
-    "BTLS clients who want clearer website visibility after launch.",
+      "BTLS clients who want ongoing dashboard access and clearer website visibility after launch.",
 
   startingAtCents: 14900,
   installFeeCents: 50000,

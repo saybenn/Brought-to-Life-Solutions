@@ -14,7 +14,7 @@ type SocketId =
   | "analytics";
 
 const DEFAULT_COPY =
-  "Most owners don't need more hustle or hacks—they need a well-crafted shape that naturally keeps them afloat. That's what we believe the six sockets acheive.";
+  "Most owners do not need more hustle or more tools. They need a clear structure that helps the business receive, qualify, and follow up with real opportunities.";
 
 const SOCKETS: {
   id: SocketId;
@@ -107,7 +107,7 @@ export function SixSocketsIntro() {
           {/* Copy block */}
           <div className="mx-auto max-w-xl space-y-5 animate-fadeUp lg:mx-0">
             <p className="eyebrow mx-auto w-fit border-b border-[var(--border)] text-sm text-[var(--muted)] lg:mx-0">
-              03. THE SIX SOCKETS
+              04. THE SIX SOCKETS
             </p>
 
             <h2 className="h2 on-dark text-3xl leading-tight sm:text-4xl lg:text-5xl">

@@ -23,7 +23,7 @@ export default function FinalCtaSection() {
             id="final-cta-heading"
             className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl"
           >
-            Let&apos;s map the money flow through your website.
+            Let&apos;s map the path from visitor interest to qualified inquiry.
           </h2>
 
           <p className="mt-4 text-sm leading-relaxed text-white/80 sm:text-base">

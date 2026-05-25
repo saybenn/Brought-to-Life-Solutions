@@ -48,7 +48,7 @@ export function Hero() {
                 </p>
 
                 <h1 className="h1 on-dark max-w-4xl text-3xl leading-snug sm:text-4xl md:text-5xl lg:text-6xl">
-                  Web systems that create predictable income.
+                  Web systems built to make revenue less random.
                 </h1>
               </div>
 

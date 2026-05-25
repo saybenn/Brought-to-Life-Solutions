@@ -8,7 +8,7 @@ export default function WhoWeAre() {
     <section className="bg-[var(--bg-ivory)] py-20 text-[var(--ink-900)] sm:py-24">
       <div className="mx-auto max-w-3xl space-y-6 px-4 text-center sm:px-6">
         <p className="eyebrow mx-auto w-fit border-b border-[var(--border)] pb-2 text-sm font-semibold text-[var(--muted)]">
-          02. WHO WE ARE
+          03. WHO WE ARE
         </p>
 
         <h2 className="font-head text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
